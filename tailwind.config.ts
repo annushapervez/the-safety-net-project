@@ -12,7 +12,11 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        heading: ['Cormorant Garamond', 'serif'], // Use Cormorant Garamond for heading
+      },
     },
   },
   plugins: [],
 } satisfies Config;
+

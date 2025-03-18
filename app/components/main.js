@@ -256,6 +256,8 @@ const MainContent = () => {
           </SlideUpWhenVisible>
           <SlideUpWhenVisible>
 
+<Link href="/ZiaAcademy">
+
    <Button 
             mt={4} // Adds spacing from text
             px={12} // Horizontal padding
@@ -268,9 +270,11 @@ const MainContent = () => {
             borderRadius="0" // Sharp edges like the first image
             width="fit-content" // Makes width match text size
             _hover={{ bg: "#2c3d90", color: "white" }} // Hover effect
+
           >
             LEARN MORE
           </Button>
+          </Link>
           </SlideUpWhenVisible>
 
         </Box>

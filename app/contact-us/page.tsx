@@ -35,10 +35,10 @@ function ContactForm() {
             fontSize="xl"
             fontFamily="Open Sauce One, sans-serif"
             fontWeight="400"
+            color="#5F5D5D"
             letterSpacing="-1.2px"
           >
-            If you have any questions or encounter any difficulties navigating this website or understanding the project, please feel free to reach out to us. We are available via email and are able to schedule meetings if planned in advance.
-</Text>
+We’d love to hear from you! For any questions or ideas please feel free to contact us. </Text>
 <Heading as="h1" size="md" fontWeight="400" color="#2c3d90" letterSpacing="-1.2px" mt={4} >
 
   safetynetprojects@gmail.com

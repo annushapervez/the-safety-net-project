@@ -1,6 +1,7 @@
 "use client";
 import { Box, Heading, Text, VStack, HStack, Divider, Tooltip } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
 
 const MotionBox = motion(Box);
 
@@ -23,12 +24,14 @@ const allocations = [
   { name: "Add. Expenses", amount: 165 },
 ];
 
-const maxAmount = Math.max(...allocations.map(a => a.amount));
+const maxAmount = 4000;
+
 
 export default function FundAllocation() {
   return (
     <HStack spacing={20} align="center" mx="auto" p={12}  bg="white" borderRadius="md" boxShadow="lg">
       <VStack>
+      <SlideUpWhenVisible>
         <Heading
           as="h2"
           size="2xl"
@@ -39,7 +42,10 @@ export default function FundAllocation() {
         >
           Fund Allocation To Date
         </Heading>
+        </SlideUpWhenVisible>
+
         <Divider style={{ borderTop: '4px dotted #1F3A93' }} my={2} />
+        <SlideUpWhenVisible>
 
         <Text
           fontSize="xl"
@@ -53,11 +59,14 @@ export default function FundAllocation() {
           In March 2023, we successfully raised <b>$8,075</b> to support The Zia Academy in its operations.
           The following is an explanation of the allocation of the funds in addition to the recurring expenses we have helped accommodate since March 2023.
         </Text>
+        </SlideUpWhenVisible>
 
         <Divider style={{ borderTop: '4px dotted #1F3A93' }} my={2}/>
       </VStack>
 
+
       <VStack spacing={4} w="full">
+
         {allocations.map((item, index) => (
           <HStack key={index} w="full" spacing={4}>
             <Text 
@@ -107,7 +116,7 @@ export default function FundAllocation() {
               bg="#2c3d90"
               h="7" // Increased height for better visibility
               borderRadius="md"
-              maxW="full" // Ensure it grows up to 100% of the available space
+
             />
 
             <Text fontSize="sm" fontWeight="bold" color="#2c3d90">
@@ -116,7 +125,9 @@ export default function FundAllocation() {
 
           </HStack>
         ))}
+
       </VStack>
+
     </HStack>
   );
 }

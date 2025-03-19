@@ -15,6 +15,9 @@ import Footer from "../components/Footer";
 import PhotoSlider from "../components/atifgallery"; // Import the new component
 import Ziaslider from "../components/ziapics"; // Import the new component
 import FundAllocation from "../components/FundAllocation"; // Import the FundAllocation component
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
+
+
 
 const ZiaAcademyPage = () => {
   // Function to handle smooth scrolling
@@ -95,6 +98,9 @@ const ZiaAcademyPage = () => {
 
         {/* Main Content */}
         <Flex direction="column" align="center" justify="center" p={8} bg="gray.100">
+
+        <SlideUpWhenVisible threshold={0.35}>
+
           {/* About Section */}
           <Flex
             id="about"
@@ -106,6 +112,7 @@ const ZiaAcademyPage = () => {
             gap={0}
             mt={8}
           >
+
             {/* Image Box */}
             <Box flex="1" position="relative">
               <Image
@@ -146,12 +153,18 @@ const ZiaAcademyPage = () => {
               <Text fontSize="xl" fontFamily="Open Sauce One, sans-serif" fontWeight="400" color="#5F5D5D" letterSpacing="-1.2px">
                 Our goal is not only to support essential living conditions when we approach this collaboration with The Zia Academy but to also provide resources that can empower the girls to build their own careers and achieve self-sufficiency down the road.
               </Text>
+
             </VStack>
+
           </Flex>
+          </SlideUpWhenVisible>
+
 
           {/* Photographs Section - Atif Productions */}
+
           <VStack id="photographs-atif" mt={12} w="100%"  maxW="95%" align="center"
 >
+
             <Heading as="h2" size="2xl" fontWeight="400" letterSpacing="-2px" lineHeight="1.2" color="#2c3d90">
               Photographs
             </Heading>
@@ -160,6 +173,7 @@ const ZiaAcademyPage = () => {
             </Text>
             <PhotoSlider />
           </VStack>
+
 
           {/* Fund Allocation Section */}
           <VStack id="fund-allocation" mt={16} w="100%"  maxW="95%" align="center"
@@ -180,17 +194,29 @@ const ZiaAcademyPage = () => {
 
           {/* Donate Section */}
           <VStack id="donate" my={16} p={12} w="100%"   maxW="95%" textAlign="center" bg="white" borderRadius="md" boxShadow="lg" align="center">
-            <Heading as="h2" size="2xl" fontWeight="400" letterSpacing="-2px" lineHeight="1.2" color="#2c3d90">
-              Donate
-            </Heading>
+          <SlideUpWhenVisible threshold={.35}>
+          <HStack>
+                <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize="50px" />
+                <Heading as="h2" size="2xl" fontWeight="400" letterSpacing="-2px" lineHeight="1.2" color="#2c3d90">
+                  Donate
+                </Heading>
+              </HStack>
+            </SlideUpWhenVisible>
+
+            <SlideUpWhenVisible threshold={.35}>
+
             <Text fontSize="xl" color="#5F5D5D" mb={6} fontWeight="400" letterSpacing="-1.2px">
               Your generosity helps support the girls at Zia Academy and ensures they have access to essential resources.
             </Text>
+            </SlideUpWhenVisible>
 
             {/* Donation Options - Horizontally Stacked */}
             <HStack spacing={6} w="100%" align="stretch" fontFamily="Open Sauce One, sans-serif">
               {/* Direct Wire Transfer */}
+
               <Box p={6} bg="gray.50" boxShadow="md" borderRadius="lg" flex="1">
+              <SlideUpWhenVisible threshold={.35}>
+
                 <Heading as="h3" size="lg" color="#2c3d90" mb={4} fontWeight="400" letterSpacing="-1.2px">
                   Direct Wire Transfer
                 </Heading>
@@ -203,20 +229,30 @@ const ZiaAcademyPage = () => {
                   <Text fontSize="md"><strong>Account #:</strong> 0102806-0</Text>
                   <Text fontSize="md"><strong>Branch Code:</strong> 1541</Text>
                 </VStack>
+                </SlideUpWhenVisible>
+
               </Box>
+              
+
 
               {/* LaunchGood */}
+
               <Box p={6} bg="gray.50" boxShadow="md" borderRadius="lg" flex="1">
+              <SlideUpWhenVisible threshold={.35}>
+
                 <Heading as="h3" size="lg" color="#2c3d90" mb={4} fontWeight="400" letterSpacing="-1.2px">
                   LaunchGood
                 </Heading>
                 <Text fontSize="md" letterSpacing="-1px">
                   We wire funds to the academy through our platform and manage distribution on an as-needed basis.
                 </Text>
+                </SlideUpWhenVisible>
+
               </Box>
 
               {/* Additional Resources */}
               <Box p={6} bg="gray.50" boxShadow="md" borderRadius="lg" flex="1">
+              <SlideUpWhenVisible threshold={.35}>
                 <Heading as="h3" size="lg" color="#2c3d90" mb={4} fontWeight="400" letterSpacing="-1.2px">
                   Additional Resources
                 </Heading>
@@ -229,6 +265,8 @@ const ZiaAcademyPage = () => {
                     SAFETYNETPROJECTS@GMAIL.COM
                   </a>
                 </Text>
+                </SlideUpWhenVisible>
+
               </Box>
             </HStack>
           </VStack>

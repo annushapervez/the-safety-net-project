@@ -4,6 +4,7 @@ import { Box, Image } from "@chakra-ui/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
 
 // List all images manually from the "photos" folder in public
 const imagePaths = [
@@ -81,6 +82,8 @@ const PhotoSlider = () => {
 
   return (
     <Box w="100%" overflow="visible" align="center">
+          <SlideUpWhenVisible>
+
       <Slider key={imagePaths.length} {...settings}>
         {imagePaths.map((src, index) => (
           <Box key={index} mx={2} >
@@ -95,8 +98,10 @@ const PhotoSlider = () => {
           </Box>
         ))}
       </Slider>
+      </SlideUpWhenVisible>
+
     </Box>
-  );
+  )
 };
 
 // Custom Arrow Components
@@ -108,7 +113,7 @@ const SampleNextArrow = (props) => {
       style={{
         zIndex: 1,
         position: "absolute",
-        right: "-10px", // Position to the right
+        right: "-30px", // Position to the right
         top: "50%",
         transform: "translateY(-50%)", // Center vertically
         fontSize: "24px", // Adjust size
@@ -130,7 +135,7 @@ const SamplePrevArrow = (props) => {
       style={{
         zIndex: 1,
         position: "absolute",
-        left: "-5px", // Position to the left
+        left: "-10px", // Position to the left
         top: "50%",
         transform: "translateY(-50%)", // Center vertically
         fontSize: "24px", // Adjust size

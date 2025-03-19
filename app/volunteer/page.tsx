@@ -1,21 +1,52 @@
-import React from 'react';
+"use client";
+import React, { useState } from 'react';
 import {
-  Box,
-  Flex,
-  Heading,
-  Text,
-  FormControl,
-  FormLabel,
-  Input,
-  Select,
-  Button,
-  SimpleGrid,
+  Box, Flex, Heading, Text, FormControl, FormLabel, Input, Select, Button, SimpleGrid,
 } from '@chakra-ui/react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ChakraProvider } from '@chakra-ui/react';
+import { db } from "../firebaseConfig.js"; // Import Firestore
+import { collection, addDoc } from "firebase/firestore";
 
 const VolunteerPage = () => {
+  // State for form fields
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    volunteerType: '',
+  });
+
+  const [message, setMessage] = useState('');
+
+  // Handle input change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const docRef = await addDoc(collection(db, "volunteers"), formData);
+      setMessage("Volunteer submission successful!");
+      
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        volunteerType: '',
+      });
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      setMessage("Error submitting form. Please try again.");
+    }
+  };
+
   return (
     <ChakraProvider>
       <>
@@ -27,7 +58,7 @@ const VolunteerPage = () => {
           fontFamily="'Open Sauce One', sans-serif" // Apply font to the entire container
         >
           <Flex
-            maxW="1200px"
+            maxW="95%"
             mx="auto"
             bg="white"
             boxShadow="md"
@@ -77,62 +108,45 @@ const VolunteerPage = () => {
               </Text>
             </Box>
 
-            {/* Right Section */}
-            <Box flex="1" p={10} bg="white" fontWeight="400" color="#2c3d90" letterSpacing="-1.2px"
- >
-              <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
-                {/* Name */}
-                <FormControl id="first-name" isRequired>
-                  <FormLabel>First Name</FormLabel>
-                  <Input type="text" placeholder="First Name" />
+          {/* Right Section - Form */}
+          <Box flex="1" p={10} bg="white" fontWeight="400" color="#2c3d90" letterSpacing="-1.2px">
+              <form onSubmit={handleSubmit}>
+                <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+                  <FormControl id="firstName" isRequired>
+                    <FormLabel>First Name</FormLabel>
+                    <Input type="text" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
+                  </FormControl>
+                  <FormControl id="lastName" isRequired>
+                    <FormLabel>Last Name</FormLabel>
+                    <Input type="text" placeholder="Last Name" value={formData.lastName} onChange={handleChange} />
+                  </FormControl>
+                </SimpleGrid>
+
+                <FormControl id="email" isRequired mt={4}>
+                  <FormLabel>Email</FormLabel>
+                  <Input type="email" placeholder="Your Email Address" value={formData.email} onChange={handleChange} />
                 </FormControl>
-                <FormControl id="last-name" isRequired>
-                  <FormLabel>Last Name</FormLabel>
-                  <Input type="text" placeholder="Last Name" />
+
+                <FormControl id="phone" mt={4}>
+                  <FormLabel>Phone</FormLabel>
+                  <Input type="tel" placeholder="Your Phone Number" value={formData.phone} onChange={handleChange} />
                 </FormControl>
-              </SimpleGrid>
 
-              {/* Email */}
-              <FormControl id="email" isRequired mt={4}>
-                <FormLabel>Email</FormLabel>
-                <Input type="email" placeholder="Your Email Address" />
-              </FormControl>
+                <FormControl id="volunteerType" isRequired mt={4}>
+                  <FormLabel>What type of volunteer work would you be interested in?</FormLabel>
+                  <Select placeholder="Select an option" color="gray.500" value={formData.volunteerType} onChange={handleChange}>
+                    <option>Outreach</option>
+                    <option>Event Planning</option>
+                    <option>Fundraising</option>
+                    <option>Administrative Work</option>
+                  </Select>
+                </FormControl>
 
-              {/* Phone */}
-              <FormControl id="phone" mt={4}>
-                <FormLabel>Phone</FormLabel>
-                <Input type="tel" placeholder="Your Phone Number" />
-              </FormControl>
-
-              {/* Volunteer Type */}
-              <FormControl id="volunteer-type" isRequired mt={4}>
-                <FormLabel>
-                  What type of volunteer work would you be interested in?
-                </FormLabel>
-                <Select placeholder="Select an option" color="gray.500">
-                  <option>Outreach</option>
-                  <option>Event Planning</option>
-                  <option>Fundraising</option>
-                  <option>Administrative Work</option>
-                </Select>
-              </FormControl>
-
-              {/* Submit Button */}
-              <Button
-                mt={6}
-                px={8}
-                py={4}
-                fontSize="md"
-                fontWeight="bold"
-                color="#2c3d90"
-                border="2px"
-                bg="transparent"
-                borderRadius="0"
-                width="fit-content"
-                _hover={{ bg: "#2c3d90", color: "white" }}
-              >
-                SEND
-              </Button>
+                <Button type="submit" mt={6} px={8} py={4} fontSize="md" fontWeight="bold" color="#2c3d90" border="2px" bg="transparent" borderRadius="0" width="fit-content" _hover={{ bg: "#2c3d90", color: "white" }}>
+                  SEND
+                </Button>
+              </form>
+              {message && <Text mt={4} color="green.500">{message}</Text>}
             </Box>
           </Flex>
         </Box>

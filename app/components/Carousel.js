@@ -40,7 +40,7 @@ const ImageCarousel = () => {
         >
           Welcome to our new website. The Safety Net Project is a non-profit organization dedicated to providing support and safety for children around the world. This website acts as our virtual headquarters where we will discuss projects, ideas, and resources.
         </Text>
-        <Flex justifyContent="center" mt={4}>
+      { /* <Flex justifyContent="center" mt={4}>
           <Button 
             mt={4} // Adds spacing from text
             px={12} // Horizontal padding
@@ -55,8 +55,8 @@ const ImageCarousel = () => {
             _hover={{ bg: "#2c3d90", color: "white" }} // Hover effect
           >
             LEARN MORE
-          </Button>
-        </Flex>
+          </Button> 
+        </Flex>*/}
       </Box>
 
       {/* Right Side: Carousel (2/3 width) */}

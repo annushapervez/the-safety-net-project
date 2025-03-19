@@ -1,6 +1,6 @@
-"use client";
 import { Box, Heading, Text, VStack, HStack, Divider, Tooltip } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
 
 const MotionBox = motion(Box);
@@ -26,53 +26,79 @@ const allocations = [
 
 const maxAmount = 4000;
 
-
 export default function FundAllocation() {
+  // Add state to track visibility
+  const [isInView, setIsInView] = useState(false);
+
+  // Observer callback to update the visibility status
+  const handleIntersection = (entries) => {
+    const entry = entries[0];
+    if (entry.isIntersecting) {
+      setIsInView(true);
+    }
+  };
+
+  useEffect(() => {
+    // Only trigger the motion if the section is in view
+    if (isInView) {
+      // Trigger the animation when the section comes into view
+    }
+  }, [isInView]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.5, // Adjust the threshold as needed (0.5 means 50% of the section must be visible)
+    });
+    const sectionElement = document.getElementById('motion-section');
+    if (sectionElement) {
+      observer.observe(sectionElement);
+    }
+    return () => observer.disconnect(); // Cleanup observer
+  }, []);
+
   return (
     <HStack spacing={20} align="center" mx="auto" p={12}  bg="white" borderRadius="md" boxShadow="lg">
       <VStack>
-      <SlideUpWhenVisible>
-        <Heading
-          as="h2"
-          size="2xl"
-          fontWeight="400"
-          letterSpacing="-2px"
-          lineHeight="1.2"
-          color="#2c3d90"
-        >
-          Fund Allocation To Date
-        </Heading>
+        <SlideUpWhenVisible>
+          <Heading
+            as="h2"
+            size="2xl"
+            fontWeight="400"
+            letterSpacing="-2px"
+            lineHeight="1.2"
+            color="#2c3d90"
+          >
+            Fund Allocation To Date
+          </Heading>
         </SlideUpWhenVisible>
 
         <Divider style={{ borderTop: '4px dotted #1F3A93' }} my={2} />
+        
         <SlideUpWhenVisible>
-
-        <Text
-          fontSize="xl"
-          fontFamily="Open Sauce One, sans-serif"
-          fontWeight="400"
-          color="#5F5D5D"
-          maxW="4xl"
-          align="center"
-          letterSpacing="-1.2px"
-        >
-          In March 2023, we successfully raised <b>$8,075</b> to support The Zia Academy in its operations.
-          The following is an explanation of the allocation of the funds in addition to the recurring expenses we have helped accommodate since March 2023.
-        </Text>
+          <Text
+            fontSize="xl"
+            fontFamily="Open Sauce One, sans-serif"
+            fontWeight="400"
+            color="#5F5D5D"
+            maxW="4xl"
+            align="center"
+            letterSpacing="-1.2px"
+          >
+            In March 2023, we successfully raised <b>$8,075</b> to support The Zia Academy in its operations.
+            The following is an explanation of the allocation of the funds in addition to the recurring expenses we have helped accommodate since March 2023.
+          </Text>
         </SlideUpWhenVisible>
 
         <Divider style={{ borderTop: '4px dotted #1F3A93' }} my={2}/>
       </VStack>
 
-
-      <VStack spacing={4} w="full">
-
+      <VStack spacing={4} w="full" id="motion-section">
         {allocations.map((item, index) => (
           <HStack key={index} w="full" spacing={4}>
             <Text 
-                  fontFamily="Open Sauce One, sans-serif"
-                  fontWeight="400"
-                  letterSpacing="-1px"
+              fontFamily="Open Sauce One, sans-serif"
+              fontWeight="400"
+              letterSpacing="-1px"
               fontSize="md" 
               color={item.name === "Recurring Monthly Expenses" ? "#2c3d90" : "#5F5D5D"}
               minW="200px" 
@@ -109,25 +135,24 @@ export default function FundAllocation() {
               )}
             </Text>
 
-            <MotionBox
-              initial={{ width: "0%" }}
-              animate={{ width: `${(item.amount / maxAmount) * 100}%` }}
-              transition={{ duration: 2, ease: 'easeInOut', delay: index * 0.2 }}
-              bg="#2c3d90"
-              h="7" // Increased height for better visibility
-              borderRadius="md"
-
-            />
+            {/* Apply motion only when the section is in view */}
+            {isInView && (
+              <MotionBox
+                initial={{ width: "0%" }}
+                animate={{ width: `${(item.amount / maxAmount) * 100}%` }}
+                transition={{ duration: 2, ease: 'easeInOut', delay: index * 0.2 }}
+                bg="#2c3d90"
+                h="7" // Increased height for better visibility
+                borderRadius="md"
+              />
+            )}
 
             <Text fontSize="sm" fontWeight="bold" color="#2c3d90">
               ${item.amount}
             </Text>
-
           </HStack>
         ))}
-
       </VStack>
-
     </HStack>
   );
 }

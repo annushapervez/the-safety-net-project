@@ -63,7 +63,7 @@ const ImageCarousel = () => {
       <Box flex="2.5" minW="0"> {/* ✅ Ensures Swiper gets correct width */}
         <Swiper
           slidesPerView={1}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          autoplay={{ delay: 2500, disableOnInteraction: false }}
           speed={900}
           loop={true}
           effect="slide" // Keep the slide effect (no fading)

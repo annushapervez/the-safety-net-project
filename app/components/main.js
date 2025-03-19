@@ -161,9 +161,11 @@ const MainContent = () => {
           mx="auto" 
           fontFamily="Open Sauce One, sans-serif"
         >
-          <Heading as="h2" size="2xl" textAlign="center" mb={14} mt={8} fontFamily="Open Sauce One, sans-serif" fontWeight="400" letterSpacing="-2px" lineHeight="1.2" color="#2c3d90">
+          <Heading as="h2" size="2xl" textAlign="center" mb={2} mt={8} fontFamily="Open Sauce One, sans-serif" fontWeight="400" letterSpacing="-2px" lineHeight="1.2" color="#2c3d90">
             How You're Helping
           </Heading>
+          <Text fontSize="lg" fontFamily="Open Sauce One, sans-serif" fontWeight="400" color="#5F5D5D" letterSpacing="-1.1px"  mb={14} textAlign="center">
+          Your generosity builds confidence, resilience, and belonging changing lives beyond the numbers          </Text>
           <SimpleGrid columns={[1, 2, 3]} spacing={10}>
             <Stat textAlign="center">
               <Box display="flex" justifyContent="center" alignItems="center">

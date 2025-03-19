@@ -69,7 +69,7 @@ const Header = () => {
   fontWeight="400"
   p={2}
   borderRadius="md" // Rounded corners
-  zIndex={1000} // Ensure dropdown appears above other content
+  zIndex={1500} // Ensure dropdown appears above other content
 
 >
         <Link
@@ -115,7 +115,7 @@ const Header = () => {
       fontWeight="400"
       p={2}
       borderRadius="md" // Rounded corners
-      zIndex={1000} // Ensure dropdown appears above other content
+      zIndex={1500} // Ensure dropdown appears above other content
     
     >
         <Link
@@ -161,7 +161,7 @@ const Header = () => {
       fontWeight="400"
       p={2}
       borderRadius="md" // Rounded corners
-      zIndex={1000} // Ensure dropdown appears above other content
+      zIndex={1500} // Ensure dropdown appears above other content
     
     >
         <Link

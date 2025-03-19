@@ -110,7 +110,7 @@ const ZiaAcademyPage = () => {
             w="100%"
             maxW="95%"
             gap={0}
-            mt={8}
+            mt={6}
           >
 
             {/* Image Box */}

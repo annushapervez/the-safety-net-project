@@ -6,14 +6,17 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // List all images manually from the "photos" folder in public
-const imagePaths = Array.from({ length: 35 }, (_, index) => `/zia/${index + 1}.png`);
+const excludeIndices = [6,10,12,13,15,17,19,20,22];
 
+const imagePaths = Array.from({ length: 35 }, (_, index) => index + 1)
+  .filter(num => !excludeIndices.includes(num))
+  .map(num => `/zia/${num}.png`);
 const PhotoSlider = () => {
   const settings = {
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 4, // Show 4 pictures at a time
-    slidesToScroll: 1,
+    slidesToScroll: 4,
     nextArrow: <SampleNextArrow />, // Custom next arrow
     prevArrow: <SamplePrevArrow />, // Custom previous arrow
     responsive: [
@@ -23,15 +26,15 @@ const PhotoSlider = () => {
   };
 
   return (
-    <Box w="100%" overflow="visible" >
+    <Box w="100%" overflow="visible" align="center">
       <Slider key={imagePaths.length} {...settings}>
         {imagePaths.map((src, index) => (
           <Box key={index} mx={2} >
             <Image
               src={src}
               alt={`Photo ${index + 1}`}
-              width="250px"
-              height="350px"
+              width="300px"
+              height="450px"
               objectFit="cover"
               borderRadius="md"
             />
@@ -51,7 +54,7 @@ const SampleNextArrow = (props) => {
       style={{
         zIndex: 1,
         position: "absolute",
-        right: "0px", // Position to the right
+        right: "-10px", // Position to the right
         top: "50%",
         transform: "translateY(-50%)", // Center vertically
         fontSize: "24px", // Adjust size
@@ -73,7 +76,7 @@ const SamplePrevArrow = (props) => {
       style={{
         zIndex: 1,
         position: "absolute",
-        left: "-35px", // Position to the left
+        left: "-5px", // Position to the left
         top: "50%",
         transform: "translateY(-50%)", // Center vertically
         fontSize: "24px", // Adjust size

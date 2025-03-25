@@ -97,7 +97,8 @@ const PhotoSlider = () => {
     objectFit: "cover", // Ensures the image fills the box
     height: "450px", // ✅ Forces height
     borderRadius: "8px"
-  }}   priority={index < 4} 
+  }}   
+  loading="lazy"
 />
           </Box>
         ))}

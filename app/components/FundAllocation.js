@@ -101,7 +101,7 @@ export default function FundAllocation() {
               letterSpacing="-1px"
               fontSize="md" 
               color={item.name === "Recurring Monthly Expenses" ? "#2c3d90" : "#5F5D5D"}
-              minW="200px" 
+              minW="215px" 
               mr="10px"
             >
               {/* Tooltip for Recurring Monthly Expenses */}
@@ -137,6 +137,7 @@ export default function FundAllocation() {
 
             {/* Apply motion only when the section is in view */}
             {isInView && (
+
               <MotionBox
                 initial={{ width: "0%" }}
                 animate={{ width: `${(item.amount / maxAmount) * 100}%` }}
@@ -145,6 +146,7 @@ export default function FundAllocation() {
                 h="7" // Increased height for better visibility
                 borderRadius="md"
               />
+
             )}
 
             <Text fontSize="sm" fontWeight="bold" color="#2c3d90">

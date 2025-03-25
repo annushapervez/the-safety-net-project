@@ -165,7 +165,7 @@ const MainContent = () => {
             How You're Helping
           </Heading>
           <Text fontSize="lg" fontFamily="Open Sauce One, sans-serif" fontWeight="400" color="#5F5D5D" letterSpacing="-1.1px"  mb={14} textAlign="center">
-          Your generosity builds confidence, resilience, and belonging—changing lives beyond the numbers          </Text>
+          Your generosity builds confidence, resilience, and belonging—impacting lives beyond the numbers.          </Text>
           <SimpleGrid columns={[1, 2, 3]} spacing={10}>
             <Stat textAlign="center">
               <Box display="flex" justifyContent="center" alignItems="center">

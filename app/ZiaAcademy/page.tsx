@@ -102,6 +102,8 @@ const ZiaAcademyPage = () => {
         <SlideUpWhenVisible threshold={0.35}>
 
           {/* About Section */}
+          <VStack w="100%" align="center" justify="center" >
+
           <Flex
             id="about"
             direction={{ base: "column", md: "row" }}
@@ -157,6 +159,8 @@ const ZiaAcademyPage = () => {
             </VStack>
 
           </Flex>
+          </VStack>
+
           </SlideUpWhenVisible>
 
 

@@ -118,9 +118,6 @@ const OurTeam = () => {
       With a strong passion for technology and social impact, I’m dedicated to developing solutions that empower communities and create meaningful change. My background in technology, design, and user experience gives me a unique perspective on how innovation can be leveraged to tackle pressing challenges and drive lasting impact.
       <br /><br />
 
-  At The Safety Net Project, we are building a network of initiatives to support communities, institutions, and organizations in their efforts to provide safety, education, and resources to children in need. Each project is designed to be sustainable, impactful, and tailored to the unique needs of the communities we serve.
-  <br /><br />
-
   By developing our website, I created a platform that not only reflects our mission but also connects our community, supporters, and partners. This project allowed me to integrate my passion for technology into our work, ensuring an accessible, user-friendly online presence to showcase the meaningful impact we’re making. As we continue to grow, I’m excited about the potential to expand our reach and make an even greater difference around the world.
 </Text>
 

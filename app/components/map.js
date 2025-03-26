@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import { useState, useEffect, useRef } from 'react';
 import { Box, Heading, Text, Image, VStack, Center } from '@chakra-ui/react';
 import { FaHome } from 'react-icons/fa';  // Importing a FontAwesome icon
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
 
 
 let DefaultIcon = L.icon({
@@ -150,6 +151,7 @@ export default function PakistanMap() {
   };
 
   return (
+    <SlideUpWhenVisible>
     <Box position="relative" height="600px" width="100%">
       <MapContainer
         center={[29.3956, 71.6722]}
@@ -237,5 +239,8 @@ export default function PakistanMap() {
         </VStack>
       </Box>
     </Box>
+    </SlideUpWhenVisible>
+
   );
+
 }

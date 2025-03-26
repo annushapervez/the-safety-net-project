@@ -1,7 +1,9 @@
+"use client";
 import React from 'react';
 import { ChakraProvider, Box, Flex, Text, Image, VStack, Heading, HStack} from '@chakra-ui/react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
 
 const OurTeam = () => {
   return (
@@ -10,6 +12,8 @@ const OurTeam = () => {
         <Header />
         <Box flex="1" p={8} bg="#F1F6FB"
 >
+<SlideUpWhenVisible threshold={0.35}>
+
 
 <Box bg="white" flex="1"  p={6}  maxW="95%"    
 
@@ -33,7 +37,9 @@ const OurTeam = () => {
             Our Team
           </Heading>
           <Flex justify="center" align="center" wrap="wrap">
-          <HStack maxW="95%">
+                    <HStack maxW="95%">
+                    <SlideUpWhenVisible threshold={.35}>
+
             <VStack spacing={4} m={4} >
             <Box 
     p={4} 
@@ -44,6 +50,7 @@ const OurTeam = () => {
     height="600px"
     bg="white"
   >
+
     <HStack align="start" spacing={4}>
       <Image
         boxSize="150px"
@@ -92,6 +99,9 @@ Driven by a commitment to encouraging long lasting change, I am dedicated to ens
 
               </Box>
             </VStack>
+            </SlideUpWhenVisible>
+            <SlideUpWhenVisible threshold={0.35}>
+
             <VStack spacing={4} m={4}>
   <Box 
     p={4} 
@@ -132,6 +142,7 @@ Driven by a commitment to encouraging long lasting change, I am dedicated to ens
           CO-FOUNDER
         </Text>
       </VStack>
+
     </HStack>
 
     <Text
@@ -153,10 +164,14 @@ Driven by a commitment to encouraging long lasting change, I am dedicated to ens
 
               </Box>
             </VStack>
+            </SlideUpWhenVisible>
+
             </HStack>
 
           </Flex>
         </Box>
+        </SlideUpWhenVisible>
+
         </Box>
 
         <Footer />

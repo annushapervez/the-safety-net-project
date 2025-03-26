@@ -1,11 +1,12 @@
 import React from 'react';
-import { ChakraProvider, Heading, Text, Box, SimpleGrid, Stat, StatLabel, StatNumber, Icon, Button, Image, Flex, Link, HStack, VStack, Divider } from "@chakra-ui/react";
+import { extendTheme, Heading, Text, Box, SimpleGrid, Stat, StatLabel, StatNumber, Icon, Button, Image, Flex, Link, HStack, VStack, Divider } from "@chakra-ui/react";
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
 
 
 const AnimatedStatNumber = motion(StatNumber);
+
 
 const MainContent = () => {
   const [moneyCount, setMoneyCount] = useState(0);

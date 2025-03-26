@@ -21,7 +21,7 @@ const allocations = [
   { name: "Computers (6)", amount: 800 },
   { name: "Classroom Supplies", amount: 800 },
   { name: "Projectors (2)", amount: 200 },
-  { name: "Add. Expenses", amount: 165 },
+  { name: "Additional Expenses", amount: 165 },
 ];
 
 const maxAmount = 4000;

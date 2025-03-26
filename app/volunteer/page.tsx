@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import { ChakraProvider } from '@chakra-ui/react';
 import { db } from "../firebaseConfig.js"; // Import Firestore
 import { collection, addDoc } from "firebase/firestore";
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
 
 const VolunteerPage = () => {
   // State for form fields
@@ -51,6 +52,8 @@ const VolunteerPage = () => {
     <ChakraProvider>
       <>
         <Header />
+        <SlideUpWhenVisible threshold={0.35}>
+
         <Box
           bg="#F1F6FB"
           py={10}
@@ -150,6 +153,8 @@ const VolunteerPage = () => {
             </Box>
           </Flex>
         </Box>
+        </SlideUpWhenVisible >
+
         <Footer />
       </>
     </ChakraProvider>

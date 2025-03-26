@@ -4,6 +4,8 @@ import { ChakraProvider, Box, Text, Input, Textarea, Button, FormLabel, FormCont
 import { db } from "../firebaseConfig.js"; // Import Firestore
 import { collection, addDoc } from "firebase/firestore";import Header from "../components/Header";
 import Footer from "../components/Footer";
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
+
 
 function ContactForm() {
   const [formData, setFormData] = useState({
@@ -37,6 +39,8 @@ function ContactForm() {
     <ChakraProvider>
       <>
         <Header />
+        <SlideUpWhenVisible threshold={.35}>
+
         <Box bg="#F1F6FB" py={10} px={{ base: 4, md: 10 }}>
           <Flex
             maxW="1200px"
@@ -120,6 +124,8 @@ function ContactForm() {
             </Box>
           </Flex>
         </Box>
+        </SlideUpWhenVisible>
+
         <Footer />
       </>
     </ChakraProvider>

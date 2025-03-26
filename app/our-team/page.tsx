@@ -8,7 +8,17 @@ const OurTeam = () => {
     <ChakraProvider>
       <Box minHeight="100vh" display="flex" flexDirection="column"> 
         <Header />
-        <Box flex="1" p={8}>
+        <Box flex="1" p={8} bg="#F1F6FB"
+>
+
+<Box bg="white" flex="1"  p={6}  maxW="95%"
+            mx="auto"
+            boxShadow="md"
+            rounded="lg"
+            overflow="hidden"
+            alignItems="center" // Center the children vertically
+
+>
           <Heading
             as="h2"
             size="2xl"
@@ -17,54 +27,68 @@ const OurTeam = () => {
             lineHeight="1.2"
             color="#2c3d90"
             textAlign={'center'}
-            mb={8}
+            mb={4}
           >
             Our Team
           </Heading>
           <Flex justify="center" align="center" wrap="wrap">
           <HStack maxW="95%">
             <VStack spacing={4} m={4} >
-              <Box 
-                p={4} 
-                border="2px solid pink" 
-                borderRadius="16px"
-                boxShadow="lg"
-                width="500px"
-                height="auto"
-              >
-                <Image
-                  boxSize="150px"
-                  src="/fae.jpg" 
-                  alt="Faevah Muhammad"
-                  borderRadius="16px" 
-                />
-                <Text
-                  fontSize="xl"
-                  fontFamily="Open Sauce One, sans-serif"
-                  fontWeight="500"
-                  color="#2c3d90"
-                  letterSpacing="-1.2px"
-                >
-                  Faevah Muhammad
-                </Text>
-                <Text
-                  fontSize="md"
-                  fontFamily="Open Sauce One, sans-serif"
-                  fontWeight="400"
-                  color="#5F5D5D"
-                  letterSpacing="-1.2px"
-                  mb={2}
-                >
-                  CO-FOUNDER
-                </Text>
-                <Text
-                  fontSize="md"
-                  fontFamily="Open Sauce One, sans-serif"
-                  fontWeight="400"
-                  color="#5F5D5D"
-                  letterSpacing="-1.2px"
-                >
-                </Text>
+            <Box 
+    p={4} 
+    border="2px solid pink" 
+    borderRadius="16px"
+    boxShadow="lg"
+    width="500px"
+    height="670px"
+    bg="white"
+  >
+    <HStack align="start" spacing={4}>
+      <Image
+        boxSize="150px"
+        src="/fae.png" 
+        alt="Faevah Muhammad"
+        borderRadius="16px"
+        flexShrink={0} // Ensures the image does not shrink
+      />
+      <VStack align="start" spacing={1} flex="1">
+        <Text
+          fontSize="xl"
+          fontFamily="Open Sauce One, sans-serif"
+          fontWeight="500"
+          color="#2c3d90"
+          letterSpacing="-1.2px"
+        >
+          Faevah Muhammad 
+        </Text>
+        <Text
+          fontSize="md"
+          fontFamily="Open Sauce One, sans-serif"
+          fontWeight="400"
+          color="#5F5D5D"
+          letterSpacing="-1.2px"
+          mb={4}
+        >
+          CO-FOUNDER
+        </Text>
+      </VStack>
+    </HStack>
+
+    <Text
+      fontSize="md"
+      fontFamily="Open Sauce One, sans-serif"
+      fontWeight="400"
+      color="#5F5D5D"
+      letterSpacing="-1px"
+      mt={2} // Adds spacing between the image and the paragraph
+    >
+Driven by a commitment to encouraging long lasting change, I am dedicated to ensure The Safety Net Project serves as a bridge to opportunity for anyone seeking it. Combining my background in finance and law, I work toward creating sustainable solutions for underserved communities. My experience at various nonprofits have helped me curate our initiative to address gaps that normally go unaccounted for.
+      <br /><br />
+      A critical aspect of my work is overseeing strategic planning, communication, and financial management to ensure we operate efficiently and effectively. I work on implementing comprehensive budgeting frameworks that optimize resource allocation such that, after addressing short-term aid, every contribution is directed toward sustainable, and high-impact initiatives.
+      <br /><br />
+      I believe that talent, skill, and hard work exist everywhere- opportunity doesn’t. We are passionate about creating pathways that change this so that those with the drive to succeed have the means to do so as well.
+</Text>
+
               </Box>
             </VStack>
             <VStack spacing={4} m={4}>
@@ -74,12 +98,14 @@ const OurTeam = () => {
     borderRadius="16px"
     boxShadow="lg"
     width="500px"
-    height="auto"
+    height="670px"
+    bg="white"
+
   >
     <HStack align="start" spacing={4}>
       <Image
         boxSize="150px"
-        src="/annu.jpg" 
+        src="/annu.png" 
         alt="Annusha Pervez"
         borderRadius="16px"
         flexShrink={0} // Ensures the image does not shrink
@@ -118,7 +144,10 @@ const OurTeam = () => {
       With a strong passion for technology and social impact, I’m dedicated to developing solutions that empower communities and create meaningful change. My background in technology, design, and user experience gives me a unique perspective on how innovation can be leveraged to tackle pressing challenges and drive lasting impact.
       <br /><br />
 
-  By developing our website, I created a platform that not only reflects our mission but also connects our community, supporters, and partners. This project allowed me to integrate my passion for technology into our work, ensuring an accessible, user-friendly online presence to showcase the meaningful impact we’re making. As we continue to grow, I’m excited about the potential to expand our reach and make an even greater difference around the world.
+      By developing our website, I created a platform that not only reflects our mission but also strengthens connections between our community, supporters, and partners. Beyond establishing a digital presence, I focus on continuously refining and scaling our technology to better serve those who rely on it. Ensuring accessibility, usability, and adaptability is at the core of my work, allowing us to create a user-friendly experience that amplifies our reach. 
+      <br /><br />
+
+      Through The Safety Net Project, we’re building more than just a platform we’re creating a sustainable, tech-driven initiative that fosters connection, transparency, and real impact for the communities we serve.
 </Text>
 
               </Box>
@@ -127,6 +156,8 @@ const OurTeam = () => {
 
           </Flex>
         </Box>
+        </Box>
+
         <Footer />
       </Box>
     </ChakraProvider>

@@ -48,7 +48,7 @@ const OurTeam = () => {
       <Image
         boxSize="150px"
         src="/fae.png" 
-        alt="Faevah Muhammad"
+        alt="Faeyah Muhammad"
         borderRadius="16px"
         flexShrink={0} // Ensures the image does not shrink
       />
@@ -60,7 +60,7 @@ const OurTeam = () => {
           color="#2c3d90"
           letterSpacing="-1.2px"
         >
-          Faevah Muhammad 
+          Faeyah Muhammad 
         </Text>
         <Text
           fontSize="md"

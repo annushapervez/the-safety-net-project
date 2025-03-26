@@ -11,7 +11,8 @@ const OurTeam = () => {
         <Box flex="1" p={8} bg="#F1F6FB"
 >
 
-<Box bg="white" flex="1"  p={6}  maxW="95%"
+<Box bg="white" flex="1"  p={6}  maxW="95%"    
+
             mx="auto"
             boxShadow="md"
             rounded="lg"
@@ -39,8 +40,8 @@ const OurTeam = () => {
     border="2px solid pink" 
     borderRadius="16px"
     boxShadow="lg"
-    width="500px"
-    height="670px"
+    width="550px"
+    height="600px"
     bg="white"
   >
     <HStack align="start" spacing={4}>
@@ -97,8 +98,8 @@ Driven by a commitment to encouraging long lasting change, I am dedicated to ens
     border="2px solid pink" 
     borderRadius="16px"
     boxShadow="lg"
-    width="500px"
-    height="670px"
+    width="550px"
+    height="600px"
     bg="white"
 
   >

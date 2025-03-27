@@ -1,15 +1,18 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, Link} from "@chakra-ui/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Button } from "@chakra-ui/react";
+import { useMediaQuery } from "@chakra-ui/react";
 
 import { Autoplay } from "swiper/modules";
 
 const ImageCarousel = () => {
+  const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
+
   return (
-    <Flex direction={{ base: "column", md: "row" }} width="100%" height="520px" >
+    <Flex direction={{ base: "column", md: "row" }} width="100%" height="520px" mb={isMobile ? 20 : 0}>
       {/* Left Side: Text (1/3 width) */}
       <Box
         flex="1"
@@ -22,6 +25,7 @@ const ImageCarousel = () => {
         textAlign="center" // Center text
       >
         <Text 
+         mt={{base:5, md:0}}
           fontSize="4xl" 
           fontWeight="500" 
           color="#2c3d90" 
@@ -40,7 +44,8 @@ const ImageCarousel = () => {
         >
           Welcome to our new website. The Safety Net Project is a non-profit organization dedicated to providing support and safety for children around the world. This website acts as our virtual headquarters where we will discuss projects, ideas, and resources.
         </Text>
-      { /* <Flex justifyContent="center" mt={4}>
+        <Link  href="/our-team" _hover={{ textDecoration: "none" }}> 
+    <Flex justifyContent="center" mt={4}>
           <Button 
             mt={4} // Adds spacing from text
             px={12} // Horizontal padding
@@ -54,9 +59,10 @@ const ImageCarousel = () => {
             width="fit-content" // Makes width match text size
             _hover={{ bg: "#2c3d90", color: "white" }} // Hover effect
           >
-            LEARN MORE
+            OUR TEAM
           </Button> 
-        </Flex>*/}
+        </Flex>
+        </Link>
       </Box>
 
       {/* Right Side: Carousel (2/3 width) */}

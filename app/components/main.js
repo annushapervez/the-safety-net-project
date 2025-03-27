@@ -3,12 +3,12 @@ import { extendTheme, Heading, Text, Box, SimpleGrid, Stat, StatLabel, StatNumbe
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
-
+import { useMediaQuery } from "@chakra-ui/react";
 
 const AnimatedStatNumber = motion(StatNumber);
 
-
 const MainContent = () => {
+  const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
   const [moneyCount, setMoneyCount] = useState(0);
   const [hugCount, setHugCount] = useState(0);
   const [girlCount, setGirlCount] = useState(0);
@@ -57,107 +57,109 @@ const MainContent = () => {
   }, []);
   return (
     <>
-
-<Box 
-  p={8}
-  borderRadius="md"
-  mx="auto"
-  maxW="95%"
-  display="flex"
-  fontFamily="Open Sauce One, sans-serif"
-  flexDirection={{ base: "column", md: "row" }}
-  alignItems="center"
->
-  {/* Left Side - Text Content */}
-  <Box flex="1" pr={{ md: 8 }}   mt={4}>
-
-    <HStack spacing={4} align="center">
-      <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize="60px" />
-      <Heading
-        as="h2"
-        size="2xl"
-        fontWeight="400"
-        letterSpacing="-2px"
-        lineHeight="1.2"
-        color="#2c3d90"
-      >
-        Purpose
-      </Heading>
-    </HStack>
-    <SlideUpWhenVisible>
-
-    <Text
-      fontSize="2xl"
-      mt={4}
-      mb={6}
-      fontFamily="Open Sauce One, sans-serif"
-      fontWeight="400"
-      color="#2c3d90"
-      letterSpacing="-1.5px"
-    >
-      The Safety Net Project was formed with the intention of bridging the gap
-      between marginalized communities.
-    </Text>
-    </SlideUpWhenVisible>
-
-    <VStack align="start" spacing={6}>
-    <SlideUpWhenVisible>
-
-      <Box pl={200}>
-        <Heading as="h2" size="lg" fontWeight="400" color="#2c3d90" letterSpacing="-1.2px">
-          01 A Strong Foundation
-        </Heading>
-        <Text fontSize="xl" color="#5F5D5D" mt={2} fontWeight="400" letterSpacing="-1.2px">
-          Our first priority is to assure appropriate living accommodations and
-          food services are readily accessible to those who need them.
-        </Text>
-      </Box>
-      </SlideUpWhenVisible>
-
-      <Divider style={{ borderTop: '4px dotted #1F3A93' }} />
-
-      <SlideUpWhenVisible>
-
-      <Box pl={200}>
-        <Heading as="h2" size="lg" fontWeight="400" color="#2c3d90" letterSpacing="-1.2px">
-          02 Empowerment
-        </Heading>
-        <Text fontSize="xl" color="#5F5D5D" mt={2} fontWeight="400" letterSpacing="-1.2px">
-          The next goal is to provide educational resources to help them build
-          towards a stable and successful future for themselves.
-        </Text>
-      </Box>
-      </SlideUpWhenVisible>
-
-    </VStack>
-  </Box>
-
-
-  {/* Right Side - Image */}
-
-  <Box flex="1" mt={{ base: 6, md: 12 }} display="flex" justifyContent="center"> {/* Adjusted mt value */}
-  
-    <Image
-    mt={20}
-      src="/purpose.jpg"
-      ml={4}
-      alt="Bookshelf with READ letters"
-      boxShadow="lg"
+    <Box 
+      p={8}
       borderRadius="md"
-      width={{ base: "80%", md: "100%" }}
-      maxWidth="600px"
-      height="auto"
-    />
-  </Box>
+      mx="auto"
+      maxW="95%"
+      display="flex"
+      fontFamily="Open Sauce One, sans-serif"
+      flexDirection={isMobile ? "column" : "row"}
+      alignItems="center"
+    >
+      {/* Left Side - Text Content */}
+      <Box 
+                mt={isMobile ? 10 : 4}
+        flex="1" 
+        pr={isMobile ? 0 : 8}
+        textAlign={isMobile ? "center" : "left"} // Apply center text only on mobile
+      >
+        <HStack spacing={isMobile ? 1 : 4} align="center" justify={isMobile ? "center" : "flex-start"} mt={isMobile ? 20 : 0}>
+          <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize={isMobile ? "45px" : "60px"} />
+          <Heading
+            as="h2"
+            size="2xl"
+            fontWeight="400"
+            letterSpacing="-2px"
+            lineHeight="1.2"
+            color="#2c3d90"
+          >
+            Purpose
+          </Heading>
+        </HStack>
 
-</Box> {/* Count Section - Make sure the ID matches the one in the IntersectionObserver */}
+        <SlideUpWhenVisible>
+          <Text
+          fontSize={isMobile ? "xl" : "2xl"} 
+            mt={4}
+            mb={6}
+            fontFamily="Open Sauce One, sans-serif"
+            fontWeight="400"
+            color="#2c3d90"
+            letterSpacing="-1.5px"
+          >
+            The Safety Net Project was formed with the intention of bridging the gap
+            between marginalized communities.
+          </Text>
+        </SlideUpWhenVisible>
+
+        <VStack 
+          align={isMobile ? "center" : "start"} 
+          spacing={6} 
+          textAlign={isMobile ? "center" : "left"}
+        >
+          <SlideUpWhenVisible>
+            <Box pl={isMobile ? 0 : 200}> {/* Removes left padding for mobile */}
+              <Heading as="h2" size="lg" fontWeight="400" color="#2c3d90" letterSpacing="-1.2px">
+                01 A Strong Foundation
+              </Heading>
+              <Text fontSize="xl" color="#5F5D5D" mt={2} fontWeight="400" letterSpacing="-1.2px">
+                Our first priority is to assure appropriate living accommodations and
+                food services are readily accessible to those who need them.
+              </Text>
+            </Box>
+          </SlideUpWhenVisible>
+
+          <Divider style={{ borderTop: '4px dotted #1F3A93' }} />
+
+          <SlideUpWhenVisible>
+            <Box pl={isMobile ? 0 : 200}> {/* Removes left padding for mobile */}
+              <Heading as="h2" size="lg" fontWeight="400" color="#2c3d90" letterSpacing="-1.2px">
+                02 Empowerment
+              </Heading>
+              <Text fontSize="xl" color="#5F5D5D" mt={2} fontWeight="400" letterSpacing="-1.2px">
+                The next goal is to provide educational resources to help them build
+                towards a stable and successful future for themselves.
+              </Text>
+            </Box>
+          </SlideUpWhenVisible>
+        </VStack>
+      </Box>
+
+      {/* Right Side - Image */}
+      <Box flex="1" mt={isMobile ? 0 : 12} display="flex" justifyContent="center">
+        <Image
+        mt={isMobile ? 10 : 20}
+          src="/purpose.jpg"
+          ml={4}
+          alt="Bookshelf with READ letters"
+          boxShadow="lg"
+          borderRadius="md"
+          width={"100%"} // Shrinks image for mobile
+          maxWidth="600px"
+          height="auto"
+        />
+      </Box>
+    </Box>{/* Count Section - Make sure the ID matches the one in the IntersectionObserver */}
       <SlideUpWhenVisible>
         <Box 
           id="count-section"
           p={4} 
           bg="gray.50" 
           mt={4} 
-          borderRadius="md" 
+          borderRadius="md"
+                 boxShadow="md"
+
           maxW="95%" 
           mx="auto" 
           fontFamily="Open Sauce One, sans-serif"
@@ -165,9 +167,9 @@ const MainContent = () => {
           <Heading as="h2" size="2xl" textAlign="center" mb={2} mt={8} fontFamily="Open Sauce One, sans-serif" fontWeight="400" letterSpacing="-2px" lineHeight="1.2" color="#2c3d90">
             How You're Helping
           </Heading>
-          <Text fontSize="lg" fontFamily="Open Sauce One, sans-serif" fontWeight="400" color="#5F5D5D" letterSpacing="-1.1px"  mb={14} textAlign="center">
+          <Text fontSize="lg" fontFamily="Open Sauce One, sans-serif" fontWeight="400" color="#5F5D5D" letterSpacing="-1.1px" mt={isMobile ? 5 : 0}  mb={isMobile ? 10 : 14} textAlign="center">
           Your generosity builds confidence, resilience, and belonging—impacting lives beyond the numbers.          </Text>
-          <SimpleGrid columns={[1, 2, 3]} spacing={10}>
+          <SimpleGrid columns={[1, 2, 3]} spacing={isMobile ? 5 : 10}>
             <Stat textAlign="center">
               <Box display="flex" justifyContent="center" alignItems="center">
                 <Image src="/donate.png" alt="Description of image" width={20} height={20} mb={6} />
@@ -217,7 +219,7 @@ const MainContent = () => {
       {/* Zia Academy Section */}
       <Flex
         bg="#FFFFFF"
-        p={8}
+        p={isMobile ? 4 : 8}// Adjust padding for mobile
         mt={8}
         mb={8}
         borderRadius="md"
@@ -225,9 +227,9 @@ const MainContent = () => {
         mx="auto"
         align="center"
         justify="space-between"
-        flexDirection={["column", "column", "row"]}
-      >
-        <Box flex="1" mr={[0, 0, 8]} mb={[8, 8, 0]}>
+        flexDirection={isMobile ? "column" : "row"} // Column on mobile, row on larger screens
+        >
+      <Box flex="1" mr={isMobile ? 0: 8} mb={isMobile ? 6 : 0}>
         <SlideUpWhenVisible>
 
           <Heading
@@ -237,9 +239,17 @@ const MainContent = () => {
           letterSpacing="-2px"
           lineHeight="1.2"
           color="#2c3d90"
+          textAlign={isMobile ? "center" : "left"} // Center on mobile, left on larger screens
+
             mb={4}
           >
-            Our First Project: Zia Academy
+  Our First Project:&nbsp;
+  <Text
+    as="span"
+    display={isMobile ? "block" : "inline"} // Make it a block on mobile to break the line
+  >
+    The Zia Academy
+  </Text>
           </Heading>
           </SlideUpWhenVisible>
           <SlideUpWhenVisible>
@@ -249,7 +259,7 @@ const MainContent = () => {
             fontFamily="Open Sauce One, sans-serif"
             fontWeight="400"
             letterSpacing="-1.2px"
-
+            textAlign={isMobile ? "center" : "left"}
             color="#5F5D5D"
             mb={6}
           >
@@ -259,24 +269,26 @@ const MainContent = () => {
           </SlideUpWhenVisible>
           <SlideUpWhenVisible>
 
-<Link href="/ZiaAcademy">
+<Link href="/ZiaAcademy" _hover={{ textDecoration: "none" }}>
 
-   <Button 
-            mt={4} // Adds spacing from text
-            px={12} // Horizontal padding
-            py={6} // Vertical padding
-            fontSize="lg"
-            fontWeight="bold"
-            color="#2c3d90"
-            border="2px" 
-            bg="transparent" // Transparent background
-            borderRadius="0" // Sharp edges like the first image
-            width="fit-content" // Makes width match text size
-            _hover={{ bg: "#2c3d90", color: "white" }} // Hover effect
+<Button
+  mt={4}
+  px={isMobile ? 10 : 12}// Horizontal padding changes based on screen size
+  py= {6 }  // Vertical padding changes based on screen size
+  fontSize={isMobile ? "md" : "lg"}// Font size adjusts for mobile and desktop
+  fontWeight="bold"
+  color="#2c3d90"
+  border="2px"
+  bg="transparent"
+  borderRadius="0"
+  _hover={{ bg: "#2c3d90", color: "white" }}
+  display="flex"  // Ensures button content is aligned correctly vertically
+  mx={isMobile ? "auto" : "0"}// Centers on mobile, left-aligned on desktop
+>
 
-          >
-            LEARN MORE
-          </Button>
+  LEARN MORE
+</Button>
+
           </Link>
           </SlideUpWhenVisible>
 
@@ -289,7 +301,7 @@ const MainContent = () => {
             alt="Zia Academy"
             borderRadius="md"
             boxShadow="lg"
-            maxW="60%"  // Adjust the width to make the image smaller (you can change this percentage)
+            maxW={isMobile ? "70%" : "60%"} // Adjust the width to make the image smaller (you can change this percentage)
             mx="auto"   // Centers the image horizontally
           />
         </Box>

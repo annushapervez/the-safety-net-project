@@ -9,8 +9,12 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { db } from "../firebaseConfig.js"; // Import Firestore
 import { collection, addDoc } from "firebase/firestore";
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
+import HamburgerMenu from '../components/HamburgerMenu';
+import { useMediaQuery } from "@chakra-ui/react";
 
 const VolunteerPage = () => {
+  const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
+
   // State for form fields
   const [formData, setFormData] = useState({
     firstName: '',
@@ -51,7 +55,7 @@ const VolunteerPage = () => {
   return (
     <ChakraProvider>
       <>
-        <Header />
+      {isMobile ? <HamburgerMenu /> : <Header />}
         <SlideUpWhenVisible threshold={0.35}>
 
         <Box
@@ -71,7 +75,8 @@ const VolunteerPage = () => {
             alignItems="center" // Center the children vertically
           >
             {/* Left Section */}
-            <Box flex="1" p={10} bg="white">
+            <Box flex="1" p={isMobile ? 5 : 10}  bg="white"  textAlign={isMobile ? "center" : "left"} // Center on mobile, left on larger screens
+>
               <Heading
                 as="h2"
                 size="xl"
@@ -80,6 +85,7 @@ const VolunteerPage = () => {
                 lineHeight="1.2"
                 color="#2c3d90"
                 mb="4"
+              
               >
                 Volunteer
               </Heading>
@@ -112,32 +118,33 @@ const VolunteerPage = () => {
             </Box>
 
           {/* Right Section - Form */}
-          <Box flex="1" p={10} bg="white" fontWeight="400" color="#2c3d90" letterSpacing="-1.2px">
+          <Box flex="1" p={isMobile ? 5 : 10} bg="white" fontWeight="400" color="#2c3d90" letterSpacing="-1.2px" textAlign={isMobile ? "center" : "left"} >
               <form onSubmit={handleSubmit}>
                 <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
                   <FormControl id="firstName" isRequired>
-                    <FormLabel>First Name</FormLabel>
-                    <Input type="text" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
+                    <FormLabel  textAlign={isMobile ? "center" : "left"} // Center on mobile, left on larger screens
+>First Name</FormLabel>
+                    <Input textAlign={isMobile ? "center" : "left"} type="text" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
                   </FormControl>
                   <FormControl id="lastName" isRequired>
-                    <FormLabel>Last Name</FormLabel>
-                    <Input type="text" placeholder="Last Name" value={formData.lastName} onChange={handleChange} />
+                    <FormLabel textAlign={isMobile ? "center" : "left"}>Last Name</FormLabel>
+                    <Input textAlign={isMobile ? "center" : "left"} type="text" placeholder="Last Name" value={formData.lastName} onChange={handleChange} />
                   </FormControl>
                 </SimpleGrid>
 
                 <FormControl id="email" isRequired mt={4}>
-                  <FormLabel>Email</FormLabel>
-                  <Input type="email" placeholder="Your Email Address" value={formData.email} onChange={handleChange} />
+                  <FormLabel textAlign={isMobile ? "center" : "left"}>Email</FormLabel>
+                  <Input textAlign={isMobile ? "center" : "left"}type="email" placeholder="Your Email Address" value={formData.email} onChange={handleChange} />
                 </FormControl>
 
                 <FormControl id="phone" mt={4}>
-                  <FormLabel>Phone</FormLabel>
-                  <Input type="tel" placeholder="Your Phone Number" value={formData.phone} onChange={handleChange} />
+                  <FormLabel textAlign={isMobile ? "center" : "left"}>Phone</FormLabel>
+                  <Input textAlign={isMobile ? "center" : "left"} type="tel" placeholder="Your Phone Number" value={formData.phone} onChange={handleChange} />
                 </FormControl>
 
                 <FormControl id="volunteerType" isRequired mt={4}>
-                  <FormLabel>What type of volunteer work would you be interested in?</FormLabel>
-                  <Select placeholder="Select an option" color="gray.500" value={formData.volunteerType} onChange={handleChange}>
+                  <FormLabel textAlign={isMobile ? "center" : "left"}>What type of volunteer work would you be interested in?</FormLabel>
+                  <Select textAlign={isMobile ? "center" : "left"}placeholder="Select an option" color="gray.500" value={formData.volunteerType} onChange={handleChange}>
                     <option>Outreach</option>
                     <option>Event Planning</option>
                     <option>Fundraising</option>

@@ -5,9 +5,11 @@ import { db } from "../firebaseConfig.js"; // Import Firestore
 import { collection, addDoc } from "firebase/firestore";import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
-
+import HamburgerMenu from '../components/HamburgerMenu';
+import { useMediaQuery } from "@chakra-ui/react";
 
 function ContactForm() {
+  const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -38,10 +40,10 @@ function ContactForm() {
   return (
     <ChakraProvider>
       <>
-        <Header />
+      {isMobile ? <HamburgerMenu /> : <Header />}
         <SlideUpWhenVisible threshold={.35}>
 
-        <Box bg="#F1F6FB" py={10} px={{ base: 4, md: 10 }}>
+        <Box bg="#F1F6FB" py={10} px={isMobile ? 4 : 10}>
           <Flex
             maxW="1200px"
             mx="auto"
@@ -52,7 +54,7 @@ function ContactForm() {
             flexDirection={{ base: "column", lg: "row" }}
           >
             {/* Left Section */}
-            <Box flex="1" p={10} bg="white">
+            <Box flex="1" p={isMobile ? 5 : 10}  bg="white"  textAlign={isMobile ? "center" : "left"}>
               <Heading as="h2" size="xl" fontWeight="400" letterSpacing="-2px" lineHeight="1.2" color="#2c3d90" mb="4">
                 Contact Us
               </Heading>
@@ -68,32 +70,32 @@ function ContactForm() {
             </Box>
 
             {/* Right Section - Contact Form */}
-            <Box flex="1" p={10} bg="white" fontWeight="400" color="#2c3d90" letterSpacing="-1.2px">
+            <Box flex="1" p ={isMobile ? 5 : 10} bg="white" fontWeight="400" color="#2c3d90" letterSpacing="-1.2px"  textAlign={isMobile ? "center" : "left"}>
               <form onSubmit={handleSubmit}>
                 <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
                   {/* First Name */}
                   <FormControl id="first-name" isRequired>
-                    <FormLabel>First Name</FormLabel>
-                    <Input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First Name" />
+                    <FormLabel  textAlign={isMobile ? "center" : "left"}>First Name</FormLabel>
+                    <Input  textAlign={isMobile ? "center" : "left"} type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First Name" />
                   </FormControl>
 
                   {/* Last Name */}
                   <FormControl id="last-name" isRequired>
-                    <FormLabel>Last Name</FormLabel>
-                    <Input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last Name" />
+                    <FormLabel  textAlign={isMobile ? "center" : "left"}>Last Name</FormLabel>
+                    <Input  textAlign={isMobile ? "center" : "left"} type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last Name" />
                   </FormControl>
                 </SimpleGrid>
 
                 {/* Email */}
                 <FormControl id="email" isRequired mt={4}>
-                  <FormLabel>Email</FormLabel>
-                  <Input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your Email Address" />
+                  <FormLabel  textAlign={isMobile ? "center" : "left"}>Email</FormLabel>
+                  <Input  textAlign={isMobile ? "center" : "left"} type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your Email Address" />
                 </FormControl>
 
                 {/* Message */}
                 <FormControl id="message" isRequired mt={4}>
-                  <FormLabel>Message</FormLabel>
-                  <Textarea name="message" value={formData.message} onChange={handleChange} placeholder="Your Message" />
+                  <FormLabel  textAlign={isMobile ? "center" : "left"}>Message</FormLabel>
+                  <Textarea  textAlign={isMobile ? "center" : "left"} name="message" value={formData.message} onChange={handleChange} placeholder="Your Message" />
                 </FormControl>
 
                 {/* Submit Button */}

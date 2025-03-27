@@ -303,6 +303,8 @@ const MainContent = () => {
             boxShadow="lg"
             maxW={isMobile ? "70%" : "60%"} // Adjust the width to make the image smaller (you can change this percentage)
             mx="auto"   // Centers the image horizontally
+            mt={isMobile ? 6 : 0}
+
           />
         </Box>
       </Flex>

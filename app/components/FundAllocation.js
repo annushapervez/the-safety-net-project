@@ -1,7 +1,9 @@
-import { Box, Heading, Text, VStack, HStack, Divider, Tooltip } from "@chakra-ui/react";
+import { Box, Heading, Text, VStack, Stack, HStack, Divider, Tooltip } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
+import { useMediaQuery } from "@chakra-ui/react";
+
 
 const MotionBox = motion(Box);
 
@@ -27,6 +29,8 @@ const allocations = [
 const maxAmount = 4000;
 
 export default function FundAllocation() {
+  const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
+
   // Add state to track visibility
   const [isInView, setIsInView] = useState(false);
 
@@ -57,104 +61,114 @@ export default function FundAllocation() {
   }, []);
 
   return (
-    <HStack spacing={20} align="center" mx="auto" p={12}  bg="white" borderRadius="md" boxShadow="lg">
-      <VStack>
-        <SlideUpWhenVisible>
-          <Heading
-            as="h2"
-            size="2xl"
-            fontWeight="400"
-            letterSpacing="-2px"
-            lineHeight="1.2"
-            color="#2c3d90"
-          >
-            Fund Allocation To Date
-          </Heading>
-        </SlideUpWhenVisible>
-
-        <Divider style={{ borderTop: '4px dotted #1F3A93' }} my={2} />
-        
-        <SlideUpWhenVisible>
-          <Text
-            fontSize="xl"
+    <Stack 
+    direction={isMobile ? "column" : "row"}
+    spacing={isMobile ? 5 : 20} 
+    align="center" 
+    mx="auto" 
+    p={isMobile ? 6 : 12} 
+    bg="white" 
+    borderRadius="md" 
+    boxShadow="lg"
+    W="100%"
+  >
+    <VStack>
+      <SlideUpWhenVisible>
+        <Heading
+          as="h2"
+          size={isMobile ? "xl" : "2xl"} 
+          fontWeight="400"
+          letterSpacing="-2px"
+          lineHeight="1.2"
+          color="#2c3d90"
+          textAlign={isMobile ? "center": "left" }
+        >
+          Fund Allocation To Date
+        </Heading>
+      </SlideUpWhenVisible>
+  
+      <Divider style={{ borderTop: '4px dotted #1F3A93' }} my={2} />
+  
+      <SlideUpWhenVisible>
+        <Text
+          fontSize={isMobile ? "lg" : "xl"} 
+          fontFamily="Open Sauce One, sans-serif"
+          fontWeight="400"
+          color="#5F5D5D"
+          maxW="4xl"
+          align="center"
+          letterSpacing="-1.2px"
+        >
+          In March 2023, we successfully raised <b>$8,075</b> to support The Zia Academy in its operations.
+          The following is an explanation of the allocation of the funds in addition to the recurring expenses we have helped accommodate since March 2023.
+        </Text>
+      </SlideUpWhenVisible>
+  
+      <Divider style={{ borderTop: '4px dotted #1F3A93' }} my={2}/>
+    </VStack>
+  
+    <VStack spacing={4} w="full" id="motion-section">
+      {allocations.map((item, index) => (
+        <HStack key={index} w="full" spacing={4}>
+          <Text 
             fontFamily="Open Sauce One, sans-serif"
             fontWeight="400"
-            color="#5F5D5D"
-            maxW="4xl"
-            align="center"
-            letterSpacing="-1.2px"
+            letterSpacing="-1px"
+            fontSize= "md"
+            color={item.name === "Recurring Monthly Expenses" ? "#2c3d90" : "#5F5D5D"}
+            minW="215px"
+            mr={isMobile ? "0px" : "10px"}  
           >
-            In March 2023, we successfully raised <b>$8,075</b> to support The Zia Academy in its operations.
-            The following is an explanation of the allocation of the funds in addition to the recurring expenses we have helped accommodate since March 2023.
-          </Text>
-        </SlideUpWhenVisible>
-
-        <Divider style={{ borderTop: '4px dotted #1F3A93' }} my={2}/>
-      </VStack>
-
-      <VStack spacing={4} w="full" id="motion-section">
-        {allocations.map((item, index) => (
-          <HStack key={index} w="full" spacing={4}>
-            <Text 
-              fontFamily="Open Sauce One, sans-serif"
-              fontWeight="400"
-              letterSpacing="-1px"
-              fontSize="md" 
-              color={item.name === "Recurring Monthly Expenses" ? "#2c3d90" : "#5F5D5D"}
-              minW="215px" 
-              mr="10px"
-            >
-              {/* Tooltip for Recurring Monthly Expenses */}
-              {item.name === "Recurring Monthly Expenses" ? (
-                <Tooltip
-                  label={
-                    <VStack align="start" spacing={2}>
-                      {item.breakdown.map((expense, idx) => (
-                        <Text key={idx} fontSize="sm" color="#5F5D5D">
-                          <span style={{ color: "#5F5D5D" }}>{expense.item}: </span>
-                          <span style={{ fontWeight: "bold", color: "#2c3d90" }}>
-                            {expense.cost}
-                          </span>
-                        </Text>
-                      ))}
-                    </VStack>
-                  }
-                  placement="right"
-                  hasArrow
-                  bg="white"
-                  color="white"
-                  border="2px solid #2c3d90"
-                  borderRadius="8px"
-                  p={4}
-                  boxShadow="lg"
-                >
-                  {item.name}
-                </Tooltip>
-              ) : (
-                item.name
-              )}
-            </Text>
-
-            {/* Apply motion only when the section is in view */}
-            {isInView && (
-
-              <MotionBox
-                initial={{ width: "0%" }}
-                animate={{ width: `${(item.amount / maxAmount) * 100}%` }}
-                transition={{ duration: 2, ease: 'easeInOut', delay: index * 0.2 }}
-                bg="#2c3d90"
-                h="7" // Increased height for better visibility
-                borderRadius="md"
-              />
-
+            {/* Tooltip for Recurring Monthly Expenses */}
+            {item.name === "Recurring Monthly Expenses" ? (
+              <Tooltip
+                label={
+                  <VStack align="start" spacing={2}>
+                    {item.breakdown.map((expense, idx) => (
+                      <Text key={idx} fontSize="sm" color="#5F5D5D">
+                        <span style={{ color: "#5F5D5D" }}>{expense.item}: </span>
+                        <span style={{ fontWeight: "bold", color: "#2c3d90" }}>
+                          {expense.cost}
+                        </span>
+                      </Text>
+                    ))}
+                  </VStack>
+                }
+                placement="right"
+                hasArrow
+                bg="white"
+                color="white"
+                border="2px solid #2c3d90"
+                borderRadius="8px"
+                p={4}
+                boxShadow="lg"
+              >
+                {item.name}
+              </Tooltip>
+            ) : (
+              item.name
             )}
-
-            <Text fontSize="sm" fontWeight="bold" color="#2c3d90">
-              ${item.amount}
-            </Text>
-          </HStack>
-        ))}
-      </VStack>
-    </HStack>
+          </Text>
+  
+          {/* Apply motion only when the section is in view */}
+          {isInView && !isMobile && (
+  <MotionBox
+    initial={{ width: "0%" }}
+    animate={{ width: `${(item.amount / maxAmount) * 100}%` }}
+    transition={{ duration: 2, ease: 'easeInOut', delay: index * 0.2 }}
+    bg="#2c3d90"
+    h="7"
+    borderRadius="md"
+  />
+)}
+          <Text fontSize="sm" fontWeight="bold" color="#2c3d90"            
+>
+            ${item.amount}
+          </Text>
+        </HStack>
+      ))}
+    </VStack>
+  </Stack>
+  
   );
 }

@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
 import Image from "next/image"; // Use Next.js Image
+import { useMediaQuery } from "@chakra-ui/react";
 
 
 // List all images manually from the "photos" folder in public
@@ -69,6 +70,7 @@ const imagePaths = [
   ];
   
 const PhotoSlider = () => {
+    const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
   const settings = {
     infinite: true,
     speed: 1000,
@@ -83,55 +85,56 @@ const PhotoSlider = () => {
   };
 
   return (
-    <Box w="100%" overflow="visible" align="center">
-    <SlideUpWhenVisible>
-      <Slider key={imagePaths.length} {...settings}>
-        {imagePaths.map((src, index) => (
-          <Box key={index} mx={2}>
-           <Image
-  src={src}
-  alt={`Photo ${index + 1}`}
-  width={300} // ✅ Use explicit width
-  height={450} // ✅ Use explicit height
-  style={{ 
-    objectFit: "cover", // Ensures the image fills the box
-    height: "450px", // ✅ Forces height
-    borderRadius: "8px"
-  }}   
-  loading="lazy"
-/>
-          </Box>
-        ))}
-      </Slider>
-    </SlideUpWhenVisible>
-  </Box>
+<Box w="100%" maxW="95%" mx="auto" position="relative">
+<SlideUpWhenVisible>
+  <Slider key={imagePaths.length} {...settings}>
+    {imagePaths.map((src, index) => (
+      <Box key={index} px={isMobile ? 1 : 3}> {/* reduce spacing for mobile */}
+        <Image
+          src={src}
+          alt={`Photo ${index + 1}`}
+          width={300}
+          height={450}
+          style={{
+            objectFit: "cover",
+            height: "450px",
+            borderRadius: "8px",
+            width: "100%", // Stretch image in container
+          }}
+          loading="lazy"
+        />
+      </Box>
+    ))}
+  </Slider>
+  </SlideUpWhenVisible>
+
+</Box>
   
   )
 };
 
 // Custom Arrow Components
 const SampleNextArrow = (props) => {
-  const { onClick } = props;
+  const { onClick } = props; // Ensure `isMobile` is passed as a prop
+
   return (
     <div
       onClick={onClick}
       style={{
         zIndex: 1,
         position: "absolute",
-        right: "-30px", // Position to the right
+        right: "-30px", // Use the computed value
         top: "50%",
-        transform: "translateY(-50%)", // Center vertically
-        fontSize: "24px", // Adjust size
-        color: "#2c3d90", // Color of the arrow
+        transform: "translateY(-50%)",
+        fontSize: "24px",
+        color: "#2c3d90",
         cursor: "pointer",
       }}
-      
     >
-<img src="/right.png" alt="Next" style={{ width: "30px", height: "30px" }} />
+      <img src="/right.png" alt="Next" style={{ width: "30px", height: "30px" }} />
     </div>
   );
 };
-
 const SamplePrevArrow = (props) => {
   const { onClick } = props;
   return (
@@ -140,7 +143,7 @@ const SamplePrevArrow = (props) => {
       style={{
         zIndex: 1,
         position: "absolute",
-        left: "-10px", // Position to the left
+        left: "-30px", // Position to the left
         top: "50%",
         transform: "translateY(-50%)", // Center vertically
         fontSize: "24px", // Adjust size

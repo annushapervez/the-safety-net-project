@@ -12,7 +12,7 @@ const ImageCarousel = () => {
   const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
 
   return (
-    <Flex direction={{ base: "column", md: "row" }} width="100%" height="520px" mb={isMobile ? 20 : 0}>
+    <Flex direction={{ base: "column", md: "row" }} width="100%" height="520px">
       {/* Left Side: Text (1/3 width) */}
       <Box
         flex="1"
@@ -46,19 +46,20 @@ const ImageCarousel = () => {
         </Text>
         <Link  href="/our-team" _hover={{ textDecoration: "none" }}> 
     <Flex justifyContent="center" mt={4}>
-          <Button 
-            mt={4} // Adds spacing from text
-            px={12} // Horizontal padding
-            py={6} // Vertical padding
-            fontSize="lg"
-            fontWeight="bold"
-            color="#2c3d90"
-            border="2px" 
-            bg="transparent" // Transparent background
-            borderRadius="0" // Sharp edges like the first image
-            width="fit-content" // Makes width match text size
-            _hover={{ bg: "#2c3d90", color: "white" }} // Hover effect
-          >
+    <Button
+  mt={isMobile ? 0 : 4}// Horizontal padding changes based on screen size
+  px={isMobile ? 10 : 12}// Horizontal padding changes based on screen size
+  py= {6 }  // Vertical padding changes based on screen size
+  fontSize={isMobile ? "md" : "lg"}// Font size adjusts for mobile and desktop
+  fontWeight="bold"
+  color="#2c3d90"
+  border="2px"
+  bg="transparent"
+  borderRadius="0"
+  _hover={{ bg: "#2c3d90", color: "white" }}
+  display="flex"  // Ensures button content is aligned correctly vertically
+  mx={isMobile ? "auto" : "0"}// Centers on mobile, left-aligned on desktop
+>
             OUR TEAM
           </Button> 
         </Flex>

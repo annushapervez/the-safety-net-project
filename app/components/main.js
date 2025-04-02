@@ -69,12 +69,12 @@ const MainContent = () => {
     >
       {/* Left Side - Text Content */}
       <Box 
-                mt={isMobile ? 10 : 4}
+                mt={isMobile ? 5 : 4}
         flex="1" 
         pr={isMobile ? 0 : 8}
         textAlign={isMobile ? "center" : "left"} // Apply center text only on mobile
       >
-        <HStack spacing={isMobile ? 1 : 4} align="center" justify={isMobile ? "center" : "flex-start"} mt={isMobile ? 20 : 0}>
+        <HStack spacing={isMobile ? 1 : 4} align="center" justify={isMobile ? "center" : "flex-start"} mt={isMobile ? 5 : 0}>
           <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize={isMobile ? "45px" : "60px"} />
           <Heading
             as="h2"
@@ -301,9 +301,9 @@ const MainContent = () => {
             alt="Zia Academy"
             borderRadius="md"
             boxShadow="lg"
-            maxW={isMobile ? "70%" : "60%"} // Adjust the width to make the image smaller (you can change this percentage)
+            maxW="60%" // Adjust the width to make the image smaller (you can change this percentage)
             mx="auto"   // Centers the image horizontally
-            mt={isMobile ? 6 : 0}
+            mt={isMobile ? 3 : 0}
 
           />
         </Box>

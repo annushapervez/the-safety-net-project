@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { ChakraProvider, useBreakpointValue } from "@chakra-ui/react";
+import { ChakraProvider, Box } from "@chakra-ui/react";
 import Head from 'next/head';
 import Header from './components/Header';
 import ImageCarousel from './components/Carousel';
@@ -22,7 +22,9 @@ export default function Home() {
 
       {isMobile ? <HamburgerMenu /> : <Header />}
       
-      <ImageCarousel />
+      <Box   mb={isMobile? 40  : 0}>
+  <ImageCarousel />
+</Box>
       <MainContent />
       <Footer />
     </ChakraProvider>

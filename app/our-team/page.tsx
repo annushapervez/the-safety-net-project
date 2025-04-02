@@ -16,7 +16,6 @@ const OurTeam = () => {
         {isMobile ? <HamburgerMenu /> : <Header />}
         <Box flex="1" p={isMobile ? 0: 8} bg="#F1F6FB">
           <SlideUpWhenVisible threshold={0.35}>
-            <Box bg={isMobile ? "#F1F6FB": "white"} flex="1" p={isMobile ? 2: 6} maxW={isMobile ? "100%": "95%"} mx="auto" boxShadow="md" rounded="lg" overflow="hidden" alignItems="center">
               <Heading
                 as="h2"
                 size="2xl"
@@ -57,10 +56,12 @@ const OurTeam = () => {
                           alt="Faeyah Muhammad"
                           borderRadius="16px"
                           flexShrink={0}
+                          mb={isMobile ? 2: 0}
+
                         />
                         <VStack mt={isMobile ? 5: 0} align="start" spacing={1} flex="1">
                           <Text
-                            fontSize={isMobile ? "lg" : "xl"} // Adjust text size on mobile
+                            fontSize="xl" // Adjust text size on mobile
                             fontFamily="Open Sauce One, sans-serif"
                             fontWeight="500"
                             color="#2c3d90"
@@ -82,7 +83,7 @@ const OurTeam = () => {
                         </VStack>
                       </HStack>
                       <Text
-                        fontSize="md"
+                        fontSize={isMobile ? "lg": "md"}
                         fontFamily="Open Sauce One, sans-serif"
                         fontWeight="400"
                         color="#5F5D5D"
@@ -111,7 +112,6 @@ Driven by a commitment to encouraging long lasting change, I am dedicated to ens
                       borderRadius="16px"
                       boxShadow="lg"
                       width={isMobile ? "100%" : "550px"} // 100% width on mobile
-                      height={isMobile ? "100%" : "600px"}
                       bg="white"
                     >
                       <HStack align="start" spacing={4}>
@@ -121,10 +121,12 @@ Driven by a commitment to encouraging long lasting change, I am dedicated to ens
                           alt="Annusha Pervez"
                           borderRadius="16px"
                           flexShrink={0}
+                          mb={isMobile ? 2: 0}
+
                         />
                         <VStack  mt={isMobile ? 5: 0} align="start" spacing={1} flex="1">
                           <Text
-                            fontSize={isMobile ? "lg" : "xl"} // Adjust text size on mobile
+                            fontSize= "xl" // Adjust text size on mobile
                             fontFamily="Open Sauce One, sans-serif"
                             fontWeight="500"
                             color="#2c3d90"
@@ -145,7 +147,7 @@ Driven by a commitment to encouraging long lasting change, I am dedicated to ens
                         </VStack>
                       </HStack>
                       <Text
-                        fontSize="md"
+                        fontSize={isMobile ? "lg": "md"}
                         fontFamily="Open Sauce One, sans-serif"
                         fontWeight="400"
                         color="#5F5D5D"
@@ -165,7 +167,6 @@ Driven by a commitment to encouraging long lasting change, I am dedicated to ens
                   </VStack>
                 </SlideUpWhenVisible>
               </Flex>
-            </Box>
           </SlideUpWhenVisible>
         </Box>
 

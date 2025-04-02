@@ -258,7 +258,7 @@ const ZiaAcademyPage = () => {
         <Text fontSize= "md" fontWeight="500" mb={2} letterSpacing="-1px">
           Western Union is recommended
         </Text>
-        <VStack align="start" spacing={2} letterSpacing="-1px">
+        <VStack align="center" spacing={2} letterSpacing="-1px">
           <Text fontSize={isMobile ? "sm" : "md"}><strong>Bank Branch:</strong> UBL Azam Basti</Text>
           <Text fontSize={isMobile ? "sm" : "md"}><strong>Account Title:</strong> M.D. ZiaUlQuran Sulemania</Text>
           <Text fontSize={isMobile ? "sm" : "md"}><strong>Account #:</strong> 0102806-0</Text>

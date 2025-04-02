@@ -15,7 +15,6 @@ const OurTeam = () => {
       <Box minHeight="100vh" display="flex" flexDirection="column"> 
         {isMobile ? <HamburgerMenu /> : <Header />}
         <Box flex="1" p={isMobile ? 0: 8} bg="#F1F6FB">
-          <SlideUpWhenVisible threshold={0.35}>
               <Heading
                 as="h2"
                 size="2xl"
@@ -167,7 +166,6 @@ Driven by a commitment to encouraging long lasting change, I am dedicated to ens
                   </VStack>
                 </SlideUpWhenVisible>
               </Flex>
-          </SlideUpWhenVisible>
         </Box>
 
         <Footer />

@@ -33,7 +33,7 @@ const MobileMenu = () => {
   const firstField = useRef();
 
   return (
-    <Box as="header" bg="white" px={6} py={3} boxShadow="md" borderBottom="3px solid #2c3d90">
+    <Box as="header" bg="white" px={6} py={4} boxShadow="md" borderBottom="3px solid #2c3d90">
       <Flex alignItems="center">
         {/* Logo */}
         <Link href="/">
@@ -41,7 +41,7 @@ const MobileMenu = () => {
         </Link>
         <Link href="/" _hover={{ textDecoration: 'none' }} // Ensures no underline on hover
 >
-    
+
       <Heading
         as="h1"
         textAlign="center"

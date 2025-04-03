@@ -12,6 +12,8 @@ const OurTeam = () => {
 
   return (
     <ChakraProvider>
+              <Footer >
+
       <Box minHeight="100vh" display="flex" flexDirection="column"> 
         {isMobile ? <HamburgerMenu /> : <Header />}
         <Box flex="1" p={isMobile ? 0: 8} bg="#F1F6FB">
@@ -168,8 +170,9 @@ Driven by a commitment to encouraging long lasting change, I am dedicated to ens
               </Flex>
         </Box>
 
-        <Footer />
       </Box>
+      </Footer >
+
     </ChakraProvider>
   );
 };

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { ChakraProvider, Box, Text, Input, Textarea, Button, FormLabel, FormControl, Container, Flex, SimpleGrid, Heading } from "@chakra-ui/react";
 import { db } from "../firebaseConfig.js"; // Import Firestore
 import { collection, addDoc } from "firebase/firestore";import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Layout from "../components/Footer";
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
 import HamburgerMenu from '../components/HamburgerMenu';
 import { useMediaQuery } from "@chakra-ui/react";
@@ -40,6 +40,8 @@ function ContactForm() {
   return (
     <ChakraProvider>
       <>
+      <Layout >
+
       {isMobile ? <HamburgerMenu /> : <Header />}
         <SlideUpWhenVisible threshold={.35}>
 
@@ -128,7 +130,7 @@ function ContactForm() {
         </Box>
         </SlideUpWhenVisible>
 
-        <Footer />
+        </Layout >
       </>
     </ChakraProvider>
   );

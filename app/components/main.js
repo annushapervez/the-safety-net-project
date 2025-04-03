@@ -74,7 +74,7 @@ const MainContent = () => {
         pr={isMobile ? 0 : 8}
         textAlign={isMobile ? "center" : "left"} // Apply center text only on mobile
       >
-        <HStack spacing={isMobile ? 1 : 4} align="center" justify={isMobile ? "center" : "flex-start"} mt={isMobile ? 5 : 0}>
+        <HStack spacing={isMobile ? 1 : 4} align="center" justify={isMobile ? "center" : "flex-start"}>
           <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize={isMobile ? "45px" : "60px"} />
           <Heading
             as="h2"
@@ -255,7 +255,7 @@ const MainContent = () => {
           <SlideUpWhenVisible>
 
           <Text
-            fontSize="xl"
+fontSize={isMobile ? "lg" : "xl"}
             fontFamily="Open Sauce One, sans-serif"
             fontWeight="400"
             letterSpacing="-1.2px"

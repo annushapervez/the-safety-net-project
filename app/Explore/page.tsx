@@ -3,6 +3,9 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ChakraProvider } from '@chakra-ui/react';
 import dynamic from "next/dynamic";
+import { useMediaQuery } from "@chakra-ui/react";
+import HamburgerMenu from '../components/HamburgerMenu';
+
 
 
 // Dynamically import the Map component with SSR disabled
@@ -11,12 +14,16 @@ const PakistanMap = dynamic(() => import("../components/map"), {
 });
 
 const Explore = () => {
+  const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
+
     return (
         <ChakraProvider>
         <>
-          <Header />
+        <Footer >
+
+        {isMobile ? <HamburgerMenu /> : <Header />}
         <PakistanMap />  
-        <Footer />
+        </Footer >
 
 </>
 </ChakraProvider>

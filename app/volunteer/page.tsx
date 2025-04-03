@@ -55,6 +55,8 @@ const VolunteerPage = () => {
   return (
     <ChakraProvider>
       <>
+      <Footer >
+
       {isMobile ? <HamburgerMenu /> : <Header />}
         <SlideUpWhenVisible threshold={0.35}>
 
@@ -162,7 +164,7 @@ const VolunteerPage = () => {
         </Box>
         </SlideUpWhenVisible >
 
-        <Footer />
+        </Footer >
       </>
     </ChakraProvider>
   );

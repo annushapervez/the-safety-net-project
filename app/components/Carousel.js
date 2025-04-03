@@ -25,10 +25,11 @@ const ImageCarousel = () => {
         textAlign="center" // Center text
       >
         <Text 
-         mt={{base:5, md:0}}
-          fontSize="4xl" 
+         mt={{base:3, md:0}}
+          fontSize={{base: "2.1rem", md:"4xl"}}
           fontWeight="500" 
           color="#2c3d90" 
+          maxW={{ base: "95%", md: "100%" }}
           letterSpacing="-2px" // Reduces space between letters
           lineHeight="1.2" // Slightly reduces line spacing
           fontFamily="'Open Sauce One', sans-serif"
@@ -40,7 +41,7 @@ const ImageCarousel = () => {
           color="#2c3d90" 
           letterSpacing="-1.5px"  
           fontFamily="'Open Sauce One', sans-serif" 
-          mt={5}
+          mt={3}
         >
           Welcome to our new website. The Safety Net Project is a non-profit organization dedicated to providing support and safety for children around the world. This website acts as our virtual headquarters where we will discuss projects, ideas, and resources.
         </Text>
@@ -59,6 +60,7 @@ const ImageCarousel = () => {
   _hover={{ bg: "#2c3d90", color: "white" }}
   display="flex"  // Ensures button content is aligned correctly vertically
   mx={isMobile ? "auto" : "0"}// Centers on mobile, left-aligned on desktop
+  mb={isMobile ? 3: 0}
 >
             OUR TEAM
           </Button> 

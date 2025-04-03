@@ -50,6 +50,8 @@ const ZiaAcademyPage = () => {
   return (
     <ChakraProvider>
       <>
+      <Footer >
+
       {isMobile ? <HamburgerMenu /> : <Header />}
         {/* Sticky Navigation Bar */}
         <Box position="sticky" top={0} zIndex={1000} bg="white" boxShadow="md" py={isMobile ? 2 : 4} px={isMobile ? 4 : 8}>
@@ -102,7 +104,7 @@ const ZiaAcademyPage = () => {
             w="100%"
             maxW="95%"
             gap={0}
-            mt={6}
+            mt={ isMobile? 3 : 6 }
           >
 
             {/* Image Box */}
@@ -313,7 +315,7 @@ const ZiaAcademyPage = () => {
   </Stack>
 </VStack>
         </Flex>
-        <Footer />
+        </Footer >
       </>
     </ChakraProvider>
   );

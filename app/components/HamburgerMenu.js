@@ -14,6 +14,7 @@ import {
   DrawerBody,
   Stack,
   IconButton,
+  Heading,
   Divider,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -32,21 +33,42 @@ const MobileMenu = () => {
   const firstField = useRef();
 
   return (
-    <Box as="header" bg="white" px={6} py={4} boxShadow="md" borderBottom="3px solid #2c3d90">
+    <Box as="header" bg="white" px={6} py={3} boxShadow="md" borderBottom="3px solid #2c3d90">
       <Flex alignItems="center">
         {/* Logo */}
         <Link href="/">
-          <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize="60px" />
+          <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize="45px" mt={2} />
         </Link>
+        <Link href="/" _hover={{ textDecoration: 'none' }} // Ensures no underline on hover
+>
+    
+      <Heading
+        as="h1"
+        textAlign="center"
+        mt={4}
+        ml={2}
+        fontSize="1.4rem" // Custom size between 4xl and 5xl
+        fontWeight="600" 
+        color="#2c3d90" 
+        letterSpacing="-1.2px" // Reduces space between letters
+        lineHeight="1.2" // Slightly reduces line spacing
+        fontFamily="'Open Sauce One', sans-serif"
+
+      >
+        The Safety Net Project
+      </Heading>
+      </Link>
         <Spacer />
         {/* Hamburger Icon */}
         <IconButton
           aria-label="Open Menu"
-          icon={<HamburgerIcon w={7} h={7} /> }
+          icon={<HamburgerIcon w={6} h={6} /> }
           onClick={onOpen}
           size="xl"
           color="#2c3d90"
           variant="ghost"
+          mt={4}
+
         />
       </Flex>
 

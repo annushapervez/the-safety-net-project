@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box, Flex, Heading, Text, FormControl, FormLabel, Input, Select, Button, SimpleGrid,
 } from '@chakra-ui/react';
@@ -51,6 +51,19 @@ const VolunteerPage = () => {
       setMessage("Error submitting form. Please try again.");
     }
   };
+  const [hasMounted, setHasMounted] = useState(false);
+
+  // Media query to detect mobile devices
+
+  useEffect(() => {
+    // Set hasMounted to true after the component mounts
+    setHasMounted(true);
+  }, []);
+
+  // If the component hasn't mounted, render nothing to prevent flicker
+  if (!hasMounted) {
+    return null;
+  }
 
   return (
     <ChakraProvider>

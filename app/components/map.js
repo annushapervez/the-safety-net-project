@@ -190,7 +190,6 @@ export default function PakistanMap() {
       >
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
         {places.map((place) => (
           <Marker
@@ -214,11 +213,12 @@ export default function PakistanMap() {
       </MapContainer>
 
       <Box
+       bg={{ base: "gray.50", md: "none" }} 
         ref={panelRef}
         position={{ base: "fixed", md: "absolute" }} // Fixed for mobile, absolute for desktop
         top={{ base: "40vh", md: "0" }} // Pushes content under the map on mobile
         width={{ base: "100%", md: "350px" }}
-        height={{ base: "50vh", md: "600px" }}
+        height={{ base: "48vh", md: "600px" }}
         
         left={{ base: "0", md: "100px" }} 
         zIndex={{ base: "0", md: "1000" }}
@@ -229,7 +229,7 @@ export default function PakistanMap() {
           msOverflowStyle: 'none',
         }}
       >
-        <VStack spacing={{ base: 0, md: 10 }} mb={{base:10, md:5}} align="stretch" bg={{ base: "gray.50", md: "none" }} fontFamily="Open Sauce One, sans-serif"
+        <VStack spacing={{ base: 0, md: 10 }} mb={5} align="stretch" bg={{ base: "gray.50", md: "none" }} fontFamily="Open Sauce One, sans-serif"
         textAlign={{ base: "center", md: "left" }}
 
 >

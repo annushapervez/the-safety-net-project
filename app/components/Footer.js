@@ -11,7 +11,6 @@ const Footer = () => {
       textAlign="center"
       fontFamily="Open Sauce One, sans-serif"
       mt={0} // Set margin-top to 0
-      zIndex={10}
     >
       <Text fontSize={{ base: 'xs', sm: 'sm' }}> {/* Smaller font on mobile */}
         &copy; 2025 The Safety Net Project. All rights reserved.

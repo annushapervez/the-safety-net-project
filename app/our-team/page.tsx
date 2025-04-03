@@ -1,14 +1,27 @@
 "use client";
-import React from 'react';
 import { ChakraProvider, Box, Flex, Text, Image, VStack, Heading, HStack } from '@chakra-ui/react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
 import HamburgerMenu from '../components/HamburgerMenu';
 import { useMediaQuery } from "@chakra-ui/react";
+import React, { useState, useEffect } from 'react';
 
 const OurTeam = () => {
   const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
+  const [hasMounted, setHasMounted] = useState(false);
+
+  // Media query to detect mobile devices
+
+  useEffect(() => {
+    // Set hasMounted to true after the component mounts
+    setHasMounted(true);
+  }, []);
+
+  // If the component hasn't mounted, render nothing to prevent flicker
+  if (!hasMounted) {
+    return null;
+  }
 
   return (
     <ChakraProvider>

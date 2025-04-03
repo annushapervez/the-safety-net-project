@@ -25,7 +25,7 @@ import FundAllocation from "../components/FundAllocation"; // Import the FundAll
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
 import HamburgerMenu from '../components/HamburgerMenu';
 import { useMediaQuery } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
@@ -46,6 +46,19 @@ const ZiaAcademyPage = () => {
     }
   };
   const [isOpen, setIsOpen] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  // Media query to detect mobile devices
+
+  useEffect(() => {
+    // Set hasMounted to true after the component mounts
+    setHasMounted(true);
+  }, []);
+
+  // If the component hasn't mounted, render nothing to prevent flicker
+  if (!hasMounted) {
+    return null;
+  }
 
   return (
     <ChakraProvider>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import { ChakraProvider, Box, Text, Input, Textarea, Button, FormLabel, FormControl, Container, Flex, SimpleGrid, Heading } from "@chakra-ui/react";
 import { db } from "../firebaseConfig.js"; // Import Firestore
 import { collection, addDoc } from "firebase/firestore";import Header from "../components/Header";
@@ -36,6 +36,19 @@ function ContactForm() {
       console.error("Error adding document: ", error);
     }
   };
+  const [hasMounted, setHasMounted] = useState(false);
+
+  // Media query to detect mobile devices
+
+  useEffect(() => {
+    // Set hasMounted to true after the component mounts
+    setHasMounted(true);
+  }, []);
+
+  // If the component hasn't mounted, render nothing to prevent flicker
+  if (!hasMounted) {
+    return null;
+  }
 
   return (
     <ChakraProvider>

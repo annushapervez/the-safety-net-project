@@ -26,7 +26,7 @@ const ImageCarousel = () => {
       >
         <Text 
          mt={{base:3, md:0}}
-          fontSize={{base: "2.1rem", md:"4xl"}}
+          fontSize={{base: "2.1rem", md:"3xl", xl:"4xl"}}
           fontWeight="500" 
           color="#2c3d90" 
           maxW={{ base: "95%", md: "100%" }}
@@ -37,7 +37,7 @@ const ImageCarousel = () => {
           “We are not what we know but what we are willing to learn”
         </Text>
         <Text 
-          fontSize="xl" 
+          fontSize={{base: "xl", md:"lg", xl:"xl"}}
           color="#2c3d90" 
           letterSpacing="-1.5px"  
           fontFamily="'Open Sauce One', sans-serif" 

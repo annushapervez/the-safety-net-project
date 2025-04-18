@@ -79,8 +79,27 @@ const PhotoSlider = () => {
     nextArrow: <SampleNextArrow />, // Custom next arrow
     prevArrow: <SamplePrevArrow />, // Custom previous arrow
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 1 } },
-      { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+      {
+        breakpoint: 1400, // Tablets and below
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 768, // Smaller tablets or large phones
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 600, // Phones
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
     ],
   };
 

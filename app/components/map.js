@@ -2,7 +2,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import { useState, useEffect, useRef } from 'react';
-import { Box, Heading, Text, Image, VStack, Center } from '@chakra-ui/react';
+import { Box, Heading, Text, Image, VStack, Center, border } from '@chakra-ui/react';
 import { FaHome } from 'react-icons/fa';  // Importing a FontAwesome icon
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
 
@@ -181,8 +181,17 @@ export default function PakistanMap() {
 
   return (
     <SlideUpWhenVisible>
-      
-    <Box   position="relative" height={{ base: "30vh", md: "600px" }}  width="100%" boxShadow={"md"}>
+
+<Box 
+      position="absolute" 
+      top={0} 
+      left={0} 
+      right={0} 
+      bottom={0} 
+      bg={{ base: "gray.50", md: "white" }}
+    >
+
+    <Box  position="relative" height={{ base: "30vh", md: "100vh" }}  width="100%" boxShadow={"md"}>
       <MapContainer
         center={[29.3956, 71.6722]}
         zoom={6}
@@ -213,16 +222,17 @@ export default function PakistanMap() {
       </MapContainer>
 
       <Box
+
+      flex={{ base: 1, md: "none" }}
+      overflowY="auto"
        bg={{ base: "gray.50", md: "none" }} 
         ref={panelRef}
-        position={{ base: "fixed", md: "absolute" }} // Fixed for mobile, absolute for desktop
-        top={{ base: "40vh", md: "0" }} // Pushes content under the map on mobile
-        width={{ base: "100%", md: "350px" }}
-        height={{ base: "48vh", md: "600px" }}
-        
+        position={{ base: "relative", md: "absolute" }} // ✅ Not absolute on mobile
+        top={{  md: "0" }} // Pushes content under the map on mobile
+        width={{ base: "100%", md: "400px", xl: "350px"}}
+        height={{ base: "200%", md:"90vh", lg:"95vh", xl: "80vh" }}
         left={{ base: "0", md: "100px" }} 
-        zIndex={{ base: "0", md: "1000" }}
-        overflowY="auto"
+        zIndex={{ base: "none", md: "1000" }}
         css={{
           '&::-webkit-scrollbar': { display: 'none' },
           scrollbarWidth: 'none',
@@ -275,7 +285,8 @@ export default function PakistanMap() {
               
               >{place.name}</Heading>
               <Text color="#5F5D5D" 
-              fontSize="md"
+
+              fontSize={{ base: "md", md: "xl", xl: "md"}}
               fontWeight="400"
               letterSpacing="-.5px"
               
@@ -285,7 +296,10 @@ export default function PakistanMap() {
         </VStack>
       </Box>
     </Box>
+    </Box>
+
     </SlideUpWhenVisible>
+    
      
 
   );

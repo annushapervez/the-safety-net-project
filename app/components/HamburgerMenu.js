@@ -33,22 +33,23 @@ const MobileMenu = () => {
   const firstField = useRef();
 
   return (
-    <Box as="header" bg="white" px={6} py={4} boxShadow="md" borderBottom="3px solid #2c3d90">
+    <Box  as="header" bg="white" px={6} py={4} boxShadow="md" borderBottom="3px solid #2c3d90">
       <Flex alignItems="center">
         {/* Logo */}
         <Link href="/">
-          <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize="45px" mt={2} />
+          <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize="50px"  />
         </Link>
+        
+{/*
         <Link href="/" _hover={{ textDecoration: 'none' }} // Ensures no underline on hover
->
 
       <Heading
         as="h1"
         textAlign="center"
-        mt={4}
+        mt={5}
         ml={2}
-        fontSize="1.4rem" // Custom size between 4xl and 5xl
-        fontWeight="600" 
+        fontSize="1.2rem" // Custom size between 4xl and 5xl
+        fontWeight="700" 
         color="#2c3d90" 
         letterSpacing="-1.2px" // Reduces space between letters
         lineHeight="1.2" // Slightly reduces line spacing
@@ -57,12 +58,13 @@ const MobileMenu = () => {
       >
         The Safety Net Project
       </Heading>
-      </Link>
+      </Link> 
+  */}
         <Spacer />
         {/* Hamburger Icon */}
         <IconButton
           aria-label="Open Menu"
-          icon={<HamburgerIcon w={6} h={6} /> }
+          icon={<HamburgerIcon w={7} h={7} /> }
           onClick={onOpen}
           size="xl"
           color="#2c3d90"

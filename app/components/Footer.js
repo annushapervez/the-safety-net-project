@@ -34,7 +34,7 @@ const Footer = () => {
 // Layout component with children prop to wrap content
 const Layout = ({ children }) => {
   return (
-    <Flex direction="column" minHeight="100vh">
+    <Flex direction="column" minHeight="100vh" >
       <Box flex="1">{children}</Box> {/* Content goes here */}
       <Footer /> {/* Footer stays at the bottom */}
     </Flex>

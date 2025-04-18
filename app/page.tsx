@@ -14,7 +14,7 @@ export default function Home() {
   const [hasMounted, setHasMounted] = useState(false);
 
   // Media query to detect mobile devices
-  const [isMobile] = useMediaQuery("(max-width: 768px)");
+  const [isMobile] = useMediaQuery("(max-width: 1024px)");
 
   useEffect(() => {
     // Set hasMounted to true after the component mounts
@@ -37,7 +37,7 @@ export default function Home() {
         {/* Conditionally render navigation based on isMobile */}
         {isMobile ? <HamburgerMenu /> : <Header />}
         
-        <Box mb={isMobile ? 40 : 0}>
+        <Box mb={{base:40, md:0}}>
           <ImageCarousel />
         </Box>
 

@@ -29,7 +29,7 @@ const allocations = [
 const maxAmount = 4000;
 
 export default function FundAllocation() {
-  const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
+  const [isMobile] = useMediaQuery("(max-width: 500px)"); // ✅ Move inside the component
 
   // Add state to track visibility
   const [isInView, setIsInView] = useState(false);
@@ -62,11 +62,11 @@ export default function FundAllocation() {
 
   return (
     <Stack 
-    direction={isMobile ? "column" : "row"}
-    spacing={isMobile ? 5 : 20} 
+    direction={{base:"column", xl:"row"}}
+    spacing={{base:5, xl:20}}
     align="center" 
     mx="auto" 
-    p={isMobile ? 6 : 12} 
+    p={{base:6,  md:12}}
     bg="white" 
     borderRadius="md" 
     boxShadow="lg"
@@ -76,7 +76,7 @@ export default function FundAllocation() {
       <SlideUpWhenVisible>
         <Heading
           as="h2"
-          size={isMobile ? "xl" : "2xl"} 
+          size={{base:"xl",  md:"2xl"}}
           fontWeight="400"
           letterSpacing="-2px"
           lineHeight="1.2"
@@ -91,7 +91,7 @@ export default function FundAllocation() {
   
       <SlideUpWhenVisible>
         <Text
-          fontSize={isMobile ? "lg" : "xl"} 
+          fontSize={{base:"lg",  md:"xl"}}
           fontFamily="Open Sauce One, sans-serif"
           fontWeight="400"
           color="#5F5D5D"
@@ -117,7 +117,7 @@ export default function FundAllocation() {
             fontSize= "md"
             color={item.name === "Recurring Monthly Expenses" ? "#2c3d90" : "#5F5D5D"}
             minW="215px"
-            mr={isMobile ? "0px" : "10px"}  
+            mr={{base:"0px",  md:"10px"}}
           >
             {/* Tooltip for Recurring Monthly Expenses */}
             {item.name === "Recurring Monthly Expenses" ? (

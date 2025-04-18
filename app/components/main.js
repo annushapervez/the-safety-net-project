@@ -8,7 +8,7 @@ import { useMediaQuery } from "@chakra-ui/react";
 const AnimatedStatNumber = motion(StatNumber);
 
 const MainContent = () => {
-  const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
+  const [isMobile] = useMediaQuery("(max-width: 1024px)"); // ✅ Move inside the component
   const [moneyCount, setMoneyCount] = useState(0);
   const [hugCount, setHugCount] = useState(0);
   const [girlCount, setGirlCount] = useState(0);
@@ -90,7 +90,7 @@ const MainContent = () => {
 
         <SlideUpWhenVisible>
           <Text
-          fontSize={isMobile ? "xl" : "2xl"} 
+          fontSize={{base:"xl", md:"2xl"}}
             mt={4}
             mb={6}
             fontFamily="Open Sauce One, sans-serif"
@@ -169,7 +169,7 @@ const MainContent = () => {
           </Heading>
           <Text fontSize="lg" fontFamily="Open Sauce One, sans-serif" fontWeight="400" color="#5F5D5D" letterSpacing="-1.1px" mt={isMobile ? 5 : 0}  mb={isMobile ? 10 : 14} textAlign="center">
           Your generosity builds confidence, resilience, and belonging—impacting lives beyond the numbers.          </Text>
-          <SimpleGrid columns={[1, 2, 3]} spacing={isMobile ? 5 : 10}>
+          <SimpleGrid columns={[1, 1, 3]} spacing={isMobile ? 5 : 10} >
             <Stat textAlign="center">
               <Box display="flex" justifyContent="center" alignItems="center">
                 <Image src="/donate.png" alt="Description of image" width={20} height={20} mb={6} />
@@ -227,7 +227,7 @@ const MainContent = () => {
         mx="auto"
         align="center"
         justify="space-between"
-        flexDirection={isMobile ? "column" : "row"} // Column on mobile, row on larger screens
+        flexDirection={{base:"column", md:"row"}} // Column on mobile, row on larger screens
         >
       <Box flex="1" mr={isMobile ? 0: 8} mb={isMobile ? 6 : 0}>
         <SlideUpWhenVisible>
@@ -255,7 +255,7 @@ const MainContent = () => {
           <SlideUpWhenVisible>
 
           <Text
-fontSize={isMobile ? "lg" : "xl"}
+fontSize={{base:"lg", md:"xl"}}
             fontFamily="Open Sauce One, sans-serif"
             fontWeight="400"
             letterSpacing="-1.2px"
@@ -301,7 +301,7 @@ fontSize={isMobile ? "lg" : "xl"}
             alt="Zia Academy"
             borderRadius="md"
             boxShadow="lg"
-            maxW="60%" // Adjust the width to make the image smaller (you can change this percentage)
+            maxW= {{base:"60%", md:"80%", xl:"60%"}} // Adjust the width to make the image smaller (you can change this percentage)
             mx="auto"   // Centers the image horizontally
             mt={isMobile ? 3 : 0}
 

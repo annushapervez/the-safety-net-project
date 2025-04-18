@@ -26,13 +26,13 @@ import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure 
 import HamburgerMenu from '../components/HamburgerMenu';
 import { useMediaQuery } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-
+import { useBreakpointValue } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
 
 
 const ZiaAcademyPage = () => {
-  const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
+  const [isMobile] = useMediaQuery("(max-width: 1024px)"); // ✅ Move inside the component
   // Function to handle smooth scrolling
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -111,7 +111,7 @@ const ZiaAcademyPage = () => {
 
           <Flex
             id="about"
-            direction={{ base: "column", md: "row" }}
+            direction={{ base: "column", md: "column", lg:"row"}}
             align="stretch"
             justify="center"
             w="100%"
@@ -128,10 +128,10 @@ const ZiaAcademyPage = () => {
                 objectFit="cover"
                 width="100%"
                 height="100%"
-                boxShadow={isMobile ? "0": "lg"} 
+                boxShadow={{base:"0", lg:"lg"}}
                 borderTopLeftRadius="lg"
-                borderBottomLeftRadius={isMobile ? "0": "lg"} 
-                borderTopRightRadius={isMobile ? "lg": "0"} 
+                borderBottomLeftRadius={{base:"0", lg:"lg"}}
+                borderTopRightRadius={{base:"lg", lg:"0"}}
 
               />
             </Box>
@@ -139,15 +139,15 @@ const ZiaAcademyPage = () => {
             {/* Text Box */}
             <VStack
   flex="1"
-  align={isMobile ? "center" : "start"} // Center text on mobile
+  align={{base:"center", lg:"start"}}// Center text on mobile
   spacing={4}
-  p={{ base: 6, md: 8 }}
+  p={{ base: 6, lg: 8 }}
   bg="white"
-  borderTopRightRadius={isMobile ? "0": "lg"} 
+  borderTopRightRadius={{base:"0", lg:"lg"}}
   borderBottomRightRadius="lg"
-  borderBottomLeftRadius={isMobile ? "lg": "0"} 
+  borderBottomLeftRadius={{base:"lg", lg:"0"}}
   boxShadow="lg"
-  textAlign={isMobile ? "center" : "left"} // Center text content
+  textAlign={{base:"center", lg:"left"}}// Center text content
   w="100%" // Ensure full width for proper centering
 >
               <HStack  align="center"  justify={isMobile ? "center" : "flex-start"}>
@@ -156,13 +156,13 @@ const ZiaAcademyPage = () => {
                   About
                 </Heading>
               </HStack>
-              <Text fontSize={isMobile ? "lg" : "xl"}   fontFamily="Open Sauce One, sans-serif" fontWeight="400" color="#5F5D5D" letterSpacing="-1.2px">
+              <Text fontSize={{base:"lg", md:"xl"}}   fontFamily="Open Sauce One, sans-serif" fontWeight="400" color="#5F5D5D" letterSpacing="-1.2px">
                 The Zia Academy is an educational institution that doubles as a home for over 70 girls. These girls are from rural areas spread throughout Balochistan, Quetta, Kashmir, and more. The teachers working here exemplify multifaceted talents by not only taking on an educational role but also providing support and comfort to the students.
               </Text>
-              <Text fontSize={isMobile ? "lg" : "xl"}  fontFamily="Open Sauce One, sans-serif" fontWeight="400" color="#5F5D5D" letterSpacing="-1.2px">
+              <Text fontSize={{base:"lg", md:"xl"}} fontFamily="Open Sauce One, sans-serif" fontWeight="400" color="#5F5D5D" letterSpacing="-1.2px">
                 The Safety Net Project was founded with a simple desire to bridge the gap for marginalized people from rural communities. Our goal is to support youth and serve as a safety net for those who need it. On average, donations, especially those distributed from the USA, tend to get distributed amongst popular urban areas. This creates a gap in the resources provided to those who are situated in the most inconvenient, “middle of nowhere,” and ultimately rural areas. Our goal is to change this.
               </Text>
-              <Text fontSize={isMobile ? "lg" : "xl"}  fontFamily="Open Sauce One, sans-serif" fontWeight="400" color="#5F5D5D" letterSpacing="-1.2px">
+              <Text fontSize={{base:"lg", md:"xl"}} fontFamily="Open Sauce One, sans-serif" fontWeight="400" color="#5F5D5D" letterSpacing="-1.2px">
                 Our goal is not only to support essential living conditions when we approach this collaboration with The Zia Academy but to also provide resources that can empower the girls to build their own careers and achieve self-sufficiency down the road.
               </Text>
 
@@ -239,7 +239,7 @@ const ZiaAcademyPage = () => {
 
   <SlideUpWhenVisible threshold={0.35}>
     <Text 
-      fontSize={isMobile ? "lg" : "xl"}
+      fontSize={{base:"lg", md:"xl"}}
       color="#5F5D5D" 
       mb={isMobile ? 3 : 6} 
       fontWeight="400" 
@@ -251,7 +251,7 @@ const ZiaAcademyPage = () => {
 
   {/* Donation Options - Responsive Layout */}
   <Stack 
-    direction={isMobile ? "column" : "row"}
+    direction={{base:"column", lg:"row"}}
     spacing={6} 
     w="100%" 
     align="stretch" 
@@ -274,10 +274,10 @@ const ZiaAcademyPage = () => {
           Western Union is recommended
         </Text>
         <VStack align="center" spacing={2} letterSpacing="-1px">
-          <Text fontSize={isMobile ? "sm" : "md"}><strong>Bank Branch:</strong> UBL Azam Basti</Text>
-          <Text fontSize={isMobile ? "sm" : "md"}><strong>Account Title:</strong> M.D. ZiaUlQuran Sulemania</Text>
-          <Text fontSize={isMobile ? "sm" : "md"}><strong>Account #:</strong> 0102806-0</Text>
-          <Text fontSize={isMobile ? "sm" : "md"}><strong>Branch Code:</strong> 1541</Text>
+          <Text fontSize={{base:"sm", md:"md"}}><strong>Bank Branch:</strong> UBL Azam Basti</Text>
+          <Text fontSize={{base:"sm", md:"md"}}><strong>Account Title:</strong> M.D. ZiaUlQuran Sulemania</Text>
+          <Text fontSize={{base:"sm", md:"md"}}><strong>Account #:</strong> 0102806-0</Text>
+          <Text fontSize={{base:"sm", md:"md"}}><strong>Branch Code:</strong> 1541</Text>
         </VStack>
       </SlideUpWhenVisible>
     </Box>
@@ -317,7 +317,7 @@ const ZiaAcademyPage = () => {
         <Text fontSize="md" mb={isMobile ? 2 : 4} letterSpacing="-1px">
           If you have clothing, books, old laptops, or any items that may be of productive use to the academy, you can drop them off or ship them to us for delivery to the school.
         </Text>
-        <Text fontSize={isMobile ? "sm" : "md"} fontWeight="500" letterSpacing="-1px">
+        <Text fontSize={{base:"sm", md:"md"}} fontWeight="500" letterSpacing="-1px">
           Contact:{" "}
           <a href="mailto:SAFETYNETPROJECTS@GMAIL.COM" style={{ color: "#2c3d90" }}>
             SAFETYNETPROJECTS@GMAIL.COM

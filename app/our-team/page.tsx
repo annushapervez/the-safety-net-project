@@ -132,7 +132,7 @@ const OurTeam = () => {
                   <HStack align="start" spacing={4}>
                     <Image
                       boxSize={{ base: "120px", md: "150px" }}
-                      src="/annu.jpg"
+                      src="/test.JPG"
                       alt="Annusha Pervez"
                       borderRadius="16px"
                       flexShrink={0}
@@ -173,7 +173,7 @@ const OurTeam = () => {
                     <br /><br />
                     By developing our website, I created a platform that not only reflects our mission but also strengthens connections between our community, supporters, and partners. Beyond establishing a digital presence, I focus on continuously refining and scaling our technology to better serve those who rely on it. Ensuring accessibility, usability, and adaptability is at the core of my work, allowing us to create a user-friendly experience that amplifies our reach.
                     <br /><br />
-                    Through The Safety Net Project, we’re building more than just a platform — we’re creating a sustainable, tech-driven initiative that fosters connection, transparency, and real impact for the communities we serve.
+                    Through The Safety Net Project, we’re building more than just a platform, we’re creating a sustainable, tech-driven initiative that fosters connection, transparency, and real impact for the communities we serve.
                   </Text>
                 </Box>
               </VStack>

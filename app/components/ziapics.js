@@ -9,10 +9,16 @@ import { useMediaQuery } from "@chakra-ui/react";
 
 // List all images manually from the "photos" folder in public
 const excludeIndices = [6,10,12,13,15,17,19,20,22];
+// First slide specific images (ensure these are not in excludeIndices)
+const firstSlideImages = [24, 14, 21, 35]; // <-- Your chosen images for the first slide
 
-const imagePaths = Array.from({ length: 35 }, (_, index) => index + 1)
-  .filter(num => !excludeIndices.includes(num))
-  .map(num => `/zia/${num}.png`);
+// Rest of the images (excluding first slide ones and excluded indices)
+const imagePaths = [
+  ...firstSlideImages.map(num => `/zia/${num}.png`),
+  ...Array.from({ length: 35 }, (_, index) => index + 1)
+    .filter(num => !excludeIndices.includes(num) && !firstSlideImages.includes(num))
+    .map(num => `/zia/${num}.png`)
+];
 const PhotoSlider = () => {
   const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
 

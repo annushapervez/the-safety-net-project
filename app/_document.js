@@ -1,4 +1,3 @@
-// pages/_document.js
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
@@ -6,7 +5,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* Link to Google Fonts (if using Google Fonts) */}
           <link
             href="https://fonts.googleapis.com/css2?family=Big+Caslon+FB&display=swap"
             rel="stylesheet"

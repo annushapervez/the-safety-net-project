@@ -19,10 +19,10 @@ import {
 } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import PhotoSlider from "../components/atifgallery"; // Import the new component
-import Ziaslider from "../components/ziapics"; // Import the new component
-import FundAllocation from "../components/FundAllocation"; // Import the FundAllocation component
-import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
+import PhotoSlider from "../components/atifgallery"; 
+import Ziaslider from "../components/ziapics"; 
+import FundAllocation from "../components/FundAllocation"; 
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js';
 import HamburgerMenu from '../components/HamburgerMenu';
 import { useMediaQuery } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
@@ -32,12 +32,11 @@ import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
 
 const ZiaAcademyPage = () => {
-  const [isMobile] = useMediaQuery("(max-width: 1024px)"); // ✅ Move inside the component
-  // Function to handle smooth scrolling
+  const [isMobile] = useMediaQuery("(max-width: 1024px)"); 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; // Adjust this value based on the height of your sticky navigation bar
+      const offset = 80; 
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({
         top: elementPosition - offset,
@@ -48,14 +47,11 @@ const ZiaAcademyPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
 
-  // Media query to detect mobile devices
 
   useEffect(() => {
-    // Set hasMounted to true after the component mounts
     setHasMounted(true);
   }, []);
 
-  // If the component hasn't mounted, render nothing to prevent flicker
   if (!hasMounted) {
     return null;
   }
@@ -66,7 +62,6 @@ const ZiaAcademyPage = () => {
       <Footer >
 
       {isMobile ? <HamburgerMenu /> : <Header />}
-        {/* Sticky Navigation Bar */}
         <Box position="sticky" top={0} zIndex={1000} bg="white" boxShadow="md" py={isMobile ? 2 : 4} px={isMobile ? 4 : 8}>
         {isMobile ? (
           
@@ -79,7 +74,6 @@ const ZiaAcademyPage = () => {
   </Button>
 </Box>
 
-          {/* Collapsible Menu */}
           <Collapse in={isOpen} animateOpacity>
             <VStack spacing={4} align="center" mt={2}>
               <Link onClick={() => scrollToSection("about")} fontSize="md" fontWeight="500" color="#2c3d90" _hover={{ textDecoration: "underline" }}>About</Link>
@@ -101,12 +95,10 @@ const ZiaAcademyPage = () => {
       )}
 </Box>
 
-        {/* Main Content */}
         <Flex direction="column" align="center" justify="center" py={ isMobile? 10 : 0 }  p={ isMobile? 4 : 8 } bg="gray.100">
 
         <SlideUpWhenVisible threshold={0.35}>
 
-          {/* About Section */}
           <VStack w="100%" align="center" justify="center" >
 
           <Flex
@@ -120,7 +112,6 @@ const ZiaAcademyPage = () => {
             mt={ isMobile? 3 : 6 }
           >
 
-            {/* Image Box */}
             <Box flex="1" position="relative">
               <Image
                 src="/about.jpg"
@@ -136,10 +127,9 @@ const ZiaAcademyPage = () => {
               />
             </Box>
 
-            {/* Text Box */}
             <VStack
   flex="1"
-  align={{base:"center", lg:"start"}}// Center text on mobile
+  align={{base:"center", lg:"start"}}
   spacing={4}
   p={{ base: 6, lg: 8 }}
   bg="white"
@@ -147,8 +137,8 @@ const ZiaAcademyPage = () => {
   borderBottomRightRadius="lg"
   borderBottomLeftRadius={{base:"lg", lg:"0"}}
   boxShadow="lg"
-  textAlign={{base:"center", lg:"left"}}// Center text content
-  w="100%" // Ensure full width for proper centering
+  textAlign={{base:"center", lg:"left"}}
+  w="100%" 
 >
               <HStack  align="center"  justify={isMobile ? "center" : "flex-start"}>
                 <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize={isMobile ? "45px" : "50px"} />
@@ -174,7 +164,6 @@ const ZiaAcademyPage = () => {
           </SlideUpWhenVisible>
 
 
-          {/* Photographs Section - Atif Productions */}
 
           <VStack id="photographs-atif" mt={isMobile ? 6 : 12} w="100%"  maxW="95%" align="center"
 >
@@ -189,14 +178,12 @@ const ZiaAcademyPage = () => {
           </VStack>
 
 
-          {/* Fund Allocation Section */}
           <VStack id="fund-allocation" mt={isMobile ? 8 : 16} w="100%"  maxW="95%" align="center">
 <Box w="100%" maxW= "100%">
     <FundAllocation />
   </Box>
           </VStack>
 
-          {/* Photographs Section - Zia Academy */}
           <VStack id="photographs-zia"mt={isMobile ? 6 : 12} w="100%"   maxW="95%" align="center">  
             <Heading as="h2" size="2xl" fontWeight="400" letterSpacing="-2px" lineHeight="1.2" color="#2c3d90">
               Photographs
@@ -249,7 +236,6 @@ const ZiaAcademyPage = () => {
     </Text>
   </SlideUpWhenVisible>
 
-  {/* Donation Options - Responsive Layout */}
   <Stack 
     direction={{base:"column", lg:"row"}}
     spacing={6} 
@@ -257,7 +243,6 @@ const ZiaAcademyPage = () => {
     align="stretch" 
     fontFamily="Open Sauce One, sans-serif"
   >
-    {/* Direct Wire Transfer */}
     <Box p={isMobile ? 4 : 6}  bg="gray.50" boxShadow="md" borderRadius="lg" flex="1">
       <SlideUpWhenVisible threshold={0.35}>
         <Heading 
@@ -282,7 +267,6 @@ const ZiaAcademyPage = () => {
       </SlideUpWhenVisible>
     </Box>
 
-    {/* LaunchGood */}
     <Box p={isMobile ? 4 : 6} bg="gray.50" boxShadow="md" borderRadius="lg" flex="1">
       <SlideUpWhenVisible threshold={0.35}>
         <Heading 
@@ -301,7 +285,6 @@ const ZiaAcademyPage = () => {
       </SlideUpWhenVisible>
     </Box>
 
-    {/* Additional Resources */}
     <Box p={isMobile ? 4 : 6} bg="gray.50" boxShadow="md" borderRadius="lg" flex="1">
       <SlideUpWhenVisible threshold={0.35}>
         <Heading 

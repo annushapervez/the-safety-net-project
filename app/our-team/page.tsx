@@ -54,7 +54,6 @@ const OurTeam = () => {
             gap={{ base: 0, md: 4}}
             wrap="wrap"
           >
-            {/* TEAM MEMBER 1 */}
             <SlideUpWhenVisible threshold={0.35}>
               <VStack spacing={4} m={4} align="center">
                 <Box
@@ -78,7 +77,7 @@ const OurTeam = () => {
                     />
                     <VStack align={{ md: "start" }} spacing={1} flex="1" mt={{ base: 5, md: 0 }}>
                     <Text
-                            fontSize="xl" // Adjust text size on mobile
+                            fontSize="xl" 
                             fontFamily="Open Sauce One, sans-serif"
                             fontWeight="500"
                             color="#2c3d90"
@@ -116,7 +115,6 @@ const OurTeam = () => {
               </VStack>
             </SlideUpWhenVisible>
 
-            {/* TEAM MEMBER 2 */}
             <SlideUpWhenVisible threshold={0.35}>
               <VStack spacing={4} m={4} align="center">
                 <Box
@@ -141,7 +139,7 @@ const OurTeam = () => {
                     />
                     <VStack align={{ md: "start" }} spacing={1} flex="1" mt={{ base: 5, md: 0 }}>
                     <Text
-                            fontSize="xl" // Adjust text size on mobile
+                            fontSize="xl" 
                             fontFamily="Open Sauce One, sans-serif"
                             fontWeight="500"
                             color="#2c3d90"

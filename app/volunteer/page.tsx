@@ -6,16 +6,15 @@ import {
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ChakraProvider } from '@chakra-ui/react';
-import { db } from "../firebaseConfig.js"; // Import Firestore
+import { db } from "../firebaseConfig.js"; 
 import { collection, addDoc } from "firebase/firestore";
-import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js';
 import HamburgerMenu from '../components/HamburgerMenu';
 import { useMediaQuery } from "@chakra-ui/react";
 
 const VolunteerPage = () => {
   const [isMobile] = useMediaQuery("(max-width: 1024px)");
 
-  // State for form fields
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -26,12 +25,10 @@ const VolunteerPage = () => {
 
   const [message, setMessage] = useState('');
 
-  // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -53,14 +50,11 @@ const VolunteerPage = () => {
   };
   const [hasMounted, setHasMounted] = useState(false);
 
-  // Media query to detect mobile devices
 
   useEffect(() => {
-    // Set hasMounted to true after the component mounts
     setHasMounted(true);
   }, []);
 
-  // If the component hasn't mounted, render nothing to prevent flicker
   if (!hasMounted) {
     return null;
   }
@@ -77,7 +71,7 @@ const VolunteerPage = () => {
           bg="#F1F6FB"
           minHeight="100vh"          py={10}
           px={{ base: 4, md: 10 }}
-          fontFamily="'Open Sauce One', sans-serif" // Apply font to the entire container
+          fontFamily="'Open Sauce One', sans-serif" 
         >
           <Flex
             maxW="95%"
@@ -87,10 +81,9 @@ const VolunteerPage = () => {
             rounded="lg"
             overflow="hidden"
             flexDirection={{ base: 'column', xl: 'row' }}
-            alignItems="center" // Center the children vertically
+            alignItems="center" 
           >
-            {/* Left Section */}
-            <Box flex="1" p={{base:5, md:10}}  bg="white"  textAlign={{base:"center", md:"center", xl: "left"}}  // Center on mobile, left on larger screens
+            <Box flex="1" p={{base:5, md:10}}  bg="white"  textAlign={{base:"center", md:"center", xl: "left"}}  
 >
               <Heading
                 as="h2"
@@ -132,12 +125,11 @@ const VolunteerPage = () => {
               </Text>
             </Box>
 
-          {/* Right Section - Form */}
           <Box flex="1"  p={{base:5, md:10}}  bg="white" fontWeight="400" color="#2c3d90" letterSpacing="-1.2px" textAlign={{base:"center", md:"center", xl: "left"}}>
               <form onSubmit={handleSubmit}>
                 <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
                   <FormControl id="firstName" isRequired>
-                    <FormLabel  textAlign={{base:"center", md:"center", xl: "left"}}  // Center on mobile, left on larger screens
+                    <FormLabel  textAlign={{base:"center", md:"center", xl: "left"}} 
 >First Name</FormLabel>
                     <Input textAlign={{base:"center", md:"center", xl: "left"}} type="text" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
                   </FormControl>

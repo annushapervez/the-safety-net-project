@@ -14,7 +14,7 @@
 
 body {
   font-family: 'Open Sauce One', sans-serif;
-  font-weight: 400; /* Apply a bolder weight */
+  font-weight: 400; 
   color: var(--foreground);
   background: var(--background);
 }

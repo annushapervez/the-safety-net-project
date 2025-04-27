@@ -35,7 +35,6 @@ const MobileMenu = () => {
   return (
     <Box  as="header" bg="white" px={6} py={4} boxShadow="md" borderBottom="3px solid #2c3d90">
       <Flex alignItems="center">
-        {/* Logo */}
         <Link href="/">
           <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize="50px"  />
         </Link>
@@ -74,7 +73,6 @@ const MobileMenu = () => {
         />
       </Flex>
 
-      {/* Drawer for Mobile Menu */}
       <Drawer isOpen={isOpen} onClose={onClose} placement="right" initialFocusRef={firstField}>
         <DrawerOverlay />
         <DrawerContent bg="white">

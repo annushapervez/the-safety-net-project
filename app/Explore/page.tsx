@@ -9,9 +9,8 @@ import HamburgerMenu from '../components/HamburgerMenu';
 
 
 
-// Dynamically import the Map component with SSR disabled
 const PakistanMap = dynamic(() => import("../components/map"), {
-  ssr: false, // Disable SSR for the Map component
+  ssr: false, 
 });
 const Explore = () => {
   const [isMobile] = useMediaQuery("(max-width: 1024px)");
@@ -31,7 +30,6 @@ const Explore = () => {
 
         {isMobile ? <HamburgerMenu /> : <Header />}
         
-        {/* Main content grows to fill remaining space */}
         <Box flex="1" position="relative"  overflow="hidden">
           <PakistanMap />
         </Box>

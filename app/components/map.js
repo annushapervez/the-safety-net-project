@@ -3,8 +3,8 @@ import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import { useState, useEffect, useRef } from 'react';
 import { Box, Heading, Text, Image, VStack, Center, border } from '@chakra-ui/react';
-import { FaHome } from 'react-icons/fa';  // Importing a FontAwesome icon
-import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
+import { FaHome } from 'react-icons/fa';  
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js';
 
 
 let DefaultIcon = L.icon({
@@ -38,10 +38,10 @@ const HomeButton = () => {
       <button
         onClick={handleHomeClick}
         style={{
-          backgroundColor: "white", // New color
+          backgroundColor: "white", 
           border: "2px solid #ccc",
-          borderRadius: "8px", // Rounded edges
-          padding: "10px", // Ensures it has a square shape
+          borderRadius: "8px", 
+          padding: "10px", 
           fontSize: "20px",
           cursor: "pointer",
           boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
@@ -50,7 +50,7 @@ const HomeButton = () => {
           justifyContent: "center",
         }}
       >
-        <FaHome size={24} color="#2c3d90" /> {/* White color for icon */}
+        <FaHome size={24} color="#2c3d90" /> 
       </button>
     </div>
   );
@@ -131,18 +131,17 @@ const CustomMarker = ({ number }) => {
   );
 };
 
-// Component to smoothly move the map
 function UpdateMapCenter({ center, zoom }) {
   const map = useMap();
   useEffect(() => {
-    map.flyTo(center, zoom); // Smooth transition to the new center and zoom level
+    map.flyTo(center, zoom); 
   }, [center, zoom, map]);
   return null;
 }
 
 export default function PakistanMap() {
   const [selectedPlace, setSelectedPlace] = useState(null);
-  const [mapCenter, setMapCenter] = useState([29.3956, 71.6722]); // Initial center
+  const [mapCenter, setMapCenter] = useState([29.3956, 71.6722]); 
 
   const panelRef = useRef(null);
   const placeRefs = useRef({});
@@ -155,7 +154,7 @@ export default function PakistanMap() {
         const place = places.find((p) => p.id === parseInt(placeId));
 
         if (entry.isIntersecting && place) {
-          setSelectedPlace(place); // Set the selected place when the panel is in view
+          setSelectedPlace(place); 
         }
       });
     }, { root: panelRef.current, threshold: 0.5 });
@@ -175,7 +174,7 @@ export default function PakistanMap() {
         behavior: 'smooth',
         block: 'start',
       });
-      setSelectedPlace(place); // Set the selected place when the marker is clicked
+      setSelectedPlace(place); 
     }
   };
 
@@ -227,8 +226,8 @@ export default function PakistanMap() {
       overflowY="auto"
        bg={{ base: "gray.50", md: "none" }} 
         ref={panelRef}
-        position={{ base: "relative", md: "absolute" }} // ✅ Not absolute on mobile
-        top={{  md: "0" }} // Pushes content under the map on mobile
+        position={{ base: "relative", md: "absolute" }} 
+        top={{  md: "0" }} 
         width={{ base: "100%", md: "400px", xl: "350px"}}
         height={{ base: "200%", md:"90vh", lg:"95vh", xl: "80vh" }}
         left={{ base: "0", md: "100px" }} 
@@ -262,9 +261,9 @@ export default function PakistanMap() {
        
 <Center
   position="absolute"
-  top={{ base: "10px", sm: "-10px" }}  // Center the marker vertically on mobile, keep it at -10px on desktop
-  left={{ base: "50%", sm: "10px" }}  // Center the marker horizontally on mobile, keep it at 10px on desktop
-  transform={{ base: "translate(-50%, -50%)", sm: "none" }} // Adjust for centering on mobile, no transform for desktop
+  top={{ base: "10px", sm: "-10px" }} 
+  left={{ base: "50%", sm: "10px" }}  
+  transform={{ base: "translate(-50%, -50%)", sm: "none" }} 
   zIndex="10"
 >
                 <CustomMarker number={place.id} />

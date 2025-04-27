@@ -10,18 +10,14 @@ import HamburgerMenu from './components/HamburgerMenu';
 import { useMediaQuery } from '@chakra-ui/react';
 
 export default function Home() {
-  // State to track if the component has mounted
   const [hasMounted, setHasMounted] = useState(false);
 
-  // Media query to detect mobile devices
   const [isMobile] = useMediaQuery("(max-width: 1024px)");
 
   useEffect(() => {
-    // Set hasMounted to true after the component mounts
     setHasMounted(true);
   }, []);
 
-  // If the component hasn't mounted, render nothing to prevent flicker
   if (!hasMounted) {
     return null;
   }
@@ -34,7 +30,6 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        {/* Conditionally render navigation based on isMobile */}
         {isMobile ? <HamburgerMenu /> : <Header />}
         
         <Box mb={{base:40, md:0}}>

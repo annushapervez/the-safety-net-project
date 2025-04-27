@@ -1,7 +1,7 @@
 import { Box, Heading, Text, VStack, Stack, HStack, Divider, Tooltip } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; 
 import { useMediaQuery } from "@chakra-ui/react";
 
 
@@ -29,12 +29,10 @@ const allocations = [
 const maxAmount = 4000;
 
 export default function FundAllocation() {
-  const [isMobile] = useMediaQuery("(max-width: 500px)"); // ✅ Move inside the component
+  const [isMobile] = useMediaQuery("(max-width: 500px)"); 
 
-  // Add state to track visibility
   const [isInView, setIsInView] = useState(false);
 
-  // Observer callback to update the visibility status
   const handleIntersection = (entries) => {
     const entry = entries[0];
     if (entry.isIntersecting) {
@@ -43,21 +41,19 @@ export default function FundAllocation() {
   };
 
   useEffect(() => {
-    // Only trigger the motion if the section is in view
     if (isInView) {
-      // Trigger the animation when the section comes into view
     }
   }, [isInView]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.5, // Adjust the threshold as needed (0.5 means 50% of the section must be visible)
+      threshold: 0.5, 
     });
     const sectionElement = document.getElementById('motion-section');
     if (sectionElement) {
       observer.observe(sectionElement);
     }
-    return () => observer.disconnect(); // Cleanup observer
+    return () => observer.disconnect(); 
   }, []);
 
   return (
@@ -119,7 +115,6 @@ export default function FundAllocation() {
             minW="215px"
             mr={{base:"0px",  md:"10px"}}
           >
-            {/* Tooltip for Recurring Monthly Expenses */}
             {item.name === "Recurring Monthly Expenses" ? (
               <Tooltip
                 label={
@@ -150,7 +145,6 @@ export default function FundAllocation() {
             )}
           </Text>
   
-          {/* Apply motion only when the section is in view */}
           {isInView && !isMobile && (
   <MotionBox
     initial={{ width: "0%" }}

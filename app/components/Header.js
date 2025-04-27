@@ -12,13 +12,12 @@ const Header = () => {
 
     >
       <Flex alignItems="center">
-        {/* Logo */}
 
       <Link href="/">
         <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize="100px" />
       </Link>
 
-      <Link href="/" _hover={{ textDecoration: 'none' }} // Ensures no underline on hover
+      <Link href="/" _hover={{ textDecoration: 'none' }} 
 >
 
       <Heading
@@ -26,11 +25,11 @@ const Header = () => {
         textAlign="center"
         mt={5}
         ml={5}
-        fontSize="2.3rem" // Custom size between 4xl and 5xl
+        fontSize="2.3rem"
         fontWeight="600" 
         color="#2c3d90" 
-        letterSpacing="-2px" // Reduces space between letters
-        lineHeight="1.2" // Slightly reduces line spacing
+        letterSpacing="-2px" 
+        lineHeight="1.2" 
         fontFamily="'Open Sauce One', sans-serif"
 
       >
@@ -40,36 +39,33 @@ const Header = () => {
 
         <Spacer />
 
-{/* Navigation Links */}
 <HStack spacing={4} fontSize="md" alignItems="center" position="relative" mt={5}>
-  {/* Get Involved with Dropdown */}
   <Box
     as="button"
-    onMouseEnter={() => setIsInvolvedOpen(true)}  // Show dropdown on hover
-    onMouseLeave={() => setIsInvolvedOpen(false)} // Hide dropdown when mouse leaves
+    onMouseEnter={() => setIsInvolvedOpen(true)} 
+    onMouseLeave={() => setIsInvolvedOpen(false)} 
     color="#2c3d90"
     fontFamily="'Open Sauce One', sans-serif"
     fontWeight="400"
-    _hover={{ textDecoration: 'none' }} // Removes underline on hover
-    background="none" // Removes default button styling
-    position="relative" // Ensure dropdown is positioned correctly relative to the parent
-    whiteSpace="nowrap" // Prevent the text from breaking into two lines
+    _hover={{ textDecoration: 'none' }}
+    background="none" 
+    position="relative" 
+    whiteSpace="nowrap" 
   >
     Get Involved
 
-    {/* Dropdown Menu */}
     {isInvolvedOpen && (
       <Box
   position="absolute"
-  top="100%" // Position the dropdown below the "Get Involved" link
+  top="100%" 
   left="0"
-  bg="white" // Background color
+  bg="white" 
   color="#2c3d90"
   fontFamily="'Open Sauce One', sans-serif"
   fontWeight="400"
   p={2}
-  borderRadius="md" // Rounded corners
-  zIndex={1500} // Ensure dropdown appears above other content
+  borderRadius="md" 
+  zIndex={1500} 
 
 >
         <Link
@@ -77,10 +73,10 @@ const Header = () => {
           color="#2c3d90"
           fontFamily="'Open Sauce One', sans-serif"
           fontWeight="400"
-          textDecoration="none" // Removes the underline
-          _hover={{ textDecoration: 'none' }} // Ensures no underline on hover
+          textDecoration="none"
+          _hover={{ textDecoration: 'none' }} 
           display="block"
-          p={2} // Adds some padding for better clickability
+          p={2}
           passHref
         >
           Volunteer
@@ -89,33 +85,31 @@ const Header = () => {
     )}
   </Box>
 
-  {/* Zia Academy Dropdown */}
   <Box
     as="button"
-    onMouseEnter={() => setIsAcademyOpen(true)}  // Show dropdown on hover
-    onMouseLeave={() => setIsAcademyOpen(false)} // Hide dropdown when mouse leaves
+    onMouseEnter={() => setIsAcademyOpen(true)} 
+    onMouseLeave={() => setIsAcademyOpen(false)} 
     color="#2c3d90"
     fontFamily="'Open Sauce One', sans-serif"
     fontWeight="400"
-    _hover={{ textDecoration: 'none' }} // Removes underline on hover
-    background="none" // Removes default button styling
-    position="relative" // Ensure dropdown is positioned correctly relative to the parent
-    whiteSpace="nowrap" // Prevent the text from breaking into two lines
+    _hover={{ textDecoration: 'none' }} 
+    background="none" 
+    position="relative"
+    whiteSpace="nowrap" 
   >
     Projects
-    {/* Dropdown Menu */}
     {isAcademyOpen && (
       <Box
       position="absolute"
-      top="100%" // Position the dropdown below the "Get Involved" link
+      top="100%" 
       left="0"
-      bg="white" // Background color
+      bg="white" 
       color="#2c3d90"
       fontFamily="'Open Sauce One', sans-serif"
       fontWeight="400"
       p={2}
-      borderRadius="md" // Rounded corners
-      zIndex={1500} // Ensure dropdown appears above other content
+      borderRadius="md" 
+      zIndex={1500} 
     
     >
         <Link
@@ -123,10 +117,10 @@ const Header = () => {
           color="#2c3d90"
           fontFamily="'Open Sauce One', sans-serif"
           fontWeight="400"
-          textDecoration="none" // Removes the underline
-          _hover={{ textDecoration: 'none' }} // Ensures no underline on hover
+          textDecoration="none" 
+          _hover={{ textDecoration: 'none' }} 
           display="block"
-          p={2} // Adds some padding for better clickability
+          p={2} 
         >
           Zia Academy
         </Link>
@@ -134,34 +128,32 @@ const Header = () => {
     )}
   </Box>
 
-  {/* About Dropdown */}
   <Box
     as="button"
-    onMouseEnter={() => setIsAboutOpen(true)}  // Show dropdown on hover
-    onMouseLeave={() => setIsAboutOpen(false)} // Hide dropdown when mouse leaves
+    onMouseEnter={() => setIsAboutOpen(true)}  
+    onMouseLeave={() => setIsAboutOpen(false)} 
     color="#2c3d90"
     fontFamily="'Open Sauce One', sans-serif"
     fontWeight="400"
-    _hover={{ textDecoration: 'none' }} // Removes underline on hover
-    background="none" // Removes default button styling
-    position="relative" // Ensure dropdown is positioned correctly relative to the parent
-    whiteSpace="nowrap" // Prevent the text from breaking into two lines
+    _hover={{ textDecoration: 'none' }} 
+    background="none"
+    position="relative" 
+    whiteSpace="nowrap" 
   >
     About
 
-    {/* Dropdown Menu */}
     {isAboutOpen && (
       <Box
       position="absolute"
-      top="100%" // Position the dropdown below the "Get Involved" link
+      top="100%"
       left="0"
-      bg="white" // Background color
+      bg="white"
       color="#2c3d90"
       fontFamily="'Open Sauce One', sans-serif"
       fontWeight="400"
       p={2}
-      borderRadius="md" // Rounded corners
-      zIndex={1500} // Ensure dropdown appears above other content
+      borderRadius="md" 
+      zIndex={1500}
     
     >
         <Link
@@ -169,10 +161,10 @@ const Header = () => {
           color="#2c3d90"
           fontFamily="'Open Sauce One', sans-serif"
           fontWeight="400"
-          textDecoration="none" // Removes the underline
-          _hover={{ textDecoration: 'none' }} // Ensures no underline on hover
+          textDecoration="none" 
+          _hover={{ textDecoration: 'none' }} 
           display="block"
-          p={2} // Adds some padding for better clickability
+          p={2} 
         >
           Our Team
         </Link>
@@ -181,10 +173,10 @@ const Header = () => {
           color="#2c3d90"
           fontFamily="'Open Sauce One', sans-serif"
           fontWeight="400"
-          textDecoration="none" // Removes the underline
-          _hover={{ textDecoration: 'none' }} // Ensures no underline on hover
+          textDecoration="none" 
+          _hover={{ textDecoration: 'none' }} 
           display="block"
-          p={2} // Adds some padding for better clickability
+          p={2} 
         >
           Contact Us
         </Link>
@@ -202,7 +194,6 @@ const Header = () => {
     Explore
   </Link>
 
-  {/* Instagram Icon */}
   <Link href="https://instagram.com/thesafetynetproject" isExternal>
     <Image src="/instagram.png" alt="Instagram" boxSize="30px" />
   </Link>

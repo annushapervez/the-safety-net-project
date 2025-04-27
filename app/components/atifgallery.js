@@ -4,12 +4,11 @@ import { Box } from "@chakra-ui/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
-import Image from "next/image"; // Use Next.js Image
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; 
+import Image from "next/image"; 
 import { useMediaQuery } from "@chakra-ui/react";
 
 
-// List all images manually from the "photos" folder in public
 const imagePaths = [
     "/atif/DSC_6452.jpg",
     "/atif/DSC_6458.jpg",
@@ -70,31 +69,31 @@ const imagePaths = [
   ];
   
 const PhotoSlider = () => {
-    const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
+    const [isMobile] = useMediaQuery("(max-width: 768px)"); 
   const settings = {
     infinite: true,
     speed: 1000,
-    slidesToShow: 4, // Show 4 pictures at a time
+    slidesToShow: 4,
     slidesToScroll: 4,
-    nextArrow: <SampleNextArrow />, // Custom next arrow
-    prevArrow: <SamplePrevArrow />, // Custom previous arrow
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />, 
     responsive: [
       {
-        breakpoint: 1400, // Tablets and below
+        breakpoint: 1400,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
         },
       },
       {
-        breakpoint: 768, // Smaller tablets or large phones
+        breakpoint: 768, 
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
         },
       },
       {
-        breakpoint: 600, // Phones
+        breakpoint: 600, 
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -108,7 +107,7 @@ const PhotoSlider = () => {
 <SlideUpWhenVisible>
   <Slider key={imagePaths.length} {...settings}>
     {imagePaths.map((src, index) => (
-      <Box key={index} px={isMobile ? 1 : 3}> {/* reduce spacing for mobile */}
+      <Box key={index} px={isMobile ? 1 : 3}> 
         <Image
           src={src}
           alt={`Photo ${index + 1}`}
@@ -118,7 +117,7 @@ const PhotoSlider = () => {
             objectFit: "cover",
             height: "450px",
             borderRadius: "8px",
-            width: "100%", // Stretch image in container
+            width: "100%", 
           }}
           loading="lazy"
         />
@@ -132,9 +131,8 @@ const PhotoSlider = () => {
   )
 };
 
-// Custom Arrow Components
 const SampleNextArrow = (props) => {
-  const { onClick } = props; // Ensure `isMobile` is passed as a prop
+  const { onClick } = props;
 
   return (
     <div
@@ -142,7 +140,7 @@ const SampleNextArrow = (props) => {
       style={{
         zIndex: 1,
         position: "absolute",
-        right: "-30px", // Use the computed value
+        right: "-30px", 
         top: "50%",
         transform: "translateY(-50%)",
         fontSize: "24px",
@@ -162,11 +160,11 @@ const SamplePrevArrow = (props) => {
       style={{
         zIndex: 1,
         position: "absolute",
-        left: "-30px", // Position to the left
+        left: "-30px",
         top: "50%",
-        transform: "translateY(-50%)", // Center vertically
-        fontSize: "24px", // Adjust size
-        color: "#2c3d90", // Color of the arrow
+        transform: "translateY(-50%)", 
+        fontSize: "24px", 
+        color: "#2c3d90",
         cursor: "pointer",
       }}
     >

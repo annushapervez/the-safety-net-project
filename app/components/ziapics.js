@@ -4,15 +4,12 @@ import { Box, Image } from "@chakra-ui/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js';
 import { useMediaQuery } from "@chakra-ui/react";
 
-// List all images manually from the "photos" folder in public
 const excludeIndices = [6,10,12,13,15,17,19,20,22];
-// First slide specific images (ensure these are not in excludeIndices)
-const firstSlideImages = [24, 14, 21, 35]; // <-- Your chosen images for the first slide
+const firstSlideImages = [24, 14, 21, 35]; 
 
-// Rest of the images (excluding first slide ones and excluded indices)
 const imagePaths = [
   ...firstSlideImages.map(num => `/zia/${num}.png`),
   ...Array.from({ length: 35 }, (_, index) => index + 1)
@@ -20,32 +17,32 @@ const imagePaths = [
     .map(num => `/zia/${num}.png`)
 ];
 const PhotoSlider = () => {
-  const [isMobile] = useMediaQuery("(max-width: 768px)"); // ✅ Move inside the component
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
 
   const settings = {
     infinite: true,
     speed: 1000,
-    slidesToShow: 4, // Show 4 pictures at a time
+    slidesToShow: 4, 
     slidesToScroll: 4,
-    nextArrow: <SampleNextArrow />, // Custom next arrow
-    prevArrow: <SamplePrevArrow />, // Custom previous arrow
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />, 
     responsive: [
       {
-        breakpoint: 1400, // Tablets and below
+        breakpoint: 1400, 
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
         },
       },
       {
-        breakpoint: 768, // Smaller tablets or large phones
+        breakpoint: 768, 
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
         },
       },
       {
-        breakpoint: 600, // Phones
+        breakpoint: 600, 
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -59,7 +56,7 @@ const PhotoSlider = () => {
     <SlideUpWhenVisible>
       <Slider key={imagePaths.length} {...settings}>
         {imagePaths.map((src, index) => (
-          <Box key={index} px={isMobile ? 1 : 3}> {/* reduce spacing for mobile */}
+          <Box key={index} px={isMobile ? 1 : 3}> 
             <Image
               src={src}
               alt={`Photo ${index + 1}`}
@@ -69,7 +66,7 @@ const PhotoSlider = () => {
                 objectFit: "cover",
                 height: "450px",
                 borderRadius: "8px",
-                width: "100%", // Stretch image in container
+                width: "100%", 
               }}
               loading="lazy"
             />
@@ -83,9 +80,8 @@ const PhotoSlider = () => {
       )
     };
     
-    // Custom Arrow Components
     const SampleNextArrow = (props) => {
-      const { onClick } = props; // Ensure `isMobile` is passed as a prop
+      const { onClick } = props; 
     
       return (
         <div
@@ -93,7 +89,7 @@ const PhotoSlider = () => {
           style={{
             zIndex: 1,
             position: "absolute",
-            right: "-30px", // Use the computed value
+            right: "-30px",
             top: "50%",
             transform: "translateY(-50%)",
             fontSize: "24px",
@@ -113,11 +109,11 @@ const PhotoSlider = () => {
           style={{
             zIndex: 1,
             position: "absolute",
-            left: "-30px", // Position to the left
+            left: "-30px", 
             top: "50%",
-            transform: "translateY(-50%)", // Center vertically
-            fontSize: "24px", // Adjust size
-            color: "#2c3d90", // Color of the arrow
+            transform: "translateY(-50%)", 
+            fontSize: "24px",
+            color: "#2c3d90", 
             cursor: "pointer",
           }}
         >

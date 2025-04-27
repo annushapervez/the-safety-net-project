@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { ChakraProvider, Box, Text, Input, Textarea, Button, FormLabel, FormControl, Container, Flex, SimpleGrid, Heading } from "@chakra-ui/react";
-import { db } from "../firebaseConfig.js"; // Import Firestore
+import { db } from "../firebaseConfig.js"; 
 import { collection, addDoc } from "firebase/firestore";import Header from "../components/Header";
 import Footer from "../components/Footer";
-import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js'; // Ensure the path is correct
+import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js';
 import HamburgerMenu from '../components/HamburgerMenu';
 import { useMediaQuery } from "@chakra-ui/react";
 
@@ -17,14 +17,12 @@ function ContactForm() {
     message: "",
   });
 
-  const [messageStatus, setMessageStatus] = useState(""); // Feedback message
+  const [messageStatus, setMessageStatus] = useState(""); 
 
-  // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -38,14 +36,11 @@ function ContactForm() {
   };
   const [hasMounted, setHasMounted] = useState(false);
 
-  // Media query to detect mobile devices
 
   useEffect(() => {
-    // Set hasMounted to true after the component mounts
     setHasMounted(true);
   }, []);
 
-  // If the component hasn't mounted, render nothing to prevent flicker
   if (!hasMounted) {
     return null;
   }
@@ -69,7 +64,6 @@ function ContactForm() {
             overflow="hidden"
             flexDirection={{ base: "column", xl: "row" }}
           >
-            {/* Left Section */}
             <Box flex="1" p={isMobile ? 5 : 10}  bg="white"  textAlign={isMobile ? "center" : "left"}>
               <Heading as="h2" size="xl" fontWeight="400" letterSpacing="-2px" lineHeight="1.2" color="#2c3d90" mb="4">
                 Contact Us
@@ -85,13 +79,11 @@ function ContactForm() {
               </Heading>
             </Box>
 
-            {/* Right Section - Contact Form */}
             <Box flex="1" p ={isMobile ? 5 : 10} bg="white" fontWeight="400" color="#2c3d90" letterSpacing="-1.2px"  textAlign={{base:"center", md:"center", xl: "left"}}>
               <form onSubmit={handleSubmit}>
                 <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
-                  {/* First Name */}
                   <FormControl id="first-name" isRequired>
-                    <FormLabel  textAlign={{base:"center", md:"center", xl: "left"}}  // Center on mobile, left on larger screens
+                    <FormLabel  textAlign={{base:"center", md:"center", xl: "left"}} 
 >First Name</FormLabel>
                     <Input textAlign={{base:"center", md:"center", xl: "left"}} type="text" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
                   </FormControl>
@@ -106,13 +98,11 @@ function ContactForm() {
                   <Input textAlign={{base:"center", md:"center", xl: "left"}}type="email" placeholder="Your Email Address" value={formData.email} onChange={handleChange} />
                 </FormControl>
 
-                {/* Message */}
                 <FormControl id="message" isRequired mt={4}>
                   <FormLabel textAlign={{base:"center", md:"center", xl: "left"}}>Message</FormLabel>
                   <Textarea  textAlign={{base:"center", md:"center", xl: "left"}} name="message" value={formData.message} onChange={handleChange} placeholder="Your Message" />
                 </FormControl>
 
-                {/* Submit Button */}
                 <Button
                   mt={6}
                   px={8}
@@ -130,7 +120,6 @@ function ContactForm() {
                   SEND
                 </Button>
 
-                {/* Status Message */}
                 {messageStatus && (
                   <Text mt={4} color={messageStatus.includes("Error") ? "red.500" : "green.500"}>
                     {messageStatus}

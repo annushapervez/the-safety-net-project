@@ -130,7 +130,7 @@ const OurTeam = () => {
                   <HStack align="start" spacing={4}>
                     <Image
                       boxSize={{ base: "120px", md: "150px" }}
-                      src="/test.JPG"
+                      src="/annu.jpg"
                       alt="Annusha Pervez"
                       borderRadius="16px"
                       flexShrink={0}

@@ -129,8 +129,8 @@ export default function FundAllocation() {
                     ))}
                   </VStack>
                 }
-                placement="right"
-                hasArrow
+                placement={isMobile ? "bottom" : "right"}
+                                hasArrow
                 bg="white"
                 color="white"
                 border="2px solid #2c3d90"

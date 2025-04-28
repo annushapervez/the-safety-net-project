@@ -8,13 +8,13 @@ const Header = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
 
   return (
-    <Box as="header" bg="white" px={8} py={4} boxShadow="md"  borderBottom="3px solid #2c3d90"         
+    <Box as="header" bg="white" px={10} py={6} boxShadow="md"  borderBottom="3px solid #2c3d90"         
 
     >
       <Flex alignItems="center">
 
       <Link href="/">
-        <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize="100px" />
+        <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize="85px" />
       </Link>
 
       <Link href="/" _hover={{ textDecoration: 'none' }} 
@@ -23,8 +23,8 @@ const Header = () => {
       <Heading
         as="h1"
         textAlign="center"
-        mt={5}
-        ml={5}
+        mt={3}
+        ml={3}
         fontSize="2.3rem"
         fontWeight="600" 
         color="#2c3d90" 
@@ -39,7 +39,7 @@ const Header = () => {
 
         <Spacer />
 
-<HStack spacing={4} fontSize="md" alignItems="center" position="relative" mt={5}>
+<HStack spacing={4} fontSize="lg" alignItems="center" position="relative" mt={4}>
   <Box
     as="button"
     onMouseEnter={() => setIsInvolvedOpen(true)} 

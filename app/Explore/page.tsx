@@ -51,7 +51,7 @@ const Explore = () => {
               mx="auto"
               letterSpacing="-0.5px"
             >
-              Explore the regions where we have made a difference. Each marker highlights a place where the girls we supported live, along with important facts about these areas. 
+              Explore the regions where we have made a difference. Each marker highlights a place connected to the girls we support, along with important facts about these areas.
               Our mission is to understand, uplift, and advocate for communities facing the greatest challenges.
             </Text>
           

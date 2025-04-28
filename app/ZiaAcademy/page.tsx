@@ -282,6 +282,27 @@ const ZiaAcademyPage = () => {
         <Text fontSize= "md" letterSpacing="-1px">
           We wire funds to the academy through our platform and manage distribution on an as-needed basis.
         </Text>
+        <Button 
+      as="a"
+      href="https://www.launchgood.com/v4/campaign/help_support_an_orphanage_in_pakistan_the_zia_academy_1?src=1830346"
+      target="_blank"
+      rel="noopener noreferrer"
+      size="md"
+      mt={4}
+      px={isMobile ? 10 : 12}
+      py= {6 } 
+      fontSize={isMobile ? "md" : "lg"}
+      fontWeight="bold"
+      color="#2c3d90"
+      border="2px"
+      bg="transparent"
+      borderRadius="0"
+      _hover={{ bg: "#2c3d90", color: "white" }}
+      mx={isMobile ? "auto" : "0"}
+    >
+      
+      Donate
+    </Button>
       </SlideUpWhenVisible>
     </Box>
 

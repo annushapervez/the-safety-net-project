@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Box, Heading, Text, Image, VStack, Center, border } from '@chakra-ui/react';
 import { FaHome } from 'react-icons/fa';  
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js';
+import { useMediaQuery } from "@chakra-ui/react";
 
 
 let DefaultIcon = L.icon({
@@ -18,6 +19,9 @@ let DefaultIcon = L.icon({
 
 const HomeButton = () => {
   const map = useMap(); 
+  const [isMobile] = useMediaQuery("(max-width: 768px)"); 
+  const topValue = isMobile ? "10px" : "80px";
+
 
   const handleHomeClick = () => {
     map.setView([29.3956, 71.6722], 6); 
@@ -27,8 +31,9 @@ const HomeButton = () => {
     <div
       style={{
         position: "absolute",
-        top: "80px",
-        left: "10px",
+        top: topValue,
+        left: isMobile ? "auto" : "10px",
+        right: isMobile ? "10px" : "auto",        
         zIndex: 1000,
         display: "flex",
         flexDirection: "column",

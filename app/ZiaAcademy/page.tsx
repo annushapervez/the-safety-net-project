@@ -287,11 +287,10 @@ const ZiaAcademyPage = () => {
       href="https://www.launchgood.com/v4/campaign/help_support_an_orphanage_in_pakistan_the_zia_academy_1?src=1830346"
       target="_blank"
       rel="noopener noreferrer"
-      size="md"
       mt={4}
-      px={isMobile ? 10 : 12}
-      py= {6 } 
-      fontSize={isMobile ? "md" : "lg"}
+      px={isMobile ? 8 : 10}
+      py= {5 } 
+      fontSize={isMobile ? "sm" : "md"}
       fontWeight="bold"
       color="#2c3d90"
       border="2px"
@@ -301,7 +300,7 @@ const ZiaAcademyPage = () => {
       mx={isMobile ? "auto" : "0"}
     >
       
-      Donate
+      DONATE
     </Button>
       </SlideUpWhenVisible>
     </Box>

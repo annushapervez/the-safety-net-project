@@ -33,11 +33,12 @@ const MobileMenu = () => {
   const firstField = useRef();
 
   return (
-    <Box  as="header" bg="white" px={6} py={4} boxShadow="md" borderBottom="3px solid #2c3d90">
+    <Box  as="header" bg="white" px={6} py={2} boxShadow="md" borderBottom="3px solid #2c3d90">
       <Flex alignItems="center">
         <Link href="/">
-          <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize="50px"  />
+          <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize="60px" mt={2}/>
         </Link>
+        
         
 {/*
         <Link href="/" _hover={{ textDecoration: 'none' }} // Ensures no underline on hover

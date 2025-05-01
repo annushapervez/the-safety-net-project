@@ -161,7 +161,7 @@ const OurTeam = () => {
                     </VStack>
                   </HStack>
                   <Text
-                    fontSize={{ base: "lg", md: "md", xl: "md" }}                     fontFamily="Open Sauce One, sans-serif"
+                    fontSize={{ base: "md", md: "md", xl: "md" }}                     fontFamily="Open Sauce One, sans-serif"
                     fontWeight="400"
                     color="#5F5D5D"
                     letterSpacing="-1px"

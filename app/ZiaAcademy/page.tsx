@@ -10,12 +10,8 @@ import {
   ChakraProvider,
   Link,
   Stack, 
-  MenuItem, 
-  Menu, 
-  MenuList,
   Button,
   Collapse,
-  MenuButton, 
 } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -194,6 +190,7 @@ const ZiaAcademyPage = () => {
             <Ziaslider />
           </VStack>
 
+
           <VStack 
   id="donate" 
   mt={isMobile ? 8 : 16}
@@ -236,6 +233,7 @@ const ZiaAcademyPage = () => {
     </Text>
   </SlideUpWhenVisible>
 
+
   <Stack 
     direction={{base:"column", lg:"row"}}
     spacing={6} 
@@ -243,30 +241,7 @@ const ZiaAcademyPage = () => {
     align="stretch" 
     fontFamily="Open Sauce One, sans-serif"
   >
-    <Box p={isMobile ? 4 : 6}  bg="gray.50" boxShadow="md" borderRadius="lg" flex="1">
-      <SlideUpWhenVisible threshold={0.35}>
-        <Heading 
-          as="h3" 
-          size= "lg"
-          color="#2c3d90" 
-          mb={isMobile ? 2 : 4}  
-          fontWeight= "400"
-          letterSpacing="-1.2px"
-        >
-          Direct Wire Transfer
-        </Heading>
-        <Text fontSize= "md" fontWeight="500" mb={2} letterSpacing="-1px">
-          Western Union is recommended
-        </Text>
-        <VStack align="center" spacing={2} letterSpacing="-1px">
-          <Text fontSize={{base:"sm", md:"md"}}><strong>Bank Branch:</strong> UBL Azam Basti</Text>
-          <Text fontSize={{base:"sm", md:"md"}}><strong>Account Title:</strong> M.D. ZiaUlQuran Sulemania</Text>
-          <Text fontSize={{base:"sm", md:"md"}}><strong>Account #:</strong> 0102806-0</Text>
-          <Text fontSize={{base:"sm", md:"md"}}><strong>Branch Code:</strong> 1541</Text>
-        </VStack>
-      </SlideUpWhenVisible>
-    </Box>
-
+  
     <Box p={isMobile ? 4 : 6} bg="gray.50" boxShadow="md" borderRadius="lg" flex="1">
       <SlideUpWhenVisible threshold={0.35}>
         <Heading 
@@ -305,7 +280,7 @@ const ZiaAcademyPage = () => {
       </SlideUpWhenVisible>
     </Box>
 
-    <Box p={isMobile ? 4 : 6} bg="gray.50" boxShadow="md" borderRadius="lg" flex="1">
+     <Box p={isMobile ? 4 : 6}  bg="gray.50" boxShadow="md" borderRadius="lg" flex="1">
       <SlideUpWhenVisible threshold={0.35}>
         <Heading 
           as="h3" 
@@ -315,19 +290,68 @@ const ZiaAcademyPage = () => {
           fontWeight= "400"
           letterSpacing="-1.2px"
         >
-          Additional Resources
+          Direct Wire Transfer
         </Heading>
-        <Text fontSize="md" mb={isMobile ? 2 : 4} letterSpacing="-1px">
-          If you have clothing, books, old laptops, or any items that may be of productive use to the academy, you can drop them off or ship them to us for delivery to the school.
+        <Text fontSize= "md" fontWeight="500" mb={2} letterSpacing="-1px">
+          Western Union is recommended
         </Text>
-        <Text fontSize={{base:"sm", md:"md"}} fontWeight="500" letterSpacing="-1px">
-          Contact:{" "}
-          <a href="mailto:SAFETYNETPROJECTS@GMAIL.COM" style={{ color: "#2c3d90" }}>
-            SAFETYNETPROJECTS@GMAIL.COM
-          </a>
-        </Text>
+        <VStack align="center" spacing={2} letterSpacing="-1px">
+          <Text fontSize={{base:"sm", md:"md"}}><strong>Bank Branch:</strong> UBL Azam Basti</Text>
+          <Text fontSize={{base:"sm", md:"md"}}><strong>Account Title:</strong> M.D. ZiaUlQuran Sulemania</Text>
+          <Text fontSize={{base:"sm", md:"md"}}><strong>Account #:</strong> 0102806-0</Text>
+          <Text fontSize={{base:"sm", md:"md"}}><strong>Branch Code:</strong> 1541</Text>
+        </VStack>
       </SlideUpWhenVisible>
     </Box>
+
+<Box 
+  p={isMobile ? 4 : 6} 
+  bg="gray.50" 
+  boxShadow="md" 
+  borderRadius="lg" 
+  flex="1"
+>
+  <SlideUpWhenVisible threshold={0.35}>
+  <Heading 
+          as="h3" 
+          size= "lg"
+          color="#2c3d90" 
+          mb={isMobile ? 2 : 4}  
+          fontWeight= "400"
+          letterSpacing="-1.2px"
+        >
+      Sponsor A Student
+    </Heading>
+
+    <Text 
+ fontSize= "md" letterSpacing="-1px">
+  
+View the full sponsorship details in our information sheet and learn how to send your support.   </Text>
+
+
+    <Button
+      as="a"
+      href="/InformationSheet.png"
+      target="_blank"            // 🔥 opens in new browser tab
+      rel="noopener noreferrer"
+      mt={4}
+      px={isMobile ? 8 : 10}
+      py= {5} 
+      fontSize={isMobile ? "sm" : "md"}
+      fontWeight="bold"
+      color="#2c3d90"
+      border="2px"
+      bg="transparent"
+      borderRadius="0"
+      _hover={{ bg: "#2c3d90", color: "white" }}
+      mx={isMobile ? "auto" : "0"}
+    >
+      
+      VIEW BROCHURE
+    </Button>
+  </SlideUpWhenVisible>
+</Box>
+
   </Stack>
 </VStack>
         </Flex>

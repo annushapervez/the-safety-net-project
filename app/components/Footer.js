@@ -12,7 +12,7 @@ const Footer = () => {
       mt={0} 
     >
       <Text fontSize={{ base: 'xs', sm: 'sm' }}> 
-        &copy; 2025 The Safety Net Project. All rights reserved.
+        &copy; 2026 501(c)(3) The Safety Net Project. All rights reserved.
       </Text>
       <Text fontSize={{ base: 'xs', sm: 'sm' }} mt={2}>
         Contact us: safetynetprojects@gmail.com

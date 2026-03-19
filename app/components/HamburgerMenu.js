@@ -20,12 +20,15 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
+
 const sections = [
   { href: "/volunteer", title: "Volunteer" },
   { href: "/ZiaAcademy", title: "Zia Academy" },
+    {href:"/ManwaisHealthcareCenter", title: "Health Center"},
   { href: "/our-team", title: "Our Team" },
   { href: "/contact-us", title: "Contact Us" },
   { href: "/Explore", title: "Explore" },
+
 ];
 
 const MobileMenu = () => {
@@ -38,7 +41,6 @@ const MobileMenu = () => {
         <Link href="/">
           <Image src="/logo.jpg" alt="The Safety Net Project Logo" boxSize="60px" mt={2}/>
         </Link>
-        
         
 {/*
         <Link href="/" _hover={{ textDecoration: 'none' }} // Ensures no underline on hover

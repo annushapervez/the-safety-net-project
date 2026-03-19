@@ -124,6 +124,18 @@ const Header = () => {
         >
           Zia Academy
         </Link>
+             <Link
+          href="/ManwaisHealthcareCenter"
+          color="#2c3d90"
+          fontFamily="'Open Sauce One', sans-serif"
+          fontWeight="400"
+          textDecoration="none" 
+          _hover={{ textDecoration: 'none' }} 
+          display="block"
+          p={2} 
+        >
+          Health Center
+        </Link>
       </Box>
     )}
   </Box>

@@ -162,7 +162,7 @@ function StickyNav({ calloutRef }: StickyNavProps) {
   return (
   <Box
       position={isMobile ? "sticky" : "fixed"}
-      top={0} left={0} right={0} zIndex={9999}
+      top={0} left={0} right={0} zIndex={500}
       bg="white" boxShadow="md"
       py={isMobile ? 2 : 4} px={isMobile ? 4 : 8}
     >
@@ -681,9 +681,9 @@ const details = [
               position: "absolute", bottom: 12, left: 12,
               background: "rgba(20,30,65,0.92)", padding: "5px 12px",
               borderRadius: 2, display: "flex", alignItems: "center", gap: 7,
-              backdropFilter: "blur(4px)", zIndex: 1000,
+              backdropFilter: "blur(4px)", zIndex: 400,
             }}>
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: C.gold, flexShrink: 0 }} />
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: C.gold, flexShrink: 0,}} />
               <span style={{ fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: C.gold, whiteSpace: "nowrap" }}>
                 Manwais · Sargodha District, Punjab
               </span>

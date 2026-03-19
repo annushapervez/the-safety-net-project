@@ -72,7 +72,6 @@ const MobileMenu = () => {
           color="#2c3d90"
           variant="ghost"
           mt={4}
-
         />
       </Flex>
 

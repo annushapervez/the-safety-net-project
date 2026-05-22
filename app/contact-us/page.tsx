@@ -1,8 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { ChakraProvider, Box, Text, Input, Textarea, Button, FormLabel, FormControl, Container, Flex, SimpleGrid, Heading } from "@chakra-ui/react";
-import { db } from "../firebaseConfig.js"; 
-import { collection, addDoc } from "firebase/firestore";import Header from "../components/Header";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js';
 import HamburgerMenu from '../components/HamburgerMenu';
@@ -26,12 +25,16 @@ function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, "contacts"), formData);
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error();
       setMessageStatus("Message sent successfully!");
       setFormData({ firstName: "", lastName: "", email: "", message: "" });
     } catch (error) {
       setMessageStatus("Error sending message. Please try again.");
-      console.error("Error adding document: ", error);
     }
   };
   const [hasMounted, setHasMounted] = useState(false);
@@ -83,19 +86,19 @@ function ContactForm() {
               <form onSubmit={handleSubmit}>
                 <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
                   <FormControl id="first-name" isRequired>
-                    <FormLabel  textAlign={{base:"center", md:"center", xl: "left"}} 
+                    <FormLabel  textAlign={{base:"center", md:"center", xl: "left"}}
 >First Name</FormLabel>
-                    <Input textAlign={{base:"center", md:"center", xl: "left"}} type="text" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
+                    <Input textAlign={{base:"center", md:"center", xl: "left"}} name="firstName" type="text" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
                   </FormControl>
                   <FormControl id="last-name" isRequired>
                     <FormLabel textAlign={{base:"center", md:"center", xl: "left"}}>Last Name</FormLabel>
-                    <Input textAlign={{base:"center", md:"center", xl: "left"}}type="text" placeholder="Last Name" value={formData.lastName} onChange={handleChange} />
+                    <Input textAlign={{base:"center", md:"center", xl: "left"}} name="lastName" type="text" placeholder="Last Name" value={formData.lastName} onChange={handleChange} />
                   </FormControl>
                 </SimpleGrid>
 
                 <FormControl id="email" isRequired mt={4}>
                   <FormLabel textAlign={{base:"center", md:"center", xl: "left"}}>Email</FormLabel>
-                  <Input textAlign={{base:"center", md:"center", xl: "left"}}type="email" placeholder="Your Email Address" value={formData.email} onChange={handleChange} />
+                  <Input textAlign={{base:"center", md:"center", xl: "left"}} name="email" type="email" placeholder="Your Email Address" value={formData.email} onChange={handleChange} />
                 </FormControl>
 
                 <FormControl id="message" isRequired mt={4}>

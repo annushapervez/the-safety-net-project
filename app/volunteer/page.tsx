@@ -6,8 +6,6 @@ import {
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ChakraProvider } from '@chakra-ui/react';
-import { db } from "../firebaseConfig.js"; 
-import { collection, addDoc } from "firebase/firestore";
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js';
 import HamburgerMenu from '../components/HamburgerMenu';
 import { useMediaQuery } from "@chakra-ui/react";
@@ -33,9 +31,13 @@ const VolunteerPage = () => {
     e.preventDefault();
 
     try {
-      const docRef = await addDoc(collection(db, "volunteers"), formData);
+      const res = await fetch('/api/volunteer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error();
       setMessage("Volunteer submission successful!");
-      
       setFormData({
         firstName: '',
         lastName: '',
@@ -44,7 +46,6 @@ const VolunteerPage = () => {
         volunteerType: '',
       });
     } catch (error) {
-      console.error("Error adding document: ", error);
       setMessage("Error submitting form. Please try again.");
     }
   };

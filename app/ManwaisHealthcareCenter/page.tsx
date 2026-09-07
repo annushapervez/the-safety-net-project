@@ -221,7 +221,7 @@ interface HeroProps { calloutRef: React.RefObject<HTMLDivElement> }
 function Hero({ calloutRef }: HeroProps) {
   const isMobile = useIsMobile();
   const kpis: { num: string; label: string }[] = [
-    { num: "$20K", label: "Total funding goal · Phase I construction & operations" },
+    { num: "$30K", label: "Total funding goal · Phase I construction & operations" },
     { num: "21K",  label: "Square feet of land legally secured in Manwais" },
     { num: "1st",  label: "Women's healthcare facility of its kind in the entire area" },
     { num: "100s", label: "Women and girls across Manwais and neighboring villages to be served" },
@@ -492,16 +492,16 @@ function FundAllocation() {
   }, []);
 
   const lineItems: [string, string][] = [
-    ["Site Preparation & Foundation",       "$1,000"],
-    ["Building Construction",               "$6,500"],
-    ["Interior Finishes",                   "$800"],
-    ["Doors, Windows & Security",           "$500"],
-    ["Plumbing & Sanitation",               "$500"],
-    ["Electrical",                          "$500"],
-    ["Furniture & Equipment",               "$800"],
-    ["Feminine Hygiene Supplies (Year 1)",  "$2,100"],
-    ["Medical Personnel Stipends",          "$5,000"],
-    ["Outdoor Area & Contingency",          "$2,300"],
+    ["Construction — Hard Costs",              "$11,500"],
+    ["Visiting Physician / Gynecologist",      "$3,500"],
+    ["Feminine Hygiene Supplies (Year 1)",     "$2,500"],
+    ["Medical Equipment & Formulary",          "$2,500"],
+    ["Registered Nurse / Lady Health Visitor", "$2,300"],
+    ["Construction — Soft Costs",              "$2,000"],
+    ["Community Health Worker",                "$1,800"],
+    ["Facility Administrator",                 "$1,600"],
+    ["Miscellaneous & Support Supplies",       "$1,500"],
+    ["Personnel Contingency",                  "$800"],
   ];
 
   const amounts = ["$5", "$10", "$20", "$50", "$100", "Other"];
@@ -510,17 +510,17 @@ function FundAllocation() {
     <section id="budget" style={{ padding: isMobile ? "48px 0" : "70px 0", background: "white" }}>
       <div style={{ maxWidth: 1160, margin: "0 auto", padding: isMobile ? "0 24px" : "0 60px" }}>
         <SectionLabel>Fund Allocation</SectionLabel>
-        <SectionTitle>$20,000 to build <em style={{ fontStyle: "italic", fontWeight: 400 }}>something permanent</em></SectionTitle>
+        <SectionTitle>$30,000 to build <em style={{ fontStyle: "italic", fontWeight: 400 }}>something permanent</em></SectionTitle>
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? 40 : 72, marginTop: isMobile ? 36 : 52, alignItems: "start" }}>
           <div>
             <div ref={progRef} style={{ marginBottom: 32 }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 10 }}>
                 <span style={{ fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: C.muted }}>Fundraising Goal</span>
-                <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.8rem", fontWeight: 700, color: C.navy }}>$20,000</span>
+                <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.8rem", fontWeight: 700, color: C.navy }}>$30,000</span>
               </div>
               <div style={{ width: "100%", height: 3, background: C.border, marginBottom: 6 }}>
-                <div style={{ height: "100%", background: C.navy, width: progVisible ? "18%" : "0%", transition: "width 1.8s cubic-bezier(0.4,0,0.2,1)" }} />
+                <div style={{ height: "100%", background: C.navy, width: progVisible ? "12%" : "0%", transition: "width 1.8s cubic-bezier(0.4,0,0.2,1)" }} />
               </div>
               <p style={{ fontSize: "0.72rem", color: C.muted, textAlign: "right" }}>Phase I · Construction + Year 1 Operations</p>
             </div>
@@ -539,7 +539,7 @@ function FundAllocation() {
             ))}
             <div style={{ display: "grid", gridTemplateColumns: "1fr auto", padding: "16px 0 0" }}>
               <span style={{ fontSize: "0.92rem", fontWeight: 700, color: C.ink }}>Total Projected Cost</span>
-              <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.1rem", fontWeight: 700, color: C.navy }}>$20,000</span>
+              <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.1rem", fontWeight: 700, color: C.navy }}>$30,000</span>
             </div>
           </div>
 
@@ -566,7 +566,7 @@ function FundAllocation() {
               ))}
             </div>
             <p style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.35)", marginBottom: 24, lineHeight: 1.55 }}>
-              $50 funds a month of hygiene supplies · $250 covers a physician visit · $500 funds a full month of operations
+              $50 covers a week of hygiene supplies · $150 funds a month of community health outreach · $290 funds a month of visiting physician care
             </p>
             <Btn href="mailto:safetynetprojects@gmail.com" variant="goldLight" style={isMobile ? { display: "block", textAlign: "center" } : {}}>
               Donate via Email / Contact Us
@@ -769,7 +769,7 @@ title: (
 ),
     desc: "Architectural plans completed for a single-structure facility: exam room, waiting area, bedroom, restroom, and outdoor shaded area."
   },
-    { status: "active",   phase: "In Progress",    title: "Fundraising Campaign",            desc: "Actively seeking grant funding and individual donors to reach the $20,000 Phase I goal. Construction begins immediately upon receipt of funds." },
+    { status: "active",   phase: "In Progress",    title: "Fundraising Campaign",            desc: "Actively seeking grant funding and individual donors to reach the $30,000 Phase I goal. Construction begins immediately upon receipt of funds." },
     { status: "upcoming", phase: "Upon Funding",   title: "Construction Begins",             desc: "Local Pakistani construction workers hired. Directors provide on-ground and remote oversight. Full photo, video, and written documentation throughout." },
     { status: "upcoming", phase: "Phase I Launch", title: "Center Opens",                    desc: "Female physicians begin weekly visits. Hygiene supplies distributed. Health education sessions begin. Referrals established to Bhera hospitals for advanced care." },
   ];

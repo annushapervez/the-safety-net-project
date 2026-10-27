@@ -28,7 +28,11 @@ type Role = {
   summary: string;
   responsibilities: string[];
   qualifications: string[];
+  niceToHave: string[];
 };
+
+const ABOUT =
+  "The Safety Net Project is a registered 501(c)(3) nonprofit dedicated to providing support and safety for children and women around the world. We were founded to bridge the gap for marginalized communities. Through education, healthcare resources, and community-driven initiatives, we create opportunities that foster long-term independence, resilience, and lasting change.";
 
 const ROLES: Role[] = [
   {
@@ -46,9 +50,12 @@ const ROLES: Role[] = [
     ],
     qualifications: [
       "Comfortable creating content for social media",
-      "Familiarity with tools like Canva or CapCut is a plus",
       "Strong writing skills and attention to detail",
       "Passion for supporting women and children in underserved communities",
+    ],
+    niceToHave: [
+      "Familiarity with tools like Canva or CapCut",
+      "Experience managing social media for a brand, club, or organization",
     ],
   },
   {
@@ -67,8 +74,11 @@ const ROLES: Role[] = [
     qualifications: [
       "Strong research and writing skills",
       "Organized, detail-oriented, and able to meet deadlines",
-      "Experience with grant writing or nonprofit work is a plus, but not required",
       "Passion for supporting women and children in underserved communities",
+    ],
+    niceToHave: [
+      "Experience with grant writing or nonprofit work",
+      "Familiarity with budgets or impact reporting",
     ],
   },
 ];
@@ -217,25 +227,29 @@ const VolunteerPage = () => {
             <Flex gap={8} flexDirection={{ base: 'column', xl: 'row' }} alignItems={{ base: "stretch", xl: "flex-start" }}>
               {/* Job description */}
               <Box flex="3" bg="white" boxShadow="md" rounded="lg" p={{ base: 5, md: 10 }}>
-                <Heading as="h3" size="lg" fontWeight="400" color={NAVY} letterSpacing="-1.5px" mb={3}>
+                <Heading as="h3" size="lg" fontWeight="400" color={NAVY} letterSpacing="-1.5px" mb={6}>
                   {role.title}
                 </Heading>
-                <Text {...BODY_TEXT} mb={6}>{role.summary}</Text>
 
-                <Heading as="h4" size="sm" color={NAVY} letterSpacing="-0.5px" mb={3}>What you'll do</Heading>
-                <UnorderedList {...BODY_TEXT} spacing={1} mb={6} pl={2}>
-                  {role.responsibilities.map((item) => <ListItem key={item}>{item}</ListItem>)}
-                </UnorderedList>
-
-                <Heading as="h4" size="sm" color={NAVY} letterSpacing="-0.5px" mb={3}>What we're looking for</Heading>
-                <UnorderedList {...BODY_TEXT} spacing={1} mb={6} pl={2}>
-                  {role.qualifications.map((item) => <ListItem key={item}>{item}</ListItem>)}
-                </UnorderedList>
-
-                <Heading as="h4" size="sm" color={NAVY} letterSpacing="-0.5px" mb={3}>What you'll gain</Heading>
-                <UnorderedList {...BODY_TEXT} spacing={1} pl={2}>
-                  {BENEFITS.map((item) => <ListItem key={item}>{item}</ListItem>)}
-                </UnorderedList>
+                {([
+                  ["About The Safety Net Project", ABOUT],
+                  ["The Role", role.summary],
+                  ["What You'll Do", role.responsibilities],
+                  ["What We're Looking For", role.qualifications],
+                  ["Nice to Have", role.niceToHave],
+                  ["Why Join The Safety Net Project?", BENEFITS],
+                ] as [string, string | string[]][]).map(([heading, content], i, sections) => (
+                  <Box key={heading} mb={i < sections.length - 1 ? 6 : 0}>
+                    <Heading as="h4" size="sm" color={NAVY} letterSpacing="-0.5px" mb={2}>{heading}</Heading>
+                    {typeof content === "string" ? (
+                      <Text {...BODY_TEXT}>{content}</Text>
+                    ) : (
+                      <UnorderedList {...BODY_TEXT} spacing={1} pl={2}>
+                        {content.map((item) => <ListItem key={item}>{item}</ListItem>)}
+                      </UnorderedList>
+                    )}
+                  </Box>
+                ))}
 
                 {isMobile && (
                   <Button

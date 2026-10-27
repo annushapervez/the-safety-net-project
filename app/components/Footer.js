@@ -12,10 +12,7 @@ const Footer = () => {
       mt={0} 
     >
       <Text fontSize={{ base: 'xs', sm: 'sm' }}> 
-        &copy; 2026 501(c)(3) The Safety Net Project. All rights reserved.
-      </Text>
-      <Text fontSize={{ base: 'xs', sm: 'sm' }} mt={2}>
-        Contact us: safetynetprojects@gmail.com
+        &copy; 2026 501(c)(3) The Safety Net Project Inc. All rights reserved.
       </Text>
       <Flex justify="center" mt={4}>
         <Link href="https://instagram.com" isExternal>

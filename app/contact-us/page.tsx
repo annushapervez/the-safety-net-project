@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SlideUpWhenVisible from '../components/SlideUpwhenVisible.js';
 import HamburgerMenu from '../components/HamburgerMenu';
+import ContactSection from '../components/ContactSection';
 import { useMediaQuery } from "@chakra-ui/react";
 
 function ContactForm() {
@@ -54,6 +55,11 @@ function ContactForm() {
       <Footer >
 
       {isMobile ? <HamburgerMenu /> : <Header />}
+
+        {/* the work-with-us card, as this page's hero — sits above the form
+            rather than on the homepage */}
+        <ContactSection topSpace={{ base: 14, md: 20 }} />
+
         <SlideUpWhenVisible threshold={.35}>
 
         <Box  

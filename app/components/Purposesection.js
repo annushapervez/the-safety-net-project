@@ -156,10 +156,12 @@ const PurposeSection = () => {
           color={MAROON}
           mb={{ base: 10, md: 16 }}
         >
-          purpose
+          Purpose
         </Text>
 
-        {/* main statement — lead in bold sans, rest in serif, all filling */}
+        {/* main statement — one continuous serif line, all filling. The lead
+            and the rest stay separate strings so the fill can still be reasoned
+            about in two parts, but they're styled identically now. */}
         <Text
           as="p"
           maxW="1400px"
@@ -170,13 +172,7 @@ const PurposeSection = () => {
           lineHeight="1.12"
           letterSpacing="-.01em"
         >
-          <Box
-            as="span"
-            fontFamily={SANS}
-            fontWeight="800"
-            letterSpacing="-.02em"
-            fontSize="0.82em"
-          >
+          <Box as="span" fontSize="0.82em">
             <Words text={STATEMENT_LEAD} />
           </Box>
           <Box as="span" fontSize="0.82em">

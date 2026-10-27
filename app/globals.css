@@ -5,6 +5,25 @@
 :root {
   --background: #fffff;
   --foreground: #171717;
+
+  /* Scroll-driven page palette.
+     ProjectsSection interpolates these two as it arrives and again as it
+     leaves, so the whole page changes colour rather than a coloured block
+     sliding over a pale one. Sections that take part paint
+     background: var(--page-bg) and colour their type with var(--page-fg)
+     (using opacity, never a hard-coded rgba, for muted variants — an rgba
+     navy is invisible once the page has gone navy).
+     These values are the resting state: cream page, navy type. */
+  --page-bg: #fbf7ee;
+  --page-fg: #1b2a5b;
+
+  /* The Navbar is transparent and fixed, so its colour depends on whatever
+     happens to be behind it — which is not always the page palette. It
+     follows --page-fg by default (so ProjectsSection's sweep carries it
+     along), but sections with their own dark blocks, like the Impact
+     pillars, override these two while one of those blocks is under the nav. */
+  --nav-fg: var(--page-fg);
+  --nav-bg: var(--page-bg);
 }
 
 @media (prefers-color-scheme: dark) {

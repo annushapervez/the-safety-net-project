@@ -21,8 +21,8 @@ const GRAY = "#5F5D5D";
 const PILLARS = [
   {
     num: "01",
-    titleSerif: "A Strong",
-    titleBold: "Foundation",
+        titleSerif: "",
+    titleBold: "A Strong Foundation",
     body: "Every individual deserves access to life's basic necessities. We work to improve access to food, safe housing, healthcare, and other critical services that create a foundation for lasting well-being.",
     image: "/atif/DSC_6617.jpg",
     pos: "center",
@@ -39,15 +39,17 @@ const PILLARS = [
 ];
 
 /* Ordered as money → people → reach, so the ledger builds from what was
-   given to who it reached. `text` stays to one line at desktop width — the
-   number and label carry the point, the sentence just qualifies it. */
+   given to who it reached. The number and label carry the point; `text`
+   qualifies it in two short sentences — the first says what the figure
+   means, the second grounds it in a specific. Runs to a few lines in the
+   narrow second column, which is what sets the row height. */
 const STATS = [
   {
     key: "funds",
     target: 8000,
     format: (v) => `$${v.toLocaleString()}+`,
     label: "Funds Distributed",
-    text: "Supporting the education, care, and daily needs of the girls we serve.",
+    text: "Supporting the education, care, and daily needs of the girls we serve. Funds are wired directly to the academy and released as needs arise.",
     image: "/atif/DSC_6486.jpg",
   },
   {
@@ -55,7 +57,7 @@ const STATS = [
     target: 70,
     format: (v) => `${v}+`,
     label: "Girls Served",
-    text: "Empowered with education, safety, and the tools to transform their lives.",
+    text: "Empowered with education, safety, and the tools to transform their lives. They come from rural areas across Balochistan, Quetta, and Kashmir.",
     image: "/atif/DSC_6533.jpg",
   },
   {
@@ -63,7 +65,7 @@ const STATS = [
     target: 100,
     format: (v) => `${v}%`,
     label: "From Underrepresented Communities",
-    text: "Every girl we work with comes from a historically underrepresented group.",
+    text: "Every girl we work with comes from a historically underrepresented group. Most giving concentrates in urban centers, so we work where it rarely reaches.",
     image: "/atif/DSC_6670.jpg",
   },
 ];
@@ -83,7 +85,12 @@ const PillarCopy = ({ pillar }) => (
     <Text
       fontFamily={SERIF}
       fontWeight="400"
-      fontSize={{ base: "38px", md: "clamp(40px, 4vw, 66px)" }}
+      // Sized to hold "A Strong Foundation" on one line inside the 34rem
+      // measure below. That phrase is now set entirely in the heavy sans
+      // (titleSerif is empty), which runs a good deal wider than the serif
+      // it replaced — hence the drop from 66px. If a longer pillar title is
+      // ever added, this cap is the thing to lower.
+      fontSize={{ base: "34px", md: "clamp(34px, 3.3vw, 50px)" }}
       lineHeight="1.08"
       letterSpacing="-.01em"
       color="#fff"
@@ -303,15 +310,15 @@ const ImpactSection = () => {
       });
 
       // ---- stats media: hovering a stat pops its photo into the frame in
-      // the right-hand margin. Hover, not scroll — so the reader chooses what
-      // to look at, and the photos stay out of the way until asked for.
+      // the right-hand margin, where it STAYS until a different stat is
+      // hovered. Hover, not scroll — so the reader chooses what to look at,
+      // and the frame holds whatever they last asked for.
       //
       // Listeners go on the rows rather than React onMouseEnter so the whole
       // effect stays in one place with the animation it drives, and so the
       // frame itself can keep pointerEvents: none.
       const media = gsap.utils.toArray(".stat-media");
       const statRows = gsap.utils.toArray(".stat-row");
-      const list = document.querySelector(".stat-list");
       const teardown = [];
 
       if (media.length && statRows.length) {
@@ -342,27 +349,84 @@ const ImpactSection = () => {
           });
         };
 
-        const hide = () => {
-          if (active === -1) return;
-          active = -1;
-          gsap.to(media, { opacity: 0, duration: 0.35, ease: "power2.out", overwrite: true });
-        };
-
         statRows.forEach((row, i) => {
           const enter = () => show(i);
           row.addEventListener("mouseenter", enter);
           teardown.push(() => row.removeEventListener("mouseenter", enter));
         });
 
-        // leaving the list as a whole clears the frame; leaving an individual
-        // row does not, so sliding between rows swaps cleanly with no flicker
-        if (list) {
-          list.addEventListener("mouseleave", hide);
-          teardown.push(() => list.removeEventListener("mouseleave", hide));
-        }
+        // NOTE: mouseenter only — there is deliberately no mouseleave here.
+        // A photo stays in the frame once summoned and is only ever replaced
+        // by the next stat hovered, so the margin doesn't flash empty every
+        // time the cursor drifts off the list. `active` guards re-entering
+        // the row that is already showing.
       }
 
       return () => teardown.forEach((fn) => fn());
+    },
+    { scope: sectionRef }
+  );
+
+  // ---- keep the Navbar legible over this section's navy blocks ----
+  //
+  // The nav is transparent and fixed, and navy-on-navy is invisible. Unlike
+  // ProjectsSection, this section doesn't sweep the page palette — its navy
+  // is local blocks with cream rows above and below — so it overrides
+  // --nav-fg / --nav-bg directly instead, and clears them again so the nav
+  // falls back to following --page-fg everywhere else.
+  //
+  // The trigger line is the nav's vertical MIDDLE rather than its top or
+  // bottom edge, so the flip happens when a block covers half of it — using
+  // either edge makes the change land visibly early on one side and late on
+  // the other.
+  useGSAP(
+    () => {
+      const NAV_MID = 37; // half of the 74px Navbar
+      const blocks = gsap.utils.toArray(".navy-over-nav");
+      if (!blocks.length) return;
+
+      // the two blocks can both be active across a row boundary, so this is
+      // a count rather than a boolean — a plain flag would flip to light the
+      // moment the first one ended, while the second was still under the nav
+      let covering = 0;
+
+      const apply = () => {
+        const root = document.documentElement.style;
+        if (covering > 0) {
+          root.setProperty("--nav-fg", CREAM);
+          root.setProperty("--nav-bg", NAVY);
+        } else {
+          // removing them restores the :root rule, which is var(--page-fg)
+          root.removeProperty("--nav-fg");
+          root.removeProperty("--nav-bg");
+        }
+        // the logo mark can't be recoloured by a variable (see the Navbar),
+        // so it still needs a plain light/dark signal
+        window.dispatchEvent(
+          new CustomEvent("site:tone", {
+            detail: covering > 0 ? "dark" : "light",
+          })
+        );
+      };
+
+      const triggers = blocks.map((el) =>
+        ScrollTrigger.create({
+          trigger: el,
+          start: `top ${NAV_MID}px`,
+          end: `bottom ${NAV_MID}px`,
+          invalidateOnRefresh: true,
+          onToggle: (self) => {
+            covering = Math.max(0, covering + (self.isActive ? 1 : -1));
+            apply();
+          },
+        })
+      );
+
+      return () => {
+        triggers.forEach((t) => t.kill());
+        covering = 0;
+        apply();
+      };
     },
     { scope: sectionRef }
   );
@@ -414,6 +478,7 @@ const ImpactSection = () => {
           that dead space plus row 02's top margin is the gap between rows */}
       <Box className="impact-row" position="relative" zIndex={2} minH={{ base: "auto", md: "88vh" }}>
         <Box
+          className="navy-over-nav"
           position="absolute"
           top={{ base: 0, md: "18vh" }}
           left={0}
@@ -462,6 +527,7 @@ const ImpactSection = () => {
       >
         <Box
           ref={navyRef}
+          className="navy-over-nav"
           position="absolute"
           top={0}
           left={0}
@@ -496,16 +562,15 @@ const ImpactSection = () => {
       <Box
         className="impact-row"
         ref={panelRef}
-        bg={CREAM}
+        bg="var(--page-bg)"
         px={{ base: 6, md: "56px" }}
         pt={{ base: 12, md: 20 }}
         pb={{ base: 20, md: 32 }}
       >
         {/* Masthead: a small lowercase sans eyebrow sitting tight above an
-            oversized regular-weight serif line, with the section index set as
-            a superscript on the headline itself rather than on its own row.
-            The eyebrow carries the sentence so the big word can stay short —
-            that contrast in scale is what does the work. */}
+            oversized regular-weight serif line. The eyebrow carries the
+            sentence so the big word can stay short — that contrast in scale
+            is what does the work, with nothing else competing on the row. */}
         <Box
           className="impact-reveal impact-float"
           data-float="10"
@@ -518,7 +583,7 @@ const ImpactSection = () => {
             fontWeight="800"
             fontSize={{ base: "17px", md: "20px" }}
             letterSpacing="-.01em"
-            color={NAVY}
+            color="var(--page-fg)"
             mb={{ base: 1, md: 1 }}
           >
             how you&apos;re helping
@@ -529,20 +594,9 @@ const ImpactSection = () => {
             fontSize={{ base: "62px", md: "clamp(78px, 9vw, 150px)" }}
             lineHeight="0.88"
             letterSpacing="-.02em"
-            color={NAVY}
+            color="var(--page-fg)"
           >
             our impact
-            <Box
-              as="sup"
-              fontFamily={SANS}
-              fontWeight="700"
-              fontSize="0.13em"
-              letterSpacing="0"
-              verticalAlign="super"
-              ml={1}
-            >
-              03
-            </Box>
           </Text>
         </Box>
 
@@ -575,7 +629,7 @@ const ImpactSection = () => {
                     fontSize={{ base: "46px", md: "clamp(48px, 4.6vw, 76px)" }}
                     lineHeight="1"
                     letterSpacing="-.02em"
-                    color={NAVY}
+                    color="var(--page-fg)"
                     // tabular figures stop the width jitter while counting up
                     style={{ fontVariantNumeric: "tabular-nums" }}
                   >
@@ -586,7 +640,8 @@ const ImpactSection = () => {
                     fontFamily={SANS}
                     fontWeight="500"
                     fontSize={{ base: "14px", md: "15px" }}
-                    color="rgba(27,42,91,.55)"
+                    color="var(--page-fg)"
+                    opacity={0.55}
                   >
                     {stat.label}
                   </Text>
@@ -597,7 +652,8 @@ const ImpactSection = () => {
                   fontFamily={SANS}
                   fontSize={{ base: "15px", md: "16px" }}
                   lineHeight="1.5"
-                  color={GRAY}
+                  color="var(--page-fg)"
+                  opacity={0.72}
                 >
                   {stat.text}
                 </Text>
@@ -618,7 +674,7 @@ const ImpactSection = () => {
             right="0"
             transform="translateY(-50%)"
             w="30%"
-            h="clamp(280px, 36vh, 440px)"
+            h="clamp(380px, 54vh, 640px)"
             overflow="hidden"
             pointerEvents="none"
           >

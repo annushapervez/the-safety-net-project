@@ -66,3 +66,15 @@ color="#2c3d90" -- navy text
 
 */
 
+
+/* Map attribution: keep the required CARTO/OSM credit, but small and subtle */
+.leaflet-container .leaflet-control-attribution {
+  font-size: 9px;
+  line-height: 1.4;
+  padding: 0 4px;
+  background: rgba(255, 255, 255, 0.6);
+  color: #888;
+}
+.leaflet-container .leaflet-control-attribution a {
+  color: #888;
+}

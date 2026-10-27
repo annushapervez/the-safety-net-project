@@ -1,7 +1,7 @@
 "use client";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, AttributionControl } from "react-leaflet";
 
 const manwaisIcon = L.icon({
   iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
@@ -28,7 +28,11 @@ export default function ManwaisMap() {
       keyboard={false}
       attributionControl={false}
     >
-      <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png" />
+      <TileLayer
+        url={`https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${process.env.NEXT_PUBLIC_CARTO_KEY}`}
+        attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+      />
+      <AttributionControl position="bottomright" prefix={false} />
       <Marker position={MANWAIS_POS} icon={manwaisIcon} />
     </MapContainer>
   );

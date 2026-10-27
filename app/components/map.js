@@ -1,6 +1,6 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMap, AttributionControl } from 'react-leaflet';
 import { useState, useEffect, useRef } from 'react';
 import { Box, Heading, Text, Image, VStack, Center, border } from '@chakra-ui/react';
 import { FaHome } from 'react-icons/fa';  
@@ -200,10 +200,13 @@ export default function PakistanMap() {
         center={[29.3956, 71.6722]}
         zoom={6}
         style={{ height: '100%', width: '100%' }}
+        attributionControl={false}
       >
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png"
+          url={`https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${process.env.NEXT_PUBLIC_CARTO_KEY}`}
+          attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
         />
+        <AttributionControl position="bottomright" prefix={false} />
         {places.map((place) => (
           <Marker
             key={place.id}

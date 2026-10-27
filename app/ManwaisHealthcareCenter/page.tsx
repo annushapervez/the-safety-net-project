@@ -33,6 +33,10 @@ const C = {
   ink:            "#1a1a2e",
 } as const;
 
+// ── Donation links ──
+const GOFUNDME_URL  = "https://www.gofundme.com/f/help-us-build-bheras-first-womens-health-wellness-center";
+const LAUNCHGOOD_URL = "https://www.launchgood.com/v4/campaign/help_us_build_bheras_first_dedicated_womens_health__wellness_center";
+
 // ── useReveal: fade-in on scroll ──
 function useReveal(): [React.RefObject<HTMLDivElement>, boolean] {
   const ref = useRef<HTMLDivElement>(null);
@@ -99,8 +103,9 @@ function Btn({ href, variant = "gold", children, style = {} }: BtnProps) {
     goldFull:     { background: C.gold,        color: C.navyDark, display: "block", textAlign: "center", width: "100%" },
     goldLight:    { background: C.goldLight,   color: C.navyDark },
   };
+  const external = href.startsWith("http");
   return (
-    <a href={href} style={{
+    <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} style={{
       display: "inline-block", textDecoration: "none",
       fontSize: "0.75rem", fontWeight: 700,
       letterSpacing: "0.1em", textTransform: "uppercase",
@@ -479,7 +484,6 @@ function Building() {
 // ─────────────────────────────────────────
 function FundAllocation() {
   const isMobile = useIsMobile();
-  const [selectedAmt, setSelectedAmt] = useState("$50");
   const [progVisible, setProgVisible] = useState(false);
   const progRef = useRef<HTMLDivElement>(null);
 
@@ -504,7 +508,11 @@ function FundAllocation() {
     ["Personnel Contingency",                  "$800"],
   ];
 
-  const amounts = ["$5", "$10", "$20", "$50", "$100", "Other"];
+  const impactTiers: [string, string][] = [
+    ["$50",  "A week of hygiene supplies"],
+    ["$150", "A month of community health outreach"],
+    ["$290", "A month of visiting physician care"],
+  ];
 
   return (
     <section id="budget" style={{ padding: isMobile ? "48px 0" : "70px 0", background: "white" }}>
@@ -550,27 +558,36 @@ function FundAllocation() {
             <p style={{ fontSize: "0.85rem", fontWeight: 300, color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: 24 }}>
               Every dollar goes directly to construction, supplies, and physician visits for women who have never had access to care. The Safety Net Project is a registered 501(c)(3), your donation is tax-deductible.
             </p>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginBottom: 12 }}>
-              {amounts.map((a) => (
-                <button key={a} onClick={() => setSelectedAmt(a)} style={{
-                  background: selectedAmt === a ? C.goldLight : "transparent",
-                  border: `1px solid ${selectedAmt === a ? C.goldLight : "rgba(255,255,255,0.18)"}`,
-                  color: selectedAmt === a ? C.navyDark : "rgba(255,255,255,0.65)",
-                  padding: "10px 6px",
-                  fontFamily: "'Playfair Display', serif", fontSize: "0.95rem",
-                  cursor: "pointer", fontWeight: selectedAmt === a ? 700 : 400,
-                  transition: "all 0.2s",
+            <div style={{ marginBottom: 28 }}>
+              {impactTiers.map(([amt, desc], i) => (
+                <div key={amt} style={{
+                  display: "grid", gridTemplateColumns: "64px 1fr", alignItems: "baseline", gap: 12,
+                  padding: "10px 0",
+                  borderTop: i === 0 ? "1px solid rgba(255,255,255,0.12)" : "none",
+                  borderBottom: "1px solid rgba(255,255,255,0.12)",
                 }}>
-                  {a}
-                </button>
+                  <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.05rem", fontWeight: 700, color: C.goldLight }}>{amt}</span>
+                  <span style={{ fontSize: "0.8rem", fontWeight: 300, color: "rgba(255,255,255,0.65)" }}>{desc}</span>
+                </div>
               ))}
             </div>
-            <p style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.35)", marginBottom: 24, lineHeight: 1.55 }}>
-              $50 covers a week of hygiene supplies · $150 funds a month of community health outreach · $290 funds a month of visiting physician care
+            <p style={{ fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 10 }}>
+              Donate on
             </p>
-            <Btn href="mailto:safetynetprojects@gmail.com" variant="goldLight" style={isMobile ? { display: "block", textAlign: "center" } : {}}>
-              Donate via Email / Contact Us
-            </Btn>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 10, marginBottom: 18 }}>
+              <Btn href={GOFUNDME_URL} variant="goldLight" style={{ display: "block", textAlign: "center", padding: "14px 12px" }}>
+                GoFundMe
+              </Btn>
+              <Btn href={LAUNCHGOOD_URL} variant="goldLight" style={{ display: "block", textAlign: "center", padding: "14px 12px" }}>
+                LaunchGood
+              </Btn>
+            </div>
+            <p style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.55 }}>
+              Prefer to give another way?{" "}
+              <a href="/contact-us" style={{ color: C.goldLight, textDecoration: "underline" }}>
+                Contact us
+              </a>
+            </p>
           </div>
         </div>
       </div>
@@ -593,7 +610,7 @@ function ManwaisMap() {
   const L = require("leaflet") as typeof import("leaflet");
   require("leaflet/dist/leaflet.css");
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { MapContainer, TileLayer, Marker } = require("react-leaflet");
+  const { MapContainer, TileLayer, Marker, AttributionControl } = require("react-leaflet");
 
   const icon = L.icon({
     iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
@@ -617,7 +634,11 @@ function ManwaisMap() {
       keyboard={false}
       attributionControl={false}
     >
-      <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png" />
+      <TileLayer
+        url={`https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${process.env.NEXT_PUBLIC_CARTO_KEY}`}
+        attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+      />
+      <AttributionControl position="bottomright" prefix={false} />
       <Marker position={MANWAIS_POS} icon={icon} />
     </MapContainer>
   );
@@ -828,8 +849,9 @@ function DonateAndCta() {
           501(c)(3) registered · All donations tax-deductible · 100% goes directly to the project
         </p>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-          <Btn href="https://www.launchgood.com" variant="goldLight">Donate Now</Btn>
-          <Btn href="mailto:safetynetprojects@gmail.com" variant="outlineWhite">Contact Us</Btn>
+          <Btn href={GOFUNDME_URL} variant="goldLight">Donate on GoFundMe</Btn>
+          <Btn href={LAUNCHGOOD_URL} variant="goldLight">Donate on LaunchGood</Btn>
+          <Btn href="/contact-us" variant="outlineWhite">Contact Us</Btn>
         </div>
       </div>
     </section>
